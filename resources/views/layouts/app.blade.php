@@ -105,6 +105,9 @@
                     <li class="list-group-item">
                       <a href="{{route('topic.create')}}" style="text-decoration: none;">Create new topic</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{route('learn.create')}}" style="text-decoration: none;">Create new topic</a>
+                    </li>
                   </ul>
                 </div>
               </div>

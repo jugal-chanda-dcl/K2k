@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\LearnController;
 
 
 Route::get('/', function () {
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
 Route::resource('subject', 'SubjectController')->middleware('roleauth');
 Route::resource('topic', 'TopicController')->middleware('roleauth');
 Route::get('subject/{subject}/topics/','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
+Route::resource('learn', 'LearnController')->middleware('roleauth');
 // Route::group(['middleware' => 'roleauth'], function () {
 //     Route::resource('role', 'RoleController');
 //     // Route::view('/admin', 'admin');

@@ -27,6 +27,11 @@
             @foreach($subjects as $subject)
               <option value="{{ $subject->id }}">Class {{ $subject->class }} Subject {{ $subject->name }}</option>
             @endforeach
+            @error('subject')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
           </select>
 
