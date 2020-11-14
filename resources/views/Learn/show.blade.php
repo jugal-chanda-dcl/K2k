@@ -11,6 +11,12 @@
     <h3>Topic Name: {{ $learn->topic->name }}</h3>
     <h4>Created by: {{ $learn->user->name }}</h4>
     <a href="{{route('learn.edit',['learn'=>$learn->id])}}" class="btn btn-info btn-sm">Edit</a>
+    <form class="d-inline" action="{{ route('learn.destroy',['learn'=>$learn->id])}}" method="post">
+          @csrf
+          @method('delete')
+          <button type="submit" name="button"  class="btn btn-danger btn-sm">Delete</button>
+
+    </form>
   </div>
 
   <div class="card-body">

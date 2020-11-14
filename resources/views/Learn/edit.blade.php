@@ -10,9 +10,10 @@
   <div class="card-header">Update learning material</div>
 
   <div class="card-body">
-    <form method="POST" action="{{ route('learn.store') }}">
+    <form method="POST" action="{{ route('learn.update',['learn'=>$learn->id]) }}">
 
         @csrf
+        @method('put')
 
         <div class="form-group mx-2">
             <label for="topic" class="">Choose a topic</label>
@@ -40,7 +41,7 @@
 
         <div class="form-group row justify-content-center mb-1">
           <button type="submit" class="btn btn-primary">
-              Store
+              Update
           </button>
         </div>
     </form>
@@ -57,4 +58,5 @@
     height: 100
   });
 </script>
+
 @endsection

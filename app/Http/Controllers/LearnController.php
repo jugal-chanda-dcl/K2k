@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Http\Request;
 use App\Learn;
@@ -16,7 +17,7 @@ class LearnController extends Controller
      */
     public function index()
     {
-        //
+        return view('learn.index',['learns'=>Learn::all()]);
     }
 
     /**
@@ -39,7 +40,7 @@ class LearnController extends Controller
     {
       $user = Auth::user();
       $validatedData = $request->validate([
-        'topic' => 'required',
+        'topic' => 'required|unique:learns,topic_id',
         'content' => 'required',
       ]);
       $content = $request->input('content');
@@ -102,8 +103,12 @@ class LearnController extends Controller
     public function update(Request $request, $id)
     {
       $user = Auth::user();
+      $learn = Learn::find($id);
+
       $validatedData = $request->validate([
-        'topic' => 'required',
+        'topic' => [
+          'required',
+          Rule::unique("learns",'topic_id')->ignore($learn->topic->id,'topic_id')],
         'content' => 'required',
       ]);
       $content = $request->input('content');
@@ -125,9 +130,10 @@ class LearnController extends Controller
       }
       $content = $dom->saveHTML();
 
-      $learn = Learn::find($id);
-      $learn->topic = $validatedData['topic'];
+
+      $learn->topic_id = $validatedData['topic'];
       $learn->content = $content;
+      $learn->save();
       return redirect()->route('learn.show',['learn'=>$learn->id]);
     }
 
@@ -139,6 +145,7 @@ class LearnController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Learn::destroy($id);
+        return redirect()->route('learn.index');
     }
 }
