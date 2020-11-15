@@ -50,12 +50,4 @@ Route::resource('content', 'ContentController')->middleware('roleauth');
 Route::get('teacher/resources', 'ResourceController@teacherResourceAll')->middleware('roleauth')->name('teacher.resource.all');
 Route::get('teacher/resources/{resource}', 'ResourceController@teacherResourceSingle')->middleware('roleauth')->name('teacher.resource.single');
 
-// Route::group(['middleware' => 'roleauth'], function () {
-//     Route::resource('role', 'RoleController');
-//     // Route::view('/admin', 'admin');
-// });
-
-// Route::group(['middleware' => 'roleauth'], function () {
-//     Route::resource('role', 'RoleController');
-//     Route::view('/admin', 'admin');
-// });
+Route::resource('bid', 'BidContentController')->middleware('roleauth');
