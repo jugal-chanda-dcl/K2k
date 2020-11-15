@@ -93,33 +93,55 @@
                     <li class="list-group-item">
                       <a href="#" style="text-decoration: none;">Home</a>
                     </li>
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.create')))
                     <li class="list-group-item">
                       <a href="{{ route('subject.create') }}" style="text-decoration: none;">Create a subject</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.index')))
                     <li class="list-group-item">
                       <a href="{{route('subject.index')}}" style="text-decoration: none;">Subjects && Classes</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.index')))
                     <li class="list-group-item">
                       <a href="{{route('topic.index')}}" style="text-decoration: none;">All Topics</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.create')))
                     <li class="list-group-item">
                       <a href="{{route('topic.create')}}" style="text-decoration: none;">Create new topic</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.create')))
                     <li class="list-group-item">
-                      <a href="{{route('learn.create')}}" style="text-decoration: none;">Add learning material</a>
+                      <a href="{{route('learn.create')}}" style="text-decoration: none;">Create new learning materials</a>
                     </li>
+                    @endif
+
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.index')))
                     <li class="list-group-item">
                       <a href="{{route('learn.index')}}" style="text-decoration: none;">All learning material</a>
                     </li>
+                    @endif
+
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('content.index')))
                     <li class="list-group-item">
                       <a href="{{route('content.index')}}" style="text-decoration: none;">All Contents</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('content.create')))
                     <li class="list-group-item">
                       <a href="{{route('content.create')}}" style="text-decoration: none;">Create new content</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('teacher.resource.all')))
                     <li class="list-group-item">
                       <a href="{{route('teacher.resource.all')}}" style="text-decoration: none;">Resourcces</a>
                     </li>
+                    @endif
+
+
                   </ul>
                 </div>
               </div>

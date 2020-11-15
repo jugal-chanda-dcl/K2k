@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Routing\Route;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,30 @@ class User extends Authenticatable
     public function contents()
     {
       return $this->hasMany('App\Content');
+    }
+    public function role($value='')
+    {
+      return $this->belongsTo('App\Role');
+    }
+
+    public function hasPermission(Route $route)
+    {
+
+      $role = $this->role;
+      $permissions = $role->permissions;
+      // get requested action
+      $actionName = class_basename($route->getActionName());
+      // check if requested action is in permissions list
+      foreach ($permissions as $permission)
+      {
+        $_namespaces_chunks = explode('\\', $permission->controller);
+        $controller = end($_namespaces_chunks);
+        if ($actionName == $controller . '@' . $permission->method)
+        {
+          return true;
+        }
+      }
+      return false;
     }
 
 }
