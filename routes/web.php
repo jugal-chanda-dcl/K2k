@@ -46,6 +46,7 @@ Route::resource('subject', 'SubjectController')->middleware('roleauth');
 Route::resource('topic', 'TopicController')->middleware('roleauth');
 Route::get('subject/{subject}/topics/','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
 Route::resource('learn', 'LearnController')->middleware('roleauth');
+Route::resource('content', 'ContentController')->middleware('roleauth');
 
 // Route::group(['middleware' => 'roleauth'], function () {
 //     Route::resource('role', 'RoleController');
