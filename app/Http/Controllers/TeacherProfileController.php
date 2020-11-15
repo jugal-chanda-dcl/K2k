@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\BidContent;
+use App\TeacherProfile;
 use Illuminate\Http\Request;
 
-class BidContentController extends Controller
+class TeacherProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class BidContentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\BidContent  $bidContent
+     * @param  \App\TeacherProfile  $teacherProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(BidContent $bidContent)
+    public function show(TeacherProfile $teacherProfile)
     {
         //
     }
@@ -52,10 +52,10 @@ class BidContentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\BidContent  $bidContent
+     * @param  \App\TeacherProfile  $teacherProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(BidContent $bidContent)
+    public function edit(TeacherProfile $teacherProfile)
     {
         //
     }
@@ -64,10 +64,10 @@ class BidContentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BidContent  $bidContent
+     * @param  \App\TeacherProfile  $teacherProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BidContent $bidContent)
+    public function update(Request $request, TeacherProfile $teacherProfile)
     {
         //
     }
@@ -75,10 +75,10 @@ class BidContentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BidContent  $bidContent
+     * @param  \App\TeacherProfile  $teacherProfile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BidContent $bidContent)
+    public function destroy(TeacherProfile $teacherProfile)
     {
         //
     }

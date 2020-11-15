@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBidContentsTable extends Migration
+class CreateTeacherProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBidContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bid_contents', function (Blueprint $table) {
+        Schema::create('teacher_profiles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateBidContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bid_contents');
+        Schema::dropIfExists('teacher_profiles');
     }
 }
