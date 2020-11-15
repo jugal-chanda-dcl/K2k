@@ -111,6 +111,12 @@
                     <li class="list-group-item">
                       <a href="{{route('learn.index')}}" style="text-decoration: none;">All learning material</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{route('content.index')}}" style="text-decoration: none;">All Contents</a>
+                    </li>
+                    <li class="list-group-item">
+                      <a href="{{route('content.create')}}" style="text-decoration: none;">Create new content</a>
+                    </li>
                   </ul>
                 </div>
               </div>
