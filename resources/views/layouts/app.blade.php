@@ -117,6 +117,9 @@
                     <li class="list-group-item">
                       <a href="{{route('content.create')}}" style="text-decoration: none;">Create new content</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{route('teacher.resource.all')}}" style="text-decoration: none;">Resourcces</a>
+                    </li>
                   </ul>
                 </div>
               </div>

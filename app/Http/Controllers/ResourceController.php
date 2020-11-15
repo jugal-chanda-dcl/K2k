@@ -141,4 +141,15 @@ class ResourceController extends Controller
         $resource->delete();
         return redirect()->route('resource.index');
     }
+
+    public function teacherResourceAll()
+    {
+      // code...
+      return view('teacher.resource',['resources'=>Resource::all()]);
+    }
+    public function teacherResourceSingle(Resource $resource)
+    {
+      // code... resourceSingle
+      return view('teacher.resourceSingle',['resource'=>$resource]);
+    }
 }
