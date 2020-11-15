@@ -99,6 +99,9 @@
                     <li class="list-group-item">
                       <a href="{{ route('role.create') }}">Create new role</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('resource.create') }}">Add Resource</a>
+                    </li>
 
                   </ul>
                 </div>

@@ -24,7 +24,7 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('resource.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $validatedData = $request->validate([
+        'content' => 'required',
+      ]);
+
+      $resource = Resource::create([
+        'content'=>$validatedData['content']
+      ]);
+      return redirect()->route('resource.show',['resource'=>$resource]);
     }
 
     /**
@@ -46,7 +53,7 @@ class ResourceController extends Controller
      */
     public function show(Resource $resource)
     {
-        //
+        return view('resource.show',['resource'=>$resource]);
     }
 
     /**
