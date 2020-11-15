@@ -43,6 +43,7 @@ class LearnController extends Controller
         'topic' => 'required|unique:learns,topic_id',
         'content' => 'required',
       ]);
+      dd($validatedData['content']);
       $content = $request->input('content');
       $dom = new \DomDocument();
       $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);

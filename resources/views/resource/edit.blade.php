@@ -10,12 +10,13 @@
   <div class="card-header">Create new Resource</div>
 
   <div class="card-body">
-    <form method="POST" action="{{ route('resource.store') }}">
+    <form method="POST" action="{{ route('resource.update',['resource'=>$resource]) }}">
 
         @csrf
+        @method('put')
         <div class="form-group mx-2">
           <label for="topic">Topic Name</label>
-          <input type="text" name="topic" id="topic" class="form-control @error('topic') is-invalid @enderror" value="{{ old('topic') }}">
+          <input type="text" name="topic" id="topic" class="form-control @error('topic') is-invalid @enderror" value="{{ $resource->topic }}">
           @error('topic')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -25,7 +26,7 @@
 
         <div class="form-group mx-2">
           <label for="content">Content</label>
-          <textarea  id="content" name="content" class="form-control @error('content') is-invalid @enderror" rows="8" cols="80">{{ old('content') }}</textarea>
+          <textarea  id="content" name="content" class="form-control @error('content') is-invalid @enderror" rows="8" cols="80">{!! $resource->content !!}</textarea>
           @error('content')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -36,7 +37,7 @@
 
         <div class="form-group row justify-content-center mb-1">
           <button type="submit" class="btn btn-primary">
-              Store
+              Update
           </button>
         </div>
     </form>

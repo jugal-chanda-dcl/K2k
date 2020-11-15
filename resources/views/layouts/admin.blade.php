@@ -102,6 +102,9 @@
                     <li class="list-group-item">
                       <a href="{{ route('resource.create') }}">Add Resource</a>
                     </li>
+                    <li class="list-group-item">
+                      <a href="{{ route('resource.index') }}">Resources</a>
+                    </li>
 
                   </ul>
                 </div>

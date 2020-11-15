@@ -12,7 +12,7 @@
 <div class="card">
   <div class="card-header">{{ $learn->topic->name }}</div>
   <div class="card-body">
-    {!!  Str::limit($learn->content, $limit = 150, $end = '...') !!}
+    {!!  Str::limit($learn->content, $limit = 500, $end = '...') !!}
   </div>
   <div class="card-footer">
     <a href="{{ route('learn.show',['learn'=>$learn->id]) }}" class="btn btn-sm btn-info">Show</a>

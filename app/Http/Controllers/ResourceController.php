@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Resource;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ResourceController extends Controller
 {
@@ -14,7 +15,7 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        //
+        return view('resource.index',['resources'=>Resource::all()]);
     }
 
     /**
@@ -37,10 +38,31 @@ class ResourceController extends Controller
     {
       $validatedData = $request->validate([
         'content' => 'required',
+        'topic' => 'required|unique:resources',
       ]);
 
+      $content = $request->input('content');
+      $dom = new \DomDocument();
+      $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+      $images = $dom->getElementsByTagName('img');
+
+      foreach($images as $k => $img){
+        $data = $img->getAttribute('src');
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+        $data = base64_decode($data);
+
+        $image_name= "/upload/" . time().$k.'.png';
+        $path = public_path() . $image_name;
+        file_put_contents($path, $data);
+        $img->removeAttribute('src');
+        $img->setAttribute('src', $image_name);
+      }
+      $content = $dom->saveHTML();
+
       $resource = Resource::create([
-        'content'=>$validatedData['content']
+        'content'=>$content,
+        'topic' => $validatedData['topic'],
       ]);
       return redirect()->route('resource.show',['resource'=>$resource]);
     }
@@ -64,7 +86,7 @@ class ResourceController extends Controller
      */
     public function edit(Resource $resource)
     {
-        //
+        return view('resource.edit',['resource'=>$resource]);
     }
 
     /**
@@ -76,7 +98,36 @@ class ResourceController extends Controller
      */
     public function update(Request $request, Resource $resource)
     {
-        //
+      $validatedData = $request->validate([
+        'content' => 'required',
+        'topic' => [
+          'required',
+          Rule::unique("resources",'topic')->ignore($resource->topic,'topic')],
+      ]);
+      $content = $validatedData['content'];
+      $dom = new \DomDocument();
+      $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+      $images = $dom->getElementsByTagName('img');
+
+      foreach($images as $k => $img){
+        $data = $img->getAttribute('src');
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+        $data = base64_decode($data);
+
+        $image_name= "/upload/" . time().$k.'.png';
+        $path = public_path() . $image_name;
+        file_put_contents($path, $data);
+        $img->removeAttribute('src');
+        $img->setAttribute('src', $image_name);
+      }
+      $content = $dom->saveHTML();
+
+      $resource->topic = $validatedData['topic'];
+      $resource->content = $content;
+      $resource->save();
+
+      return redirect()->route('resource.show',['resource'=>$resource]);
     }
 
     /**
@@ -87,6 +138,7 @@ class ResourceController extends Controller
      */
     public function destroy(Resource $resource)
     {
-        //
+        $resource->delete();
+        return redirect()->route('resource.index');
     }
 }

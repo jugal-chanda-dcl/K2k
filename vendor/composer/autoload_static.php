@@ -496,6 +496,7 @@ class ComposerStaticInitac7d8f8372b2954c3925b98bdbd25dfa
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LearnController' => __DIR__ . '/../..' . '/app/Http/Controllers/LearnController.php',
         'App\\Http\\Controllers\\PracticeController' => __DIR__ . '/../..' . '/app/Http/Controllers/PracticeController.php',
+        'App\\Http\\Controllers\\ResourceController' => __DIR__ . '/../..' . '/app/Http/Controllers/ResourceController.php',
         'App\\Http\\Controllers\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoleController.php',
         'App\\Http\\Controllers\\SubjectController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubjectController.php',
         'App\\Http\\Controllers\\TopicController' => __DIR__ . '/../..' . '/app/Http/Controllers/TopicController.php',
