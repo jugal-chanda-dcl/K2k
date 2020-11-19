@@ -18,7 +18,7 @@
             <label for="topic" class="">Choose a topic</label>
             <select class="form-control @error('topic') is-invalid @enderror" id="topic" name="topic" value="{{ old('topic') }}" required>
               @foreach($topics as $topic)
-              <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+              <option value="{{ $topic->id }}">{{ $topic->name }} Subject {{$topic->subject->name}} class {{$topic->subject->class}}</option>
               @endforeach
             </select>
             @error('topic')
@@ -40,7 +40,7 @@
 
         <div class="form-group row justify-content-center mb-1">
           <button type="submit" class="btn btn-primary">
-              Store
+              Save
           </button>
         </div>
     </form>

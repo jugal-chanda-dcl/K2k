@@ -43,7 +43,7 @@ class LearnController extends Controller
         'topic' => 'required|unique:learns,topic_id',
         'content' => 'required',
       ]);
-      dd($validatedData['content']);
+      // dd($validatedData['content']);
       $content = $request->input('content');
       $dom = new \DomDocument();
       $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -112,14 +112,16 @@ class LearnController extends Controller
           Rule::unique("learns",'topic_id')->ignore($learn->topic->id,'topic_id')],
         'content' => 'required',
       ]);
-      $content = $request->input('content');
+      $content = $validatedData['content'];
       $dom = new \DomDocument();
-      $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+      @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
       $images = $dom->getElementsByTagName('img');
 
       foreach($images as $k => $img){
         $data = $img->getAttribute('src');
+
         list($type, $data) = explode(';', $data);
+
         list(, $data)      = explode(',', $data);
         $data = base64_decode($data);
 
