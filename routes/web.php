@@ -45,9 +45,15 @@ Route::group(['middleware' => 'auth:admin'], function () {
 Route::resource('subject', 'SubjectController')->middleware('roleauth');
 Route::resource('topic', 'TopicController')->middleware('roleauth');
 Route::get('subject/{subject}/topics/','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
+Route::get('/topic/{topic}/learn','TopicController@learn')->middleware('roleauth')->name('topic.learn');
 Route::resource('learn', 'LearnController')->middleware('roleauth');
 Route::resource('content', 'ContentController')->middleware('roleauth');
 Route::get('teacher/resources', 'ResourceController@teacherResourceAll')->middleware('roleauth')->name('teacher.resource.all');
 Route::get('teacher/resources/{resource}', 'ResourceController@teacherResourceSingle')->middleware('roleauth')->name('teacher.resource.single');
+Route::resource('teacherProfile', 'TeacherProfileController')->middleware('roleauth');
+Route::resource('studentProfile', 'StudentProfileController')->middleware('roleauth');
+// Route::get('student/subjects/','SubjectController@studentSubjectsAll')->middleware('roleauth')->name('student.subjects.all');
 
-Route::resource('bid', 'BidContentController')->middleware('roleauth');
+
+
+// Route::resource('bid', 'BidContentController')->middleware('roleauth');

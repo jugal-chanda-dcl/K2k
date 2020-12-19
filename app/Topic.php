@@ -16,8 +16,8 @@ class Topic extends Model
     // code...
     return $this->belongsTo('App\Subject');
   }
-  public function learn($value='')
+  public function learn()
   {
-    return $this->belongsTo('App\Learn');
+    return $this->hasOne('App\Learn');
   }
 }

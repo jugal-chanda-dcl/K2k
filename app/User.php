@@ -50,6 +50,14 @@ class User extends Authenticatable
     {
       return $this->belongsTo('App\Role');
     }
+    public function teacherProfile()
+    {
+      return $this->hasOne(TeacherProfile::class);
+    }
+    public function studentProfile()
+    {
+      return $this->hasOne(StudentProfile::class);
+    }
 
     public function hasPermission(Route $route)
     {

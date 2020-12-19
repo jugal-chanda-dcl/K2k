@@ -105,4 +105,9 @@ class TopicController extends Controller
         return redirect()->route('topic.index');
 
     }
+    public function learn(Topic $topic)
+    {
+      
+      return view('topic.learn',['learn'=>$topic->learn]);
+    }
 }

@@ -107,4 +107,9 @@ class SubjectController extends Controller
       $subject = Subject::find($id);
       return view('subjects.topics',['topics'=> $subject->topics,'subject'=>$subject]);
     }
+
+    // public function studentSubjectsAll()
+    // {
+    //   return view('subjetcs.studentSubjects',['subjects'=>Subject::all()]);
+    // }
 }

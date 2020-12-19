@@ -145,11 +145,11 @@ class ResourceController extends Controller
     public function teacherResourceAll()
     {
       // code...
-      return view('teacher.resource',['resources'=>Resource::all()]);
+      return view('teacherResource.resource',['resources'=>Resource::all()]);
     }
     public function teacherResourceSingle(Resource $resource)
     {
       // code... resourceSingle
-      return view('teacher.resourceSingle',['resource'=>$resource]);
+      return view('teacherResource.resourceSingle',['resource'=>$resource]);
     }
 }
