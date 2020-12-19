@@ -40,7 +40,7 @@ class StudentProfileController extends Controller
         $user = Auth::user();
         if ($user->teacherProfile)
         {
-          Session::flash('status',"Alread profile created. You can update your profile");
+          Session::flash('status',"Already profile created. You can update your profile");
           return redirect()->back();
         }
         $validatedData = $request->validate([
