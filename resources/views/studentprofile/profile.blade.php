@@ -24,11 +24,13 @@
     Profile
     @if(Auth::user()->studentProfile)
     <a href="{{ route('studentProfile.edit',['studentProfile'=>Auth::user()->studentProfile]) }}" class="btn btn-info edit_btn">Edit</a>
+    @else
+    <a href="{{ route('studentProfile.create') }}" class="btn btn-info edit_btn">Edit</a>
     @endif
   </div>
 
   <div class="card-body">
-    @if(Auth::user()->studentProfile)
+
     <table class="table">
       <tr>
         <td>Name</td>
@@ -40,22 +42,29 @@
       </tr>
       <tr>
         <td>Age</td>
-        <td>{{ $user->studentProfile->age }}</td>
+        <td>
+          @if($user->studentProfile)
+          {{ $user->studentProfile->age }}
+          @endif
+        </td>
       </tr>
       <tr>
         <td>Class</td>
-        <td>{{ $user->studentProfile->class }}</td>
+        <td>
+          @if($user->studentProfile)
+          {{ $user->studentProfile->class }}
+          @endif
+        </td>
       </tr>
       <tr>
         <td>Institute</td>
-        <td>{{ $user->studentProfile->institute }}</td>
+        <td>
+          @if($user->studentProfile)
+          {{ $user->studentProfile->institute }}
+          @endif
+          </td>
       </tr>
     </table>
-    @else
-    <div class="text-danger">
-      No Profile created yet!!
-    </div>
-    @endif
   </div>
 </div>
 

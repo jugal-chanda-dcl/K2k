@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ Auth::user()->role->name }}</title>
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -140,22 +140,11 @@
                       <a href="{{route('teacher.resource.all')}}" style="text-decoration: none;">Resourcces</a>
                     </li>
                     @endif
-                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('teacherProfile.create')))
-                    <li class="list-group-item">
-                      <a href="{{route('teacherProfile.create')}}" style="text-decoration: none;">Create profile</a>
-                    </li>
-                    @endif
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('teacherProfile.index')))
                     <li class="list-group-item">
                       <a href="{{route('teacherProfile.index')}}" style="text-decoration: none;">Profile</a>
                     </li>
                     @endif
-                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('studentProfile.create')))
-                    <li class="list-group-item">
-                      <a href="{{route('studentProfile.create')}}" style="text-decoration: none;">Create profile</a>
-                    </li>
-                    @endif
-
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('studentProfile.index')))
                     <li class="list-group-item">
                       <a href="{{route('studentProfile.index')}}" style="text-decoration: none;">Profile</a>
