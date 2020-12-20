@@ -41,12 +41,24 @@
         <td>{{ $user->email }}</td>
       </tr>
       <tr>
+        <td>Phone</td>
+        <td>{{ $user->phone }}</td>
+      </tr>
+      <tr>
+        <td>Profession</td>
+        <td>{{ $user->profession }}</td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td>{{ $user->address }}</td>
+      </tr>
+      <tr>
+        <td>Birthdate</td>
+        <td>{{ $user->birthdate }}</td>
+      </tr>
+      <tr>
         <td>Age</td>
-        <td>
-          @if($user->studentProfile)
-          {{ $user->studentProfile->age }}
-          @endif
-        </td>
+        <td>{{ $user->age }}</td>
       </tr>
       <tr>
         <td>Class</td>

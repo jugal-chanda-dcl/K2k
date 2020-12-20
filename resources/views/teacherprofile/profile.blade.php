@@ -32,13 +32,57 @@
   <div class="card-body">
 
     <table class="table">
-      <tr>
+      <<tr>
         <td>Name</td>
         <td>{{ $user->name }}</td>
       </tr>
       <tr>
         <td>Email</td>
         <td>{{ $user->email }}</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>{{ $user->phone }}</td>
+      </tr>
+      <tr>
+        <td>Profession</td>
+        <td>{{ $user->profession }}</td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td>{{ $user->address }}</td>
+      </tr>
+      <tr>
+        <td>Birthdate</td>
+        <td>{{ $user->birthdate }}</td>
+      </tr>
+      <tr>
+        <td>Age</td>
+        <td>
+          <?php
+          $age = $user->age;
+          $year = intdiv($age,365);
+          if($year == 0)
+          {
+            $age = $age%365;
+            $month = intdiv($age,30);
+            if($month == 0)
+            {
+              $age = $age%30;
+              $week = intdiv($age,7);
+              if($week == 0)
+              {
+                echo $age + "Days";
+              }
+              else
+              {
+                echo $week + "Weeks";
+              }
+            }
+          }
+
+          ?>
+        </td>
       </tr>
       <tr>
         <td>Expirience</td>

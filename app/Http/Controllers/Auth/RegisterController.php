@@ -54,13 +54,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $now = Carbon::now();
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:14', 'unique:users'],
             'profession' => ['required', 'string'],
             'address' => ['required', 'string'],
-            'birthdate' => 'required|date|date_format:Y-m-d',
+            'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -82,7 +83,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      dd($data);
+        $now = Carbon::now();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -91,8 +92,10 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'birthdate' => $data['birthdate'],
             'password' => Hash::make($data['password']),
-            'role_id' => $data['role_id']
+            'role_id' => $data['role_id'],
+            'age' => Carbon::parse($data['birthdate'])->diffInDays($now)
         ]);
+
     }
 
     protected function createAdmin(Request $request)

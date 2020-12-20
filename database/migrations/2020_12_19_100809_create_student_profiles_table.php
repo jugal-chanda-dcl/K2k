@@ -16,9 +16,10 @@ class CreateStudentProfilesTable extends Migration
         Schema::create('student_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('age');
             $table->integer('class');
             $table->string('institute');
+            $table->string('study_focus');
+            $table->string('grpup');
             $table->timestamps();
         });
     }
