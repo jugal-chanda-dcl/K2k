@@ -52,6 +52,7 @@ Route::get('teacher/resources', 'ResourceController@teacherResourceAll')->middle
 Route::get('teacher/resources/{resource}', 'ResourceController@teacherResourceSingle')->middleware('roleauth')->name('teacher.resource.single');
 Route::resource('teacherProfile', 'TeacherProfileController')->middleware('roleauth');
 Route::resource('studentProfile', 'StudentProfileController')->middleware('roleauth');
+Route::resource('contentDeveloperProfile', 'ContentDeveloperProfileController')->middleware('roleauth');
 // Route::get('student/subjects/','SubjectController@studentSubjectsAll')->middleware('roleauth')->name('student.subjects.all');
 
 

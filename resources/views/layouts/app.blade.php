@@ -150,6 +150,11 @@
                       <a href="{{route('studentProfile.index')}}" style="text-decoration: none;">Profile</a>
                     </li>
                     @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('contentDeveloperProfile.index')))
+                    <li class="list-group-item">
+                      <a href="{{route('contentDeveloperProfile.index')}}" style="text-decoration: none;">Profile</a>
+                    </li>
+                    @endif
 
 
 
