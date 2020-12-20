@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -56,6 +57,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:14', 'unique:users'],
+            'profession' => ['required', 'string'],
+            'address' => ['required', 'string'],
+            'birthdate' => 'required|date|date_format:Y-m-d',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -77,9 +82,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      dd($data);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
+            'profession' => $data['profession'],
+            'address' => $data['address'],
+            'birthdate' => $data['birthdate'],
             'password' => Hash::make($data['password']),
             'role_id' => $data['role_id']
         ]);
@@ -87,11 +97,27 @@ class RegisterController extends Controller
 
     protected function createAdmin(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $now = Carbon::now();
+        $data = $request->validate([
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+          'phone' => ['required', 'string', 'max:14', 'unique:admins'],
+          'profession' => ['required', 'string'],
+          'address' => ['required', 'string'],
+          'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
+          'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+
         Admin::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $data['phone'],
+            'profession' => $data['profession'],
+            'address' => $data['address'],
+            'birthdate' => $data['birthdate'],
             'password' => Hash::make($request->password),
+            'age' => Carbon::parse($data['birthdate'])->diffInDays($now)
         ]);
         return redirect()->intended('login/admin');
     }
