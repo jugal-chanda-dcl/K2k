@@ -21,14 +21,33 @@
         @csrf
 
         <div class="form-group mx-2">
-          <label for="experience">Experience</label>
-          <textarea  id="experience" name="experience" class="form-control @error('experience') is-invalid @enderror" rows="8" cols="80">{{ old('experience') }}</textarea>
-          @error('content')
-              <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-          @enderror
+            <label for="year_of_experience" class="">Years of experience</label>
+            <input id="year_of_experience" type="number" class="form-control @error('year_of_experience') is-invalid @enderror" name="year_of_experience" value="{{ old('year_of_experience') }}" required autocomplete="year_of_experience">
+            @error('year_of_experience')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
 
+        <div class="form-group mx-2">
+            <label for="total_completed_projects" class="text-capitalize">total completed_projects</label>
+            <input id="total_completed_projects" type="number" class="form-control @error('total_completed_projects') is-invalid @enderror" name="total_completed_projects" value="{{ old('total_completed_projects') }}" required autocomplete="total_completed_projects">
+            @error('total_completed_projects')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group mx-2">
+            <label for="focus" class="text-capitalize">focus</label>
+            <input id="focus" type="text" class="form-control @error('focus') is-invalid @enderror" name="focus" value="{{ old('focus') }}" required autocomplete="focus">
+            @error('focus')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
         <div class="form-group row justify-content-center mb-1">

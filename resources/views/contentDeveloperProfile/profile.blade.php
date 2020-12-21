@@ -41,11 +41,79 @@
         <td>{{ $user->email }}</td>
       </tr>
       <tr>
-        <td>Expirience</td>
+        <td>Phone</td>
+        <td>{{ $user->phone }}</td>
+      </tr>
+      <tr>
+        <td>Profession</td>
+        <td>{{ $user->profession }}</td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td>{{ $user->address }}</td>
+      </tr>
+      <tr>
+        <td>Birthdate</td>
+        <td>{{ $user->birthdate }}</td>
+      </tr>
+      <tr>
+        <td>Age</td>
+        <td>
+          <?php
+          $age = $user->age;
+          $year = intdiv($age,365);
+          if($year == 0)
+          {
+            $age = $age%365;
+            $month = intdiv($age,30);
+            if($month == 0)
+            {
+              $age = $age%30;
+              $week = intdiv($age,7);
+              if($week == 0)
+              {
+                echo $age." Days";
+              }
+              else
+              {
+                echo $week." Weeks";
+              }
+            }
+            else {
+              echo $month." Months";
+            }
+          }
+          else {
+            echo $year." Year";
+          }
+
+          ?>
+
+        </td>
+      </tr>
+      <tr>
+        <td>Years of experience</td>
         <td>
           @if($user->contentDeveloperProfile)
-          {!! $user->contentDeveloperProfile->experience !!}</td>
+          {{ $user->contentDeveloperProfile->year_of_experience }}
           @endif
+        </td>
+      </tr>
+      <tr>
+        <td class="text-capitalize">total completed projects</td>
+        <td>
+          @if($user->contentDeveloperProfile)
+          {{ $user->contentDeveloperProfile->total_completed_projects }}
+          @endif
+        </td>
+      </tr>
+      <tr>
+        <td class="text-capitalize">Focus</td>
+        <td>
+          @if($user->contentDeveloperProfile)
+          {{ $user->contentDeveloperProfile->focus }}
+          @endif
+        </td>
       </tr>
     </table>
 

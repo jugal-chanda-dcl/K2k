@@ -38,21 +38,23 @@ class StudentProfileController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        if ($user->teacherProfile)
+        if ($user->studentProfile)
         {
           Session::flash('status',"Already profile created. You can update your profile");
           return redirect()->back();
         }
         $validatedData = $request->validate([
-          'age' => 'required',
           'class' => 'required',
           'institute' => 'required',
+          'study_focus' => 'required',
+          'group' => 'required',
         ]);
         $studentProfile = StudentProfile::create([
           'user_id' => $user->id,
-          'age' => $validatedData['age'],
           'class' => $validatedData['class'],
           'institute' => $validatedData['institute'],
+          'study_focus' => $validatedData['study_focus'],
+          'group' => $validatedData['group'],
         ]);
         return redirect()->route('studentProfile.index');
     }
@@ -89,20 +91,17 @@ class StudentProfileController extends Controller
     public function update(Request $request, StudentProfile $studentProfile)
     {
       $user = Auth::user();
-      if ($user->teacherProfile)
-      {
-        Session::flash('status',"Alread profile created. You can update your profile");
-        return redirect()->back();
-      }
       $validatedData = $request->validate([
-        'age' => 'required',
         'class' => 'required',
         'institute' => 'required',
+        'study_focus' => 'required',
+        'group' => 'required',
       ]);
       $studentProfile = $user->studentProfile;
-      $studentProfile->age = $validatedData['age'];
       $studentProfile->class = $validatedData['class'];
       $studentProfile->institute = $validatedData['institute'];
+      $studentProfile->study_focus = $validatedData['study_focus'];
+      $studentProfile->group = $validatedData['group'];
       $studentProfile->save();
       return redirect()->route('studentProfile.index');
     }

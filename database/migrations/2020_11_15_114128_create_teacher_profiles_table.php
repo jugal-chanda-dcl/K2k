@@ -16,7 +16,8 @@ class CreateTeacherProfilesTable extends Migration
         Schema::create('teacher_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->text('experience');
+            $table->integer('year_of_experience');
+            $table->text('specilization');
             $table->timestamps();
         });
     }

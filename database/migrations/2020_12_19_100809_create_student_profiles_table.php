@@ -19,7 +19,7 @@ class CreateStudentProfilesTable extends Migration
             $table->integer('class');
             $table->string('institute');
             $table->string('study_focus');
-            $table->string('grpup');
+            $table->string('group');
             $table->timestamps();
         });
     }

@@ -58,7 +58,37 @@
       </tr>
       <tr>
         <td>Age</td>
-        <td>{{ $user->age }}</td>
+        <td>
+          <?php
+          $age = $user->age;
+          $year = intdiv($age,365);
+          if($year == 0)
+          {
+            $age = $age%365;
+            $month = intdiv($age,30);
+            if($month == 0)
+            {
+              $age = $age%30;
+              $week = intdiv($age,7);
+              if($week == 0)
+              {
+                echo $age." Days";
+              }
+              else
+              {
+                echo $week." Weeks";
+              }
+            }
+            else {
+              echo $month." Months";
+            }
+          }
+          else {
+            echo $year." Year";
+          }
+
+          ?>
+        </td>
       </tr>
       <tr>
         <td>Class</td>
@@ -67,6 +97,22 @@
           {{ $user->studentProfile->class }}
           @endif
         </td>
+      </tr>
+      <tr>
+        <td>Study Focus</td>
+        <td>
+          @if($user->studentProfile)
+          {{ $user->studentProfile->study_focus }}
+          @endif
+      </td>
+      </tr>
+      <tr>
+        <td>Group</td>
+        <td>
+          @if($user->studentProfile)
+          {{ $user->studentProfile->group }}
+          @endif
+      </td>
       </tr>
       <tr>
         <td>Institute</td>

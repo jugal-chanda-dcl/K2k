@@ -32,7 +32,7 @@
   <div class="card-body">
 
     <table class="table">
-      <<tr>
+      <tr>
         <td>Name</td>
         <td>{{ $user->name }}</td>
       </tr>
@@ -72,24 +72,40 @@
               $week = intdiv($age,7);
               if($week == 0)
               {
-                echo $age + "Days";
+                echo $age." Days";
               }
               else
               {
-                echo $week + "Weeks";
+                echo $week." Weeks";
               }
             }
+            else {
+              echo $month." Months";
+            }
+          }
+          else {
+            echo $year." Year";
           }
 
           ?>
+
         </td>
       </tr>
       <tr>
-        <td>Expirience</td>
+        <td>Years of experience</td>
         <td>
           @if($user->teacherProfile)
-          {!! $user->teacherProfile->experience !!}</td>
+          {{ $user->teacherProfile->year_of_experience }}
           @endif
+        </td>
+      </tr>
+      <tr>
+        <td>Specilization</td>
+        <td>
+          @if($user->teacherProfile)
+          {!! $user->teacherProfile->specilization !!}
+          @endif
+        </td>
       </tr>
     </table>
 

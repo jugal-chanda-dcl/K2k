@@ -17,9 +17,19 @@
         @method('put')
 
         <div class="form-group mx-2">
-          <label for="experience">Experience</label>
-          <textarea  id="experience" name="experience" class="form-control @error('experience') is-invalid @enderror" rows="8" cols="80">{{ Auth::user()->teacherProfile->experience  }}</textarea>
-          @error('content')
+            <label for="year_of_experience" class="">Years of experience</label>
+            <input id="year_of_experience" type="number" class="form-control @error('year_of_experience') is-invalid @enderror" name="year_of_experience" value="{{ $user->teacherProfile->year_of_experience }}" required autocomplete="year_of_experience" min="1">
+            @error('year_of_experience')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group mx-2">
+          <label for="specilization">Specilization</label>
+          <textarea  id="specilization" name="specilization" class="form-control @error('specilization') is-invalid @enderror" rows="8" cols="80">{!! $user->teacherProfile->specilization !!}</textarea>
+          @error('specilization')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
               </span>
@@ -40,7 +50,7 @@
 
 @section('script')
 <script>
-  $('#experience').summernote({
+  $('#specilization').summernote({
     placeholder: 'Hello Bootstrap 4',
     tabsize: 2,
     height: 100

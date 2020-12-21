@@ -1,0 +1,2 @@
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `email_verified_at`, `password`, `remember_token`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 'Student 1', 'student1@student.com', '01521461643', 'Student', 'Dhaka', '2002-03-17', '6854', NULL, '$2y$10$VXD1eixwwoPvCk5jRtBFd.nqSezIQU0iCewiR1XJX1FYamvHpNcIa', NULL, 1, '2020-12-21 10:31:36', '2020-12-21 10:31:36');

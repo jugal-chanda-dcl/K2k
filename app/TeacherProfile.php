@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TeacherProfile extends Model
 {
   protected $fillable = [
-      'user_id','experience',
+      'user_id','year_of_experience','specilization'
   ];
   public function user()
   {

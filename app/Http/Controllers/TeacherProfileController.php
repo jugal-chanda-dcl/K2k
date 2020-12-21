@@ -43,12 +43,13 @@ class TeacherProfileController extends Controller
         return redirect()->back();
       }
       $validatedData = $request->validate([
-        'experience' => 'required',
+        'year_of_experience' => 'required',
+        'specilization' => 'required',
       ]);
       // dd($validatedData['content']);
-      $experience = $request->input('experience');
+      $specilization = $request->input('specilization');
       $dom = new \DomDocument();
-      $dom->loadHtml($experience, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+      $dom->loadHtml($specilization, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
       $images = $dom->getElementsByTagName('img');
 
       foreach($images as $k => $img){
@@ -63,11 +64,12 @@ class TeacherProfileController extends Controller
         $img->removeAttribute('src');
         $img->setAttribute('src', $image_name);
       }
-      $experience = $dom->saveHTML();
+      $specilization = $dom->saveHTML();
 
       $teacherProfile = TeacherProfile::create([
         'user_id' => $user->id,
-        'experience' => $experience,
+        'year_of_experience' => $validatedData['year_of_experience'],
+        'specilization' => $specilization,
       ]);
       return redirect()->route('teacherProfile.index');
     }
@@ -91,7 +93,7 @@ class TeacherProfileController extends Controller
      */
     public function edit(TeacherProfile $teacherProfile)
     {
-        return view('teacherprofile.edit');
+        return view('teacherprofile.edit',['user'=>$teacherProfile->user]);
     }
 
     /**
@@ -104,13 +106,19 @@ class TeacherProfileController extends Controller
     public function update(Request $request, TeacherProfile $teacherProfile)
     {
       $user = Auth::user();
+      if ($user->teacherProfile)
+      {
+        Session::flash('status',"Already profile created. You can update your profile");
+        return redirect()->back();
+      }
       $validatedData = $request->validate([
-        'experience' => 'required',
+        'year_of_experience' => 'required',
+        'specilization' => 'required',
       ]);
       // dd($validatedData['content']);
-      $experience = $request->input('experience');
+      $specilization = $request->input('specilization');
       $dom = new \DomDocument();
-      $dom->loadHtml($experience, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+      $dom->loadHtml($specilization, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
       $images = $dom->getElementsByTagName('img');
 
       foreach($images as $k => $img){
@@ -125,9 +133,10 @@ class TeacherProfileController extends Controller
         $img->removeAttribute('src');
         $img->setAttribute('src', $image_name);
       }
-      $experience = $dom->saveHTML();
+      $specilization = $dom->saveHTML();
 
-      $teacherProfile->experience = $experience;
+      $teacherProfile->year_of_experience = $validatedData['year_of_experience'];
+      $teacherProfile->specilization = $specilization;
       $teacherProfile->save();
       return redirect()->route('teacherProfile.index');
     }

@@ -1,2 +1,21 @@
 Hello
 Laravel Carbon: https://www.youtube.com/watch?v=jPO55Cs-vyI
+
+// Route::resource('topic', 'TopicController')->middleware('roleauth');
+Route::get('/topic','TopicController@index')->middleware('roleauth')->name('topic.index');
+Route::get('/topic/create','TopicController@create')->middleware('roleauth')->name('topic.create');
+Route::post('/topic','TopicController@store')->middleware('roleauth')->name('topic.store');
+Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth')->name('topic.destroy');
+Route::put('/topic/{topic}','TopicController@update')->middleware('roleauth')->name('topic.update');
+Route::get('/topic/{topic}','TopicController@show')->middleware('roleauth')->name('topic.show');
+Route::get('/topic/{topic}/edit','TopicController@edit')->middleware('roleauth')->name('topic.edit');
+
+// Route::resource('learn', 'LearnController')->middleware('roleauth');
+
+Route::get('/learn','LearnController@index')->middleware('roleauth')->name('learn.index');
+Route::get('/learn/create','LearnController@create')->middleware('roleauth')->name('learn.create');
+Route::post('/learn','LearnController@store')->middleware('roleauth')->name('learn.store');
+Route::delete('/learn/{learn}','LearnController@destroy')->middleware('roleauth')->name('learn.destroy');
+Route::put('/learn/{learn}','LearnController@update')->middleware('roleauth')->name('learn.update');
+Route::get('/learn/{learn}','LearnController@show')->middleware('roleauth')->name('learn.show');
+Route::get('/learn/{learn}/edit','LearnController@edit')->middleware('roleauth')->name('learn.edit');

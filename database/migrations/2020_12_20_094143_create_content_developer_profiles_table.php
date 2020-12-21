@@ -16,7 +16,9 @@ class CreateContentDeveloperProfilesTable extends Migration
         Schema::create('content_developer_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->text('experience');
+            $table->integer('year_of_experience');
+            $table->integer('total_completed_projects');
+            $table->text('focus');
             $table->timestamps();
         });
     }

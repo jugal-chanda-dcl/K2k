@@ -45,31 +45,16 @@ class ContentDeveloperProfileController extends Controller
         return redirect()->back();
       }
       $validatedData = $request->validate([
-        'experience' => 'required',
+        'year_of_experience' => 'required',
+        'total_completed_projects' => 'required',
+        'focus' => 'required',
       ]);
-      // dd($validatedData['content']);
-      $experience = $request->input('experience');
-      $dom = new \DomDocument();
-      $dom->loadHtml($experience, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-      $images = $dom->getElementsByTagName('img');
-
-      foreach($images as $k => $img){
-        $data = $img->getAttribute('src');
-        list($type, $data) = explode(';', $data);
-        list(, $data)      = explode(',', $data);
-        $data = base64_decode($data);
-
-        $image_name= "/upload/" . time().$k.'.png';
-        $path = public_path() . $image_name;
-        file_put_contents($path, $data);
-        $img->removeAttribute('src');
-        $img->setAttribute('src', $image_name);
-      }
-      $experience = $dom->saveHTML();
 
       $contentDeveloperProfile = ContentDeveloperProfile::create([
         'user_id' => $user->id,
-        'experience' => $experience,
+        'year_of_experience' => $validatedData['year_of_experience'],
+        'total_completed_projects' => $validatedData['total_completed_projects'],
+        'focus' => $validatedData['focus'],
       ]);
       return redirect()->route('contentDeveloperProfile.index');
     }
