@@ -96,7 +96,7 @@ class LearnController extends Controller
      */
     public function edit($id)
     {
-        return view('learn.edit',['learn'=>Learn::find($id),'topics'=>Topic::all()]);
+        return view('learn.edit',['learn'=>Learn::find($id)]);
     }
 
     /**
@@ -106,17 +106,15 @@ class LearnController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Learn $learn)
     {
       $user = Auth::user();
-      $learn = Learn::find($id);
 
       $validatedData = $request->validate([
-        'topic' => [
-          'required',
-          Rule::unique("learns",'topic_id')->ignore($learn->topic->id,'topic_id')],
+        'name' => 'required',
         'content' => 'required',
       ]);
+
       $content = $validatedData['content'];
       $dom = new \DomDocument();
       @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -138,8 +136,10 @@ class LearnController extends Controller
       }
       $content = $dom->saveHTML();
 
+      $topic = $learn->topic;
+      $topic->name = $validatedData['name'];
+      $topic->save();
 
-      $learn->topic_id = $validatedData['topic'];
       $learn->content = $content;
       $learn->save();
       return redirect()->route('learn.show',['learn'=>$learn->id]);
@@ -153,7 +153,9 @@ class LearnController extends Controller
      */
     public function destroy($id)
     {
-        Learn::destroy($id);
-        return redirect()->route('learn.index');
+      $learn = Learn::find($id);
+      Topic::destroy($learn->topic->id);
+      Learn::destroy($id);
+      return redirect()->route('learn.index');
     }
 }
