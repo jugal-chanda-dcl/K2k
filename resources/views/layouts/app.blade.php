@@ -103,18 +103,6 @@
                       <a href="{{route('subject.index')}}" style="text-decoration: none;">Subjects && Classes</a>
                     </li>
                     @endif
-                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.index')))
-                    <li class="list-group-item">
-                      <a href="{{route('topic.index')}}" style="text-decoration: none;">All Topics</a>
-                    </li>
-                    @endif
-                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.create')))
-                    <li class="list-group-item">
-                      <a href="{{route('topic.create')}}" style="text-decoration: none;">Create new topic</a>
-                    </li>
-                    @endif
-                    
-
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('content.index')))
                     <li class="list-group-item">
                       <a href="{{route('content.index')}}" style="text-decoration: none;">All Contents</a>

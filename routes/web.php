@@ -60,9 +60,12 @@ Route::get('/learn','LearnController@index')->middleware('roleauth')->name('lear
 Route::get('/learn/create/{subject}','LearnController@create')->middleware('roleauth')->name('learn.create');
 Route::post('/learn/{subject}','LearnController@store')->middleware('roleauth')->name('learn.store');
 Route::delete('/learn/{learn}','LearnController@destroy')->middleware('roleauth')->name('learn.destroy');
-Route::put('/learn/{learn}','LearnController@update')->middleware('roleauth')->name('learn.update');
-Route::get('/learn/{learn}','LearnController@show')->middleware('roleauth')->name('learn.show');
+
 Route::get('/learn/{learn}/edit','LearnController@edit')->middleware('roleauth')->name('learn.edit');
+Route::put('/learn/{learn}','LearnController@update')->middleware('roleauth')->name('learn.update');
+
+Route::get('/learn/{learn}','LearnController@show')->middleware('roleauth')->name('learn.show');
+
 
 
 Route::get('subject/{subject}/topics/','SubjectController@topics')->middleware('roleauth')->name('subject.topics');

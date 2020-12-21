@@ -34,9 +34,6 @@
 
             </form>
             @endif
-            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.edit')))
-            <a href="{{route('topic.edit',['topic'=>$topic->id])}}" class="btn btn-info btn-sm">Edit</a>
-            @endif
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.learn')))
             <a href="{{route('topic.learn',['topic'=>$topic])}}" class="btn btn-info btn-sm">Learn</a>
             @endif

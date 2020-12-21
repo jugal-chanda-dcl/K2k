@@ -12,3 +12,15 @@ Laravel Carbon: https://www.youtube.com/watch?v=jPO55Cs-vyI
   <a href="{{route('learn.index')}}" style="text-decoration: none;">All learning material</a>
 </li>
 @endif
+
+
+@if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.index')))
+<li class="list-group-item">
+  <a href="{{route('topic.index')}}" style="text-decoration: none;">All Topics</a>
+</li>
+@endif
+@if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.create')))
+<li class="list-group-item">
+  <a href="{{route('topic.create')}}" style="text-decoration: none;">Create new topic</a>
+</li>
+@endif

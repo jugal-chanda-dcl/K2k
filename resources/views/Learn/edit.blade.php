@@ -10,19 +10,16 @@
   <div class="card-header">Update learning material</div>
 
   <div class="card-body">
-    <form method="POST" action="{{ route('learn.update',['learn'=>$learn->id]) }}">
+    <form method="POST" action="{{ route('learn.update',['learn'=>$learn]) }}">
 
         @csrf
         @method('put')
 
         <div class="form-group mx-2">
-            <label for="topic" class="">Choose a topic</label>
-            <select class="form-control @error('topic') is-invalid @enderror" id="topic" name="topic" required>
-              @foreach($topics as $topic)
-              <option value="{{ $topic->id }}" @if($topic->id == $learn->topic->id) selected @endif>{{ $topic->name }}</option>
-              @endforeach
-            </select>
-            @error('topic')
+            <label for="name" class="">Topic Name</label>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $learn->topic->name }}" required autocomplete="name">
+
+            @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
