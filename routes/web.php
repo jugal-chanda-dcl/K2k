@@ -43,10 +43,31 @@ Route::group(['middleware' => 'auth:admin'], function () {
 });
 
 Route::resource('subject', 'SubjectController')->middleware('roleauth');
+
 Route::resource('topic', 'TopicController')->middleware('roleauth');
+// Route::resource('topic', 'TopicController')->middleware('roleauth');
+Route::get('/topic','TopicController@index')->middleware('roleauth')->name('topic.index');
+Route::get('/topic/create','TopicController@create')->middleware('roleauth')->name('topic.create');
+Route::post('/topic','TopicController@store')->middleware('roleauth')->name('topic.store');
+Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth')->name('topic.destroy');
+Route::put('/topic/{topic}','TopicController@update')->middleware('roleauth')->name('topic.update');
+Route::get('/topic/{topic}','TopicController@show')->middleware('roleauth')->name('topic.show');
+Route::get('/topic/{topic}/edit','TopicController@edit')->middleware('roleauth')->name('topic.edit');
+
+// Route::resource('learn', 'LearnController')->middleware('roleauth');
+
+Route::get('/learn','LearnController@index')->middleware('roleauth')->name('learn.index');
+Route::get('/learn/create/{subject}','LearnController@create')->middleware('roleauth')->name('learn.create');
+Route::post('/learn/{subject}','LearnController@store')->middleware('roleauth')->name('learn.store');
+Route::delete('/learn/{learn}','LearnController@destroy')->middleware('roleauth')->name('learn.destroy');
+Route::put('/learn/{learn}','LearnController@update')->middleware('roleauth')->name('learn.update');
+Route::get('/learn/{learn}','LearnController@show')->middleware('roleauth')->name('learn.show');
+Route::get('/learn/{learn}/edit','LearnController@edit')->middleware('roleauth')->name('learn.edit');
+
+
 Route::get('subject/{subject}/topics/','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
 Route::get('/topic/{topic}/learn','TopicController@learn')->middleware('roleauth')->name('topic.learn');
-Route::resource('learn', 'LearnController')->middleware('roleauth');
+
 Route::resource('content', 'ContentController')->middleware('roleauth');
 Route::get('teacher/resources', 'ResourceController@teacherResourceAll')->middleware('roleauth')->name('teacher.resource.all');
 Route::get('teacher/resources/{resource}', 'ResourceController@teacherResourceSingle')->middleware('roleauth')->name('teacher.resource.single');
