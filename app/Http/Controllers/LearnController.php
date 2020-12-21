@@ -6,6 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Learn;
 use App\Topic;
+use App\Subject;
 Use Auth;
 
 class LearnController extends Controller
@@ -25,9 +26,9 @@ class LearnController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Subject $subject)
     {
-        return view('learn.create',['topics' => Topic::all()]);
+        return view('learn.create',['subject'=>$subject]);
     }
 
     /**
@@ -36,11 +37,11 @@ class LearnController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Subject $subject)
     {
       $user = Auth::user();
       $validatedData = $request->validate([
-        'topic' => 'required|unique:learns,topic_id',
+        'name' => 'required',
         'content' => 'required',
       ]);
       // dd($validatedData['content']);
@@ -62,9 +63,13 @@ class LearnController extends Controller
         $img->setAttribute('src', $image_name);
       }
       $content = $dom->saveHTML();
+      $topic = Topic::create([
+        'name'=>$validatedData['name'],
+        'subject_id'=> $subject->id,
+      ]);
 
       $learn = Learn::create([
-        'topic_id' => $validatedData['topic'],
+        'topic_id' => $topic->id,
         'user_id' => $user->id,
         'content' => $content,
       ]);

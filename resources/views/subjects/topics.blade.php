@@ -3,7 +3,12 @@
 @section('content')
 
 <div class="card">
-  <div class="card-header">All topics of {{ $subject->name }}(Class {{ $subject->class }})</div>
+  <div class="card-header">
+    All topics of {{ $subject->name }}(Class {{ $subject->class }})
+    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.create')))
+    <a href="{{ route('learn.create',['subject'=>$subject]) }}" class="btn btn-sm btn-success">Create Learning Materials</a>
+    @endif
+  </div>
 
   <div class="card-body">
     <table class="table">

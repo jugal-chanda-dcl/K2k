@@ -10,18 +10,15 @@
   <div class="card-header">Create new learning material</div>
 
   <div class="card-body">
-    <form method="POST" action="{{ route('learn.store') }}">
+    <form method="POST" action="{{ route('learn.store',['subject'=>$subject]) }}">
 
         @csrf
 
         <div class="form-group mx-2">
-            <label for="topic" class="">Choose a topic</label>
-            <select class="form-control @error('topic') is-invalid @enderror" id="topic" name="topic" value="{{ old('topic') }}" required>
-              @foreach($topics as $topic)
-              <option value="{{ $topic->id }}">{{ $topic->name }} Subject {{$topic->subject->name}} class {{$topic->subject->class}}</option>
-              @endforeach
-            </select>
-            @error('topic')
+            <label for="name" class="">Topic Name</label>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+            @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

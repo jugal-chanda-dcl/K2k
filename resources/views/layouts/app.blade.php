@@ -113,17 +113,7 @@
                       <a href="{{route('topic.create')}}" style="text-decoration: none;">Create new topic</a>
                     </li>
                     @endif
-                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.create')))
-                    <li class="list-group-item">
-                      <a href="{{route('learn.create')}}" style="text-decoration: none;">Create new learning materials</a>
-                    </li>
-                    @endif
-
-                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.index')))
-                    <li class="list-group-item">
-                      <a href="{{route('learn.index')}}" style="text-decoration: none;">All learning material</a>
-                    </li>
-                    @endif
+                    
 
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('content.index')))
                     <li class="list-group-item">
