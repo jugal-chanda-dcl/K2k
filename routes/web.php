@@ -79,6 +79,8 @@ Route::resource('studentProfile', 'StudentProfileController')->middleware('rolea
 Route::resource('contentDeveloperProfile', 'ContentDeveloperProfileController')->middleware('roleauth');
 // Route::get('student/subjects/','SubjectController@studentSubjectsAll')->middleware('roleauth')->name('student.subjects.all');
 
+Route::get('/question','HomeController@question')->name('question');
+
 
 
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');
