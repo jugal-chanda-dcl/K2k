@@ -13,10 +13,10 @@
     <!-- Question -->
     <div class="card mb-2 question_format d-none">
       <div class="card-body">
-        <form class="" action="" method="post">
+        <form class="" action="" method="post" data="">
           <div class="form-group">
             <label for="question">Question</label>
-            <textarea  id="question" name="content" class="form-control @error('question') is-invalid @enderror" rows="8" cols="80">{{ old('question') }}</textarea>
+            <textarea  id="question" name="question" class="form-control @error('question') is-invalid @enderror question_input" rows="8" cols="80">{{ old('question') }}</textarea>
             @error('question')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
               <!--  For multiple choice answer type -->
               <div class="mt-2 multiple_choice" style="display: none;">
                 <div class="multiple_choice_answer_format mb-2">
-                  <input type="radio" name="" value=""><input type="text" name="" value="" class="ml-2">
+                  <input type="radio" name="" value=""><input type="text" name="options" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
 
@@ -46,7 +46,7 @@
               <!-- For checkbox input type -->
               <div class="mt-2 checkbox" style="display: none;">
                 <div class="checkbox_answer_format mb-2">
-                  <input type="checkbox" name="" value=""><input type="text" name="" value="" class="ml-2">
+                  <input type="checkbox" name="" value=""><input type="text" name="options" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
               </div>
@@ -65,12 +65,13 @@
 
 
     </div>
+
     <div class="card mb-2 question_format">
       <div class="card-body">
-        <form class="" action="" method="post">
+        <form class="" action="" method="post" data="for_question">
           <div class="form-group">
             <label for="question">Question</label>
-            <textarea  id="question" name="content" class="form-control @error('question') is-invalid @enderror" rows="8" cols="80">{{ old('question') }}</textarea>
+            <textarea  id="question" name="question" class="form-control @error('question') is-invalid @enderror question_input" rows="8" cols="80">{{ old('question') }}</textarea>
             @error('question')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -92,7 +93,7 @@
               <!--  For multiple choice answer type -->
               <div class="mt-2 multiple_choice" style="display: none;">
                 <div class="multiple_choice_answer_format mb-2">
-                  <input type="radio" name="" value=""><input type="text" name="" value="" class="ml-2">
+                  <input type="radio" name="" value=""><input type="text" name="options" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
 
@@ -100,7 +101,7 @@
               <!-- For checkbox input type -->
               <div class="mt-2 checkbox" style="display: none;">
                 <div class="checkbox_answer_format mb-2">
-                  <input type="checkbox" name="" value=""><input type="text" name="" value="" class="ml-2">
+                  <input type="checkbox" name="" value=""><input type="text" name="options" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
               </div>
@@ -128,6 +129,7 @@
   <div class="card-footer">
     <button type="button" name="button" class="btn btn-sm btn-secondary question_add_another_btn">Add Another Question</button>
   </div>
+  <button type="button" name="button" class="question_save_btn btn btn-sm btn-success">Save</button>
 </div>
 
 @endsection
@@ -135,8 +137,6 @@
 @section('script')
 <script type="text/javascript" src="{{ asset('js/question.js') }}"></script>
 <script type="text/javascript">
-
-
 
 </script>
 @endsection
