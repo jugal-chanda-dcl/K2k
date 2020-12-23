@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('practice_id')->references('id')->on('practices')->onDelete('cascade');
+            $table->foreignId('learn_id')->references('id')->on('learns')->onDelete('cascade');
             $table->string('question');
             $table->string('type');
             $table->timestamps();

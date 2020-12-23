@@ -17,6 +17,7 @@
           <button type="submit" name="button"  class="btn btn-danger btn-sm">Delete</button>
 
     </form>
+    <a href="{{ route('question',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Add Question</a>
   </div>
 
   <div class="card-body">

@@ -9,19 +9,16 @@
 <div class="card">
   <div class="card-header">Create new question</div>
 
+  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly>
   <div class="card-body question_conatiner">
     <!-- Question -->
+
     <div class="card mb-2 question_format d-none">
       <div class="card-body">
         <form class="" action="" method="post" data="">
           <div class="form-group">
             <label for="question">Question</label>
-            <textarea  id="question" name="question" class="form-control @error('question') is-invalid @enderror question_input" rows="8" cols="80">{{ old('question') }}</textarea>
-            @error('question')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <textarea  name="question" class="form-control question_input" rows="8" cols="80"></textarea>
             <label for="question_type">Question Type</label>
             <select class="form-control" name="question_type">
               <option value="short_answer">Short Answer</option>
@@ -38,7 +35,7 @@
               <!--  For multiple choice answer type -->
               <div class="mt-2 multiple_choice" style="display: none;">
                 <div class="multiple_choice_answer_format mb-2">
-                  <input type="radio" name="" value=""><input type="text" name="options" value="" class="ml-2">
+                  <input type="radio" name="" value=""><input type="text" name="options_multiple_choice" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
 
@@ -46,24 +43,18 @@
               <!-- For checkbox input type -->
               <div class="mt-2 checkbox" style="display: none;">
                 <div class="checkbox_answer_format mb-2">
-                  <input type="checkbox" name="" value=""><input type="text" name="options" value="" class="ml-2">
+                  <input type="checkbox" name="" value=""><input type="text" name="options_checkbox" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
               </div>
               <!-- For paragraph answer type -->
               <div class="mt-2 paragraph" style="display: none;">
-                <textarea  id="answer" name="answer" class="form-control" rows="8" cols="80"></textarea>
-
+                <textarea  name="answer" class="form-control question_answer" rows="8" cols="80"></textarea>
               </div>
             </div>
-
-
           </div>
         </form>
-
       </div>
-
-
     </div>
 
     <div class="card mb-2 question_format">
@@ -71,12 +62,7 @@
         <form class="" action="" method="post" data="for_question">
           <div class="form-group">
             <label for="question">Question</label>
-            <textarea  id="question" name="question" class="form-control @error('question') is-invalid @enderror question_input" rows="8" cols="80">{{ old('question') }}</textarea>
-            @error('question')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <textarea  name="question" class="form-control question_input" rows="8" cols="80"></textarea>
             <label for="question_type">Question Type</label>
             <select class="form-control" name="question_type">
               <option value="short_answer">Short Answer</option>
@@ -93,7 +79,7 @@
               <!--  For multiple choice answer type -->
               <div class="mt-2 multiple_choice" style="display: none;">
                 <div class="multiple_choice_answer_format mb-2">
-                  <input type="radio" name="" value=""><input type="text" name="options" value="" class="ml-2">
+                  <input type="radio" name="" value=""><input type="text" name="options_multiple_choice" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
 
@@ -101,31 +87,23 @@
               <!-- For checkbox input type -->
               <div class="mt-2 checkbox" style="display: none;">
                 <div class="checkbox_answer_format mb-2">
-                  <input type="checkbox" name="" value=""><input type="text" name="options" value="" class="ml-2">
+                  <input type="checkbox" name="" value=""><input type="text" name="options_checkbox" value="" class="ml-2">
                 </div>
                 <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn">Add another option</button>
               </div>
               <!-- For paragraph answer type -->
               <div class="mt-2 paragraph" style="display: none;">
-                <textarea  id="answer" name="answer" class="form-control" rows="8" cols="80"></textarea>
-
+                <textarea  name="answer" class="form-control question_answer" rows="8" cols="80"></textarea>
               </div>
             </div>
-
-
           </div>
         </form>
-
       </div>
-
-
     </div>
     <!-- End question -->
 
-
-
-
   </div>
+
   <div class="card-footer">
     <button type="button" name="button" class="btn btn-sm btn-secondary question_add_another_btn">Add Another Question</button>
   </div>

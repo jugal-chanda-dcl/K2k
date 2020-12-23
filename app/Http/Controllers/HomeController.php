@@ -27,6 +27,6 @@ class HomeController extends Controller
     }
     public function question()
     {
-      return view('question.create');
+      
     }
 }
