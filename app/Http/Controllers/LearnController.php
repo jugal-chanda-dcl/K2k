@@ -83,10 +83,10 @@ class LearnController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        return view('learn.show',['learn'=>Learn::find($id)]);
-    }
+    // public function show($id)
+    // {
+    //     return view('learn.show',['learn'=>Learn::find($id)]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
