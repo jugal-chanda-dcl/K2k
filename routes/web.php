@@ -44,15 +44,15 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
 Route::resource('subject', 'SubjectController')->middleware('roleauth');
 
-Route::resource('topic', 'TopicController')->middleware('roleauth');
 // Route::resource('topic', 'TopicController')->middleware('roleauth');
-Route::get('/topic','TopicController@index')->middleware('roleauth')->name('topic.index');
-Route::get('/topic/create','TopicController@create')->middleware('roleauth')->name('topic.create');
-Route::post('/topic','TopicController@store')->middleware('roleauth')->name('topic.store');
+// Route::resource('topic', 'TopicController')->middleware('roleauth');
+// Route::get('/topic','TopicController@index')->middleware('roleauth')->name('topic.index');
+// Route::get('/topic/create','TopicController@create')->middleware('roleauth')->name('topic.create');
+// Route::post('/topic','TopicController@store')->middleware('roleauth')->name('topic.store');
 Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth')->name('topic.destroy');
-Route::put('/topic/{topic}','TopicController@update')->middleware('roleauth')->name('topic.update');
-Route::get('/topic/{topic}','TopicController@show')->middleware('roleauth')->name('topic.show');
-Route::get('/topic/{topic}/edit','TopicController@edit')->middleware('roleauth')->name('topic.edit');
+// Route::put('/topic/{topic}','TopicController@update')->middleware('roleauth')->name('topic.update');
+// Route::get('/topic/{topic}','TopicController@show')->middleware('roleauth')->name('topic.show');
+// Route::get('/topic/{topic}/edit','TopicController@edit')->middleware('roleauth')->name('topic.edit');
 
 // Route::resource('learn', 'LearnController')->middleware('roleauth');
 
