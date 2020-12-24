@@ -18,4 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/questions/','QuestionController@store')->name('question.store');
+Route::post('/questions/create','QuestionController@store')->name('question.store');
+Route::post('/questions/edit','QuestionController@update')->name('question.update');
+Route::post('/questions/destroy','QuestionController@destroy')->name('question.destroy');

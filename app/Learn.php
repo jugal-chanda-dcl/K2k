@@ -18,4 +18,8 @@ class Learn extends Model
     {
       return $this->belongsTo('App\User');
     }
+    public function questions()
+    {
+      return $this->hasMany(Question::class);
+    }
 }

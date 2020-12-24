@@ -72,9 +72,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Learn $learn)
     {
-        //
+      return view('question.edit',['learn'=>$learn]);
     }
 
     /**
@@ -84,9 +84,51 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+      $learn_id = $request['learn_id'];
+      if($request['question_id'])
+      {
+        $question = Question::find($request['question_id']);
+
+        $question->question = $request['question'];
+        $question->type = $request['question_type'];
+        $question->save();
+        $options = $question->options;
+
+        foreach ($options as $option) {
+          $option->delete();
+        }
+        if($question->type == "multiple_choice" || $question->type == "checkbox")
+        {
+          $options = $request['options'];
+          foreach ($options as $option) {
+            $option_db = new Option;
+            $option_db->question_id = $question->id;
+            $option_db->value = $option;
+            $option_db->save();
+          }
+        }
+      }
+      else{
+        $question = new Question;
+        $question->learn_id = $request['learn_id'];
+        $question->question = $request['question'];
+        $question->type = $request['question_type'];
+        $question->save();
+        if($question->type == "multiple_choice" || $question->type == "check_box"){
+          $options = $request['options'];
+          foreach ($options as $option) {
+            $option_db = new Option;
+            $option_db->question_id = $question->id;
+            $option_db->value = $option;
+            $option_db->save();
+          }
+        }
+
+      }
+      return response()->json($request,200);
+
     }
 
     /**
@@ -95,8 +137,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+      $question_id = $request['question_id'];
+      Question::destroy($question_id);
+      return response()->json("deleted",200);
     }
 }
