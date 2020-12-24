@@ -1,5 +1,3 @@
-
-
 INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, 38, 1, NULL, NULL),
 (2, 52, 1, NULL, NULL),

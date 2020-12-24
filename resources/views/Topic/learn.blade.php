@@ -21,6 +21,9 @@
 
     </form>
     @endif
+    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.create')))
+    <a href="{{ route('question.create',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Add Question</a>
+    @endif
   </div>
 
   <div class="card-body">

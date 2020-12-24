@@ -17,7 +17,9 @@
           <button type="submit" name="button"  class="btn btn-danger btn-sm">Delete</button>
 
     </form>
-    <a href="{{ route('question',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Add Question</a>
+    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.create')))
+    <a href="{{ route('question.create',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Add Question</a>
+    @endif
   </div>
 
   <div class="card-body">

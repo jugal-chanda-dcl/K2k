@@ -73,7 +73,7 @@ class LearnController extends Controller
         'user_id' => $user->id,
         'content' => $content,
       ]);
-      return redirect()->route('learn.show',['learn'=>$learn->id]);
+      return redirect()->route('topic.learn',['topic'=>$topic]);
 
     }
 
@@ -142,7 +142,7 @@ class LearnController extends Controller
 
       $learn->content = $content;
       $learn->save();
-      return redirect()->route('learn.show',['learn'=>$learn->id]);
+      return redirect()->route('topic.learn',['topic'=>$topic]);
     }
 
     /**
