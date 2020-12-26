@@ -55,7 +55,7 @@
 @section('script')
 <script>
   $('#specilization').summernote({
-    placeholder: 'Hello Bootstrap 4',
+    placeholder: 'Your specilization',
     tabsize: 2,
     height: 100
   });

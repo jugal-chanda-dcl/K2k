@@ -49,7 +49,7 @@
 @section('script')
 <script>
   $('#content').summernote({
-    placeholder: 'Hello Bootstrap 4',
+    placeholder: 'Learning materials content',
     tabsize: 2,
     height: 100
   });

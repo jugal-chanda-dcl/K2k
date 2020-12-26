@@ -21,13 +21,19 @@
 
     </form>
     @endif
-    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.create')))
-      @if($learn->questions->count()>0)
+    @if($learn->questions->count()>0)
+      @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.edit')))
         <a href="{{ route('question.edit',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Edit Questions</a>
-      @else
-        <a href="{{ route('question.create',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Add Question</a>
+      @endif
+      @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.questions')))
+        <a href="{{ route('learn.questions',['learn'=>$learn]) }}" class="btn btn-sm btn-info">View Questions</a>
+      @endif
+    @else
+      @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.create')))
+      <a href="{{ route('question.create',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Add Question</a>
       @endif
     @endif
+
   </div>
 
   <div class="card-body">

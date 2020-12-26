@@ -11,6 +11,7 @@
   </div>
 
   <div class="card-body">
+    @if($topics->count() > 0)
     <table class="table">
       <thead>
         <tr>
@@ -45,6 +46,9 @@
 
       </tbody>
     </table>
+    @else
+    <p class="text-center">No Topics created yet</p>
+    @endif
   </div>
 </div>
 

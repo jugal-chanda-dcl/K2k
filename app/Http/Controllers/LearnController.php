@@ -117,22 +117,26 @@ class LearnController extends Controller
 
       $content = $validatedData['content'];
       $dom = new \DomDocument();
-      @$dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+      $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
       $images = $dom->getElementsByTagName('img');
 
       foreach($images as $k => $img){
+        // dd($img)
         $data = $img->getAttribute('src');
+        if(strpos($data,'base64')!=false)
+        {
+          list($type, $data) = explode(';', $data);
 
-        list($type, $data) = explode(';', $data);
+          list(, $data)      = explode(',', $data);
+          $data = base64_decode($data);
 
-        list(, $data)      = explode(',', $data);
-        $data = base64_decode($data);
+          $image_name= "/upload/" . time().$k.'.png';
+          $path = public_path() . $image_name;
+          file_put_contents($path, $data);
+          $img->removeAttribute('src');
+          $img->setAttribute('src', $image_name);
+        }
 
-        $image_name= "/upload/" . time().$k.'.png';
-        $path = public_path() . $image_name;
-        file_put_contents($path, $data);
-        $img->removeAttribute('src');
-        $img->setAttribute('src', $image_name);
       }
       $content = $dom->saveHTML();
 
@@ -154,8 +158,9 @@ class LearnController extends Controller
     public function destroy($id)
     {
       $learn = Learn::find($id);
+      $subject = $learn->topic->subject;
       Topic::destroy($learn->topic->id);
       Learn::destroy($id);
-      return redirect()->route('learn.index');
+      return redirect()->route('subject.topics',['subject'=>$subject->id]);
     }
 }

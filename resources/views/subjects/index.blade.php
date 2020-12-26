@@ -6,6 +6,7 @@
   <div class="card-header">All Subjects && Classes</div>
 
   <div class="card-body">
+    @if($subjects->count() > 0)
     <table class="table">
       <thead>
         <tr>
@@ -40,6 +41,9 @@
         @endforeach
       </tbody>
     </table>
+    @else
+    <p class="text-center">No Subject Created yet</p>
+    @endif
   </div>
 </div>
 

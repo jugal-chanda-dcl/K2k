@@ -54,15 +54,17 @@ class TeacherProfileController extends Controller
 
       foreach($images as $k => $img){
         $data = $img->getAttribute('src');
-        list($type, $data) = explode(';', $data);
-        list(, $data)      = explode(',', $data);
-        $data = base64_decode($data);
 
-        $image_name= "/upload/" . time().$k.'.png';
-        $path = public_path() . $image_name;
-        file_put_contents($path, $data);
-        $img->removeAttribute('src');
-        $img->setAttribute('src', $image_name);
+          list($type, $data) = explode(';', $data);
+          list(, $data)      = explode(',', $data);
+          $data = base64_decode($data);
+
+          $image_name= "/upload/" . time().$k.'.png';
+          $path = public_path() . $image_name;
+          file_put_contents($path, $data);
+          $img->removeAttribute('src');
+          $img->setAttribute('src', $image_name);
+
       }
       $specilization = $dom->saveHTML();
 
@@ -123,15 +125,17 @@ class TeacherProfileController extends Controller
 
       foreach($images as $k => $img){
         $data = $img->getAttribute('src');
-        list($type, $data) = explode(';', $data);
-        list(, $data)      = explode(',', $data);
-        $data = base64_decode($data);
+        if(strpos($data,'base64')!=false){
+          list($type, $data) = explode(';', $data);
+          list(, $data)      = explode(',', $data);
+          $data = base64_decode($data);
 
-        $image_name= "/upload/" . time().$k.'.png';
-        $path = public_path() . $image_name;
-        file_put_contents($path, $data);
-        $img->removeAttribute('src');
-        $img->setAttribute('src', $image_name);
+          $image_name= "/upload/" . time().$k.'.png';
+          $path = public_path() . $image_name;
+          file_put_contents($path, $data);
+          $img->removeAttribute('src');
+          $img->setAttribute('src', $image_name);
+        }
       }
       $specilization = $dom->saveHTML();
 
