@@ -57,7 +57,9 @@ class LearnController extends Controller
         $data = base64_decode($data);
 
         $image_name= "/upload/" . time().$k.'.png';
+        dd(public_path());
         $path = public_path() . $image_name;
+
         file_put_contents($path, $data);
         $img->removeAttribute('src');
         $img->setAttribute('src', $image_name);

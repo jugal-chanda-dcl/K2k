@@ -75,7 +75,7 @@
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">User Register</a>
-                            <a href="{{ route('admin.register') }}">Register</a>
+                            <!-- <a href="{{ route('admin.register') }}">Register</a> -->
                         @endif
                     @endauth
                 </div>

@@ -92,7 +92,9 @@ class ContentDeveloperProfileController extends Controller
     {
       $user = Auth::user();
       $validatedData = $request->validate([
-        'experience' => 'required',
+        'year_of_experience' => 'required',
+        'total_completed_projects' => 'required',
+        'focus' => 'required',
       ]);
       // dd($validatedData['content']);
       $experience = $request->input('experience');

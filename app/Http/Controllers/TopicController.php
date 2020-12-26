@@ -101,13 +101,14 @@ class TopicController extends Controller
      */
     public function destroy($id)
     {
+        $subject = Topic::find($id)->subject;
         Topic::destroy($id);
-        return redirect()->route('topic.index');
+        return redirect()->route('subject.topics',['subject'=>$subject->id]);
 
     }
     public function learn(Topic $topic)
     {
-      
+
       return view('topic.learn',['learn'=>$topic->learn]);
     }
 }

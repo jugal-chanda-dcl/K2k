@@ -1,96 +1,44 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Dec 26, 2020 at 10:01 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+-- (1, '2013_09_12_082156_create_roles_table', 1),
+-- (2, '2014_10_12_000000_create_users_table', 1),
+-- (3, '2014_10_12_100000_create_password_resets_table', 1),
+-- (4, '2019_08_19_000000_create_failed_jobs_table', 1),
+-- (5, '2020_11_12_075108_create_admins_table', 1),
+-- (6, '2020_11_12_112816_create_permissions_table', 1),
+-- (7, '2020_11_12_112944_create_permission_role_table', 1),
+-- (8, '2020_11_12_132039_create_subjects_table', 1),
+-- (9, '2020_11_13_074826_create_topics_table', 1),
+-- (10, '2020_11_13_102306_create_learns_table', 1),
+-- (11, '2020_11_14_083456_create_questions_table', 1),
+-- (12, '2020_11_14_094039_create_options_table', 1),
+-- (13, '2020_11_14_102255_create_resources_table', 1),
+-- (14, '2020_11_15_081715_create_contents_table', 1),
+-- (15, '2020_11_15_114128_create_teacher_profiles_table', 1),
+-- (16, '2020_12_19_100809_create_student_profiles_table', 1),
+-- (17, '2020_12_20_094143_create_content_developer_profiles_table', 1),
+-- (18, '2013_09_12_082156_create_roles_table', 1),
+-- (19, '2014_10_12_000000_create_users_table', 1),
+-- (20, '2014_10_12_100000_create_password_resets_table', 1),
+-- (21, '2019_08_19_000000_create_failed_jobs_table', 1),
+-- (22, '2020_11_12_075108_create_admins_table', 1),
+-- (23, '2020_11_12_112816_create_permissions_table', 1),
+-- (24, '2020_11_12_112944_create_permission_role_table', 1),
+-- (25, '2020_11_12_132039_create_subjects_table', 1),
+-- (26, '2020_11_13_074826_create_topics_table', 1),
+-- (27, '2020_11_13_102306_create_learns_table', 1),
+-- (28, '2020_11_14_083456_create_questions_table', 1),
+-- (29, '2020_11_14_094039_create_options_table', 1),
+-- (30, '2020_11_14_102255_create_resources_table', 1),
+-- (31, '2020_11_15_081715_create_contents_table', 1),
+-- (32, '2020_11_15_114128_create_teacher_profiles_table', 1),
+-- (33, '2020_12_19_100809_create_student_profiles_table', 1),
+-- (34, '2020_12_20_094143_create_content_developer_profiles_table', 1);
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `elearning`
---
-
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@admin.com', '01521461643', 'Admin', 'Dhaka', '1986-01-01', '12773', '$2y$10$NaE5fw9E5ZyHX5u6l9AuGek12fqwb1u1M1KdDm9k/8YcgIFHvz2Gy', 0, NULL, '2020-12-20 22:03:44', '2020-12-20 22:03:44');
-
---
--- Dumping data for table `learns`
---
-
-INSERT INTO `learns` (`id`, `topic_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
-(3, 3, 2, '<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus augue, pellentesque ac egestas in, tempor id eros. Morbi at nunc eu enim malesuada ultricies. Nunc neque massa, maximus id hendrerit finibus, pretium vel tortor. Curabitur sit amet nunc sit amet nulla lacinia sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sed quam aliquet, cursus nulla quis, convallis dui. Fusce porta eu metus a lobortis. Vivamus ultrices eleifend nibh in porta. Praesent facilisis diam eget tortor dapibus porta. Duis id rhoncus turpis. Vestibulum efficitur neque ac lacus posuere ultrices. Aenean mattis blandit urna vehicula fermentum. Curabitur blandit consequat posuere. Quisque facilisis lacus nisl. Mauris quis mattis nibh, id consectetur sapien.<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec quam enim, tempor a convallis vel, pulvinar eget nisi. In eu interdum odio, eu viverra odio. Maecenas mollis euismod mauris, eget lacinia nisi hendrerit at. Fusce rutrum lorem lectus, et tincidunt lectus feugiat quis. Proin bibendum nisl neque, ac semper sapien gravida in. Cras dignissim faucibus urna quis feugiat. In feugiat tellus non nisi accumsan mollis. Ut condimentum mauris pretium risus maximus, sed euismod orci volutpat.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Aliquam ultrices semper tortor id convallis. Quisque tristique tristique mauris. Cras ex justo, sollicitudin ac tempus ut, hendrerit in mi. Donec metus ante, auctor eu libero sed, dictum ultricies nisl. Aenean dignissim elit et lacus efficitur, et finibus eros interdum. Nam eleifend vestibulum metus eu feugiat. Nunc porta pulvinar nulla id tincidunt. Donec rutrum nec enim vel sodales. Vestibulum pharetra luctus nisl non viverra. Quisque convallis dignissim ante a placerat. Mauris elit dui, pharetra non feugiat at, bibendum quis leo. Donec ante arcu, ultricies ut diam tincidunt, pulvinar dignissim ante. Nam id dictum dolor, quis placerat lectus.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Praesent feugiat lorem at lacus mattis accumsan. Mauris volutpat bibendum dignissim. Curabitur tortor risus, euismod nec finibus at, tempus non purus. Suspendisse consequat sem laoreet aliquam euismod. Curabitur lectus ligula, auctor at urna nec, tincidunt tempus turpis. Ut rutrum lorem enim, ac eleifend eros auctor non. Morbi eu nisl id risus rutrum interdum. Suspendisse posuere in nulla in imperdiet. Aliquam odio urna, tristique eu aliquet in, tempus non diam. Vivamus luctus leo eu felis egestas condimentum. Nulla feugiat justo at odio pretium, at scelerisque quam lobortis. Maecenas id ullamcorper ipsum.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Nullam vel pretium metus, sed venenatis leo. Fusce laoreet id risus at tristique. Praesent nisl dolor, mattis at vehicula vitae, faucibus vitae orci. Nullam quis purus id neque aliquet maximus. Integer quis diam nisl. Quisque tincidunt sodales suscipit. Nullam a pellentesque dolor. Curabitur rutrum ligula iaculis nulla porttitor, vitae bibendum enim lacinia. Proin quis ipsum a massa sagittis maximus. Nullam nec felis risus. Suspendisse velit augue, malesuada non neque eu, euismod accumsan nunc. Suspendisse dictum lorem et massa sodales auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam dapibus, nunc vel accumsan feugiat, arcu lectus fermentum lorem, vel varius magna ante vitae erat.</p></p>\n', '2020-12-26 08:13:51', '2020-12-26 08:13:51'),
-(4, 4, 2, '<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus augue, pellentesque ac egestas in, tempor id eros. Morbi at nunc eu enim malesuada ultricies. Nunc neque massa, maximus id hendrerit finibus, pretium vel tortor. Curabitur sit amet nunc sit amet nulla lacinia sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sed quam aliquet, cursus nulla quis, convallis dui. Fusce porta eu metus a lobortis. Vivamus ultrices eleifend nibh in porta. Praesent facilisis diam eget tortor dapibus porta. Duis id rhoncus turpis. Vestibulum efficitur neque ac lacus posuere ultrices. Aenean mattis blandit urna vehicula fermentum. Curabitur blandit consequat posuere. Quisque facilisis lacus nisl. Mauris quis mattis nibh, id consectetur sapien.<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec quam enim, tempor a convallis vel, pulvinar eget nisi. In eu interdum odio, eu viverra odio. Maecenas mollis euismod mauris, eget lacinia nisi hendrerit at. Fusce rutrum lorem lectus, et tincidunt lectus feugiat quis. Proin bibendum nisl neque, ac semper sapien gravida in. Cras dignissim faucibus urna quis feugiat. In feugiat tellus non nisi accumsan mollis. Ut condimentum mauris pretium risus maximus, sed euismod orci volutpat.</p></p>\n', '2020-12-26 08:29:02', '2020-12-26 08:29:02');
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2013_09_12_082156_create_roles_table', 1),
-(2, '2014_10_12_000000_create_users_table', 1),
-(3, '2014_10_12_100000_create_password_resets_table', 1),
-(4, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2020_11_12_075108_create_admins_table', 1),
-(6, '2020_11_12_112816_create_permissions_table', 1),
-(7, '2020_11_12_112944_create_permission_role_table', 1),
-(8, '2020_11_12_132039_create_subjects_table', 1),
-(9, '2020_11_13_074826_create_topics_table', 1),
-(10, '2020_11_13_102306_create_learns_table', 1),
-(11, '2020_11_14_083456_create_questions_table', 1),
-(12, '2020_11_14_094039_create_options_table', 1),
-(13, '2020_11_14_102255_create_resources_table', 1),
-(14, '2020_11_15_081715_create_contents_table', 1),
-(15, '2020_11_15_114128_create_teacher_profiles_table', 1),
-(16, '2020_12_19_100809_create_student_profiles_table', 1),
-(17, '2020_12_20_094143_create_content_developer_profiles_table', 1),
-(18, '2013_09_12_082156_create_roles_table', 1),
-(19, '2014_10_12_000000_create_users_table', 1),
-(20, '2014_10_12_100000_create_password_resets_table', 1),
-(21, '2019_08_19_000000_create_failed_jobs_table', 1),
-(22, '2020_11_12_075108_create_admins_table', 1),
-(23, '2020_11_12_112816_create_permissions_table', 1),
-(24, '2020_11_12_112944_create_permission_role_table', 1),
-(25, '2020_11_12_132039_create_subjects_table', 1),
-(26, '2020_11_13_074826_create_topics_table', 1),
-(27, '2020_11_13_102306_create_learns_table', 1),
-(28, '2020_11_14_083456_create_questions_table', 1),
-(29, '2020_11_14_094039_create_options_table', 1),
-(30, '2020_11_14_102255_create_resources_table', 1),
-(31, '2020_11_15_081715_create_contents_table', 1),
-(32, '2020_11_15_114128_create_teacher_profiles_table', 1),
-(33, '2020_12_19_100809_create_student_profiles_table', 1),
-(34, '2020_12_20_094143_create_content_developer_profiles_table', 1);
-
---
--- Dumping data for table `options`
---
-
-INSERT INTO `options` (`id`, `question_id`, `value`, `created_at`, `updated_at`) VALUES
-(1, 8, '1st mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(2, 8, '2nd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(3, 8, '3rd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(4, 9, '1st check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
-(5, 9, '2nd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
-(6, 9, '3rd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04');
-
---
--- Dumping data for table `permissions`
---
+INSERT INTO `roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Student', 'This role is for student', NULL, NULL),
+(2, 'Teacher', 'This role is for teacher', NULL, NULL),
+(3, 'Content Developer', 'This role is for content developer', NULL, NULL);
 
 INSERT INTO `permissions` (`id`, `name`, `key`, `controller`, `method`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'Facade\\Ignition\\Http\\Controllers\\HealthCheckController', 'Facade\\Ignition\\Http\\Controllers\\HealthCheckController', '2020-12-19 14:43:33', '2020-12-19 14:43:33'),
@@ -184,9 +132,6 @@ INSERT INTO `permissions` (`id`, `name`, `key`, `controller`, `method`, `created
 (96, 'Delete Question', NULL, 'App\\Http\\Controllers\\QuestionController', 'destroy', '2020-12-25 10:54:31', '2020-12-25 10:54:31'),
 (97, 'View Learn wise questions', NULL, 'App\\Http\\Controllers\\QuestionController', 'show', '2020-12-26 08:21:33', '2020-12-26 08:21:33');
 
---
--- Dumping data for table `permission_role`
---
 
 INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, 38, 1, NULL, NULL),
@@ -242,15 +187,54 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `
 (59, 97, 1, NULL, NULL),
 (60, 97, 2, NULL, NULL);
 
---
--- Dumping data for table `questions`
---
+
+INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@admin.com', '01521461643', 'Admin', 'Dhaka', '1986-01-01', '12773', '$2y$10$NaE5fw9E5ZyHX5u6l9AuGek12fqwb1u1M1KdDm9k/8YcgIFHvz2Gy', 0, NULL, '2020-12-20 22:03:44', '2020-12-20 22:03:44');
+
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `email_verified_at`, `password`, `remember_token`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 'Student 1', 'student1@student.com', '01521461643', 'Student', 'Dhaka', '2002-03-17', '6854', NULL, '$2y$10$VXD1eixwwoPvCk5jRtBFd.nqSezIQU0iCewiR1XJX1FYamvHpNcIa', NULL, 1, '2020-12-20 16:31:36', '2020-12-20 16:31:36'),
+(2, 'Teacher 1', 'teacher1@teacher.com', '01521461640', 'Teacher', 'Dhaka', '1997-01-21', '8737', NULL, '$2y$10$0fEhxHoN/vLrAHLYqE1f2Ob9.yKfAWzwu5/rMTnUrqUwHk6Ng2NZ6', NULL, 2, '2020-12-22 22:40:07', '2020-12-22 22:40:07');
+
+
+INSERT INTO `subjects` (`id`, `name`, `class`, `created_at`, `updated_at`) VALUES
+(2, 'Bangla', 4, '2020-12-26 08:11:49', '2020-12-26 08:11:49');
+
+INSERT INTO `topics` (`id`, `name`, `subject_id`, `created_at`, `updated_at`) VALUES
+(3, 'Chapter 1', 2, '2020-12-26 08:13:51', '2020-12-26 08:13:51'),
+(4, 'Chapter 2', 2, '2020-12-26 08:29:02', '2020-12-26 08:29:02');
+
+INSERT INTO `learns` (`id`, `topic_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
+(3, 3, 2, '<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus augue, pellentesque ac egestas in, tempor id eros. Morbi at nunc eu enim malesuada ultricies. Nunc neque massa, maximus id hendrerit finibus, pretium vel tortor. Curabitur sit amet nunc sit amet nulla lacinia sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sed quam aliquet, cursus nulla quis, convallis dui. Fusce porta eu metus a lobortis. Vivamus ultrices eleifend nibh in porta. Praesent facilisis diam eget tortor dapibus porta. Duis id rhoncus turpis. Vestibulum efficitur neque ac lacus posuere ultrices. Aenean mattis blandit urna vehicula fermentum. Curabitur blandit consequat posuere. Quisque facilisis lacus nisl. Mauris quis mattis nibh, id consectetur sapien.<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec quam enim, tempor a convallis vel, pulvinar eget nisi. In eu interdum odio, eu viverra odio. Maecenas mollis euismod mauris, eget lacinia nisi hendrerit at. Fusce rutrum lorem lectus, et tincidunt lectus feugiat quis. Proin bibendum nisl neque, ac semper sapien gravida in. Cras dignissim faucibus urna quis feugiat. In feugiat tellus non nisi accumsan mollis. Ut condimentum mauris pretium risus maximus, sed euismod orci volutpat.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Aliquam ultrices semper tortor id convallis. Quisque tristique tristique mauris. Cras ex justo, sollicitudin ac tempus ut, hendrerit in mi. Donec metus ante, auctor eu libero sed, dictum ultricies nisl. Aenean dignissim elit et lacus efficitur, et finibus eros interdum. Nam eleifend vestibulum metus eu feugiat. Nunc porta pulvinar nulla id tincidunt. Donec rutrum nec enim vel sodales. Vestibulum pharetra luctus nisl non viverra. Quisque convallis dignissim ante a placerat. Mauris elit dui, pharetra non feugiat at, bibendum quis leo. Donec ante arcu, ultricies ut diam tincidunt, pulvinar dignissim ante. Nam id dictum dolor, quis placerat lectus.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Praesent feugiat lorem at lacus mattis accumsan. Mauris volutpat bibendum dignissim. Curabitur tortor risus, euismod nec finibus at, tempus non purus. Suspendisse consequat sem laoreet aliquam euismod. Curabitur lectus ligula, auctor at urna nec, tincidunt tempus turpis. Ut rutrum lorem enim, ac eleifend eros auctor non. Morbi eu nisl id risus rutrum interdum. Suspendisse posuere in nulla in imperdiet. Aliquam odio urna, tristique eu aliquet in, tempus non diam. Vivamus luctus leo eu felis egestas condimentum. Nulla feugiat justo at odio pretium, at scelerisque quam lobortis. Maecenas id ullamcorper ipsum.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Nullam vel pretium metus, sed venenatis leo. Fusce laoreet id risus at tristique. Praesent nisl dolor, mattis at vehicula vitae, faucibus vitae orci. Nullam quis purus id neque aliquet maximus. Integer quis diam nisl. Quisque tincidunt sodales suscipit. Nullam a pellentesque dolor. Curabitur rutrum ligula iaculis nulla porttitor, vitae bibendum enim lacinia. Proin quis ipsum a massa sagittis maximus. Nullam nec felis risus. Suspendisse velit augue, malesuada non neque eu, euismod accumsan nunc. Suspendisse dictum lorem et massa sodales auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam dapibus, nunc vel accumsan feugiat, arcu lectus fermentum lorem, vel varius magna ante vitae erat.</p></p>\n', '2020-12-26 08:13:51', '2020-12-26 08:13:51'),
+(4, 4, 2, '<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus augue, pellentesque ac egestas in, tempor id eros. Morbi at nunc eu enim malesuada ultricies. Nunc neque massa, maximus id hendrerit finibus, pretium vel tortor. Curabitur sit amet nunc sit amet nulla lacinia sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sed quam aliquet, cursus nulla quis, convallis dui. Fusce porta eu metus a lobortis. Vivamus ultrices eleifend nibh in porta. Praesent facilisis diam eget tortor dapibus porta. Duis id rhoncus turpis. Vestibulum efficitur neque ac lacus posuere ultrices. Aenean mattis blandit urna vehicula fermentum. Curabitur blandit consequat posuere. Quisque facilisis lacus nisl. Mauris quis mattis nibh, id consectetur sapien.<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec quam enim, tempor a convallis vel, pulvinar eget nisi. In eu interdum odio, eu viverra odio. Maecenas mollis euismod mauris, eget lacinia nisi hendrerit at. Fusce rutrum lorem lectus, et tincidunt lectus feugiat quis. Proin bibendum nisl neque, ac semper sapien gravida in. Cras dignissim faucibus urna quis feugiat. In feugiat tellus non nisi accumsan mollis. Ut condimentum mauris pretium risus maximus, sed euismod orci volutpat.</p></p>\n', '2020-12-26 08:29:02', '2020-12-26 08:29:02');
+
 
 INSERT INTO `questions` (`id`, `learn_id`, `question`, `type`, `created_at`, `updated_at`) VALUES
 (7, 3, 'Question 1 Short Answer', 'short_answer', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
 (8, 3, 'Question 2 Multiple Choice', 'multiple_choice', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
 (9, 3, 'Question 3 Checkbox', 'check_box', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
 (10, 3, 'Question 4 Paragraph', 'paragraph', '2020-12-26 08:16:04', '2020-12-26 08:16:04');
+
+
+INSERT INTO `options` (`id`, `question_id`, `value`, `created_at`, `updated_at`) VALUES
+(1, 8, '1st mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
+(2, 8, '2nd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
+(3, 8, '3rd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
+(4, 9, '1st check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
+(5, 9, '2nd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
+(6, 9, '3rd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04');
+
+--
+-- Dumping data for table `permissions`
+--
+
+
+
+
+--
+-- Dumping data for table `questions`
+--
+
+
 
 --
 -- Dumping data for table `resources`
@@ -259,46 +243,7 @@ INSERT INTO `questions` (`id`, `learn_id`, `question`, `type`, `created_at`, `up
 INSERT INTO `resources` (`id`, `content`, `topic`, `created_at`, `updated_at`) VALUES
 (1, '<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus augue, pellentesque ac egestas in, tempor id eros. Morbi at nunc eu enim malesuada ultricies. Nunc neque massa, maximus id hendrerit finibus, pretium vel tortor. Curabitur sit amet nunc sit amet nulla lacinia sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sed quam aliquet, cursus nulla quis, convallis dui. Fusce porta eu metus a lobortis. Vivamus ultrices eleifend nibh in porta. Praesent facilisis diam eget tortor dapibus porta. Duis id rhoncus turpis. Vestibulum efficitur neque ac lacus posuere ultrices. Aenean mattis blandit urna vehicula fermentum. Curabitur blandit consequat posuere. Quisque facilisis lacus nisl. Mauris quis mattis nibh, id consectetur sapien.<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec quam enim, tempor a convallis vel, pulvinar eget nisi. In eu interdum odio, eu viverra odio. Maecenas mollis euismod mauris, eget lacinia nisi hendrerit at. Fusce rutrum lorem lectus, et tincidunt lectus feugiat quis. Proin bibendum nisl neque, ac semper sapien gravida in. Cras dignissim faucibus urna quis feugiat. In feugiat tellus non nisi accumsan mollis. Ut condimentum mauris pretium risus maximus, sed euismod orci volutpat.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Aliquam ultrices semper tortor id convallis. Quisque tristique tristique mauris. Cras ex justo, sollicitudin ac tempus ut, hendrerit in mi. Donec metus ante, auctor eu libero sed, dictum ultricies nisl. Aenean dignissim elit et lacus efficitur, et finibus eros interdum. Nam eleifend vestibulum metus eu feugiat. Nunc porta pulvinar nulla id tincidunt. Donec rutrum nec enim vel sodales. Vestibulum pharetra luctus nisl non viverra. Quisque convallis dignissim ante a placerat. Mauris elit dui, pharetra non feugiat at, bibendum quis leo. Donec ante arcu, ultricies ut diam tincidunt, pulvinar dignissim ante. Nam id dictum dolor, quis placerat lectus.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Praesent feugiat lorem at lacus mattis accumsan. Mauris volutpat bibendum dignissim. Curabitur tortor risus, euismod nec finibus at, tempus non purus. Suspendisse consequat sem laoreet aliquam euismod. Curabitur lectus ligula, auctor at urna nec, tincidunt tempus turpis. Ut rutrum lorem enim, ac eleifend eros auctor non. Morbi eu nisl id risus rutrum interdum. Suspendisse posuere in nulla in imperdiet. Aliquam odio urna, tristique eu aliquet in, tempus non diam. Vivamus luctus leo eu felis egestas condimentum. Nulla feugiat justo at odio pretium, at scelerisque quam lobortis. Maecenas id ullamcorper ipsum.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Nullam vel pretium metus, sed venenatis leo. Fusce laoreet id risus at tristique. Praesent nisl dolor, mattis at vehicula vitae, faucibus vitae orci. Nullam quis purus id neque aliquet maximus. Integer quis diam nisl. Quisque tincidunt sodales suscipit. Nullam a pellentesque dolor. Curabitur rutrum ligula iaculis nulla porttitor, vitae bibendum enim lacinia. Proin quis ipsum a massa sagittis maximus. Nullam nec felis risus. Suspendisse velit augue, malesuada non neque eu, euismod accumsan nunc. Suspendisse dictum lorem et massa sodales auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam dapibus, nunc vel accumsan feugiat, arcu lectus fermentum lorem, vel varius magna ante vitae erat.</p></p>\n', 'Lorem Ipsum', '2020-12-26 08:06:01', '2020-12-26 08:06:01');
 
---
--- Dumping data for table `roles`
---
 
-INSERT INTO `roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Student', 'This role is for student', NULL, NULL),
-(2, 'Teacher', 'This role is for teacher', NULL, NULL),
-(3, 'Content Developer', 'This role is for content developer', NULL, NULL);
-
---
--- Dumping data for table `subjects`
---
-
-INSERT INTO `subjects` (`id`, `name`, `class`, `created_at`, `updated_at`) VALUES
-(2, 'Bangla', 4, '2020-12-26 08:11:49', '2020-12-26 08:11:49');
-
---
--- Dumping data for table `teacher_profiles`
---
 
 INSERT INTO `teacher_profiles` (`id`, `user_id`, `year_of_experience`, `specilization`, `created_at`, `updated_at`) VALUES
 (1, 2, 4, '<p><span style=\'color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px; text-align: justify;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus augue, pellentesque ac egestas in, tempor id eros. Morbi at nunc eu enim malesuada ultricies. Nunc neque massa, maximus id hendrerit finibus, pretium vel tortor. Curabitur sit amet nunc sit amet nulla lacinia sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sed quam aliquet, cursus nulla quis, convallis dui. Fusce porta eu metus a lobortis. Vivamus ultrices eleifend nibh in porta. Praesent facilisis diam eget tortor dapibus porta. Duis id rhoncus turpis. Vestibulum efficitur neque ac lacus posuere ultrices. Aenean mattis blandit urna vehicula fermentum. Curabitur blandit consequat posuere. Quisque facilisis lacus nisl. Mauris quis mattis nibh, id consectetur sapien.</span><br></p>\n', '2020-12-26 08:01:04', '2020-12-26 08:01:04');
-
---
--- Dumping data for table `topics`
---
-
-INSERT INTO `topics` (`id`, `name`, `subject_id`, `created_at`, `updated_at`) VALUES
-(3, 'Chapter 1', 2, '2020-12-26 08:13:51', '2020-12-26 08:13:51'),
-(4, 'Chapter 2', 2, '2020-12-26 08:29:02', '2020-12-26 08:29:02');
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `email_verified_at`, `password`, `remember_token`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 'Student 1', 'student1@student.com', '01521461643', 'Student', 'Dhaka', '2002-03-17', '6854', NULL, '$2y$10$VXD1eixwwoPvCk5jRtBFd.nqSezIQU0iCewiR1XJX1FYamvHpNcIa', NULL, 1, '2020-12-20 16:31:36', '2020-12-20 16:31:36'),
-(2, 'Teacher 1', 'teacher1@teacher.com', '01521461640', 'Teacher', 'Dhaka', '1997-01-21', '8737', NULL, '$2y$10$0fEhxHoN/vLrAHLYqE1f2Ob9.yKfAWzwu5/rMTnUrqUwHk6Ng2NZ6', NULL, 2, '2020-12-22 22:40:07', '2020-12-22 22:40:07');
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

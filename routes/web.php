@@ -28,7 +28,7 @@ Auth::routes();
 
 
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('admin.login');
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm')->name('admin.register');
+
 
 Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
@@ -37,6 +37,7 @@ Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm')->name('admin.register');
     Route::resource('role', 'RoleController');
     Route::resource('resource', 'ResourceController');
     Route::view('/admin', 'admin');
