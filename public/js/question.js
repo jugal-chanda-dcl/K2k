@@ -10,6 +10,14 @@
 //   tabsize: 2,
 //   height: 100
 // });
+ var data = {
+   '0' : {
+     'question': "",
+     'question_type' : "",
+     'options': []
+   }
+ }
+
 
 function change_answer_type_selecting_questin_type(question){
   question = question.get(0);
@@ -52,6 +60,7 @@ function change_answer_type_selecting_questin_type(question){
 }
 
 $("select[name='question_type']").change(function(){
+  alert("Hello");
   change_answer_type_selecting_questin_type($(this));
 });
 
@@ -64,9 +73,11 @@ function add_another_question(){
   $(form_tag).attr('data','for_question');
   // console.log(form_tag);
   $('.question_conatiner').append(question_format);
+
   $("select[name='question_type']").change(function(){
     change_answer_type_selecting_questin_type($(this));
   });
+
   $('.add_another_option_btn').click(function(){
     parent_div = $(this).parent().get(0);
     answer_format = $(parent_div).find("div:first-child").clone();
@@ -152,8 +163,8 @@ $('.question_save_btn').click(function(){
 
     }
     // console.log(form_data);
-    question_save(form_data);
+    // question_save(form_data);
 
   });
-  window.location.replace("/question/"+ learn_id +"/edit");
+  // window.location.replace("/question/"+ learn_id +"/edit");
 });
