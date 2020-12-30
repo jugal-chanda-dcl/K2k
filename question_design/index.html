@@ -163,22 +163,24 @@
       <input type="text" name=answer"" value="" class="form-control">
     </div>
     <div class="mt-2 d-none" style="" id="multiple_choice_format">
-      <div class="option_format mb-2" id="">
-        <input type="radio" name="" value=""><input type="text" name="optionLabel" value="" class="ml-2" onkeyup="optionLabelKeyPress($(this))">
-      </div>
+
       <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn" onclick="addAnotherOption($(this))">Add another option</button>
     </div>
 
     <div class="mt-2 d-none" style="" id="checkbox_format">
-      <div class="option_format mb-2" id="">
-        <input type="checkbox" name="" value=""><input type="text" name="optionLabel" value="" class="ml-2" onkeyup="optionLabelKeyPress($(this))" >
-      </div>
+
       <button type="button" name="button" class="btn btn-sm btn-secondary border-0 add_another_option_btn" onclick="addAnotherOption($(this))">Add another option</button>
     </div>
     <div class="mt-2 d-none" style="" id="paragraph_format">
       <textarea  name="answer" class="form-control question_answer" rows="8" cols="80"></textarea>
     </div>
 
+    <div class="option_format mb-2" id="">
+      <input type="radio" name="" value=""><input type="text" name="optionLabel" value="" class="ml-2" onkeyup="optionLabelKeyPress($(this))">
+    </div>
+    <div class="option_format mb-2" id="">
+      <input type="checkbox" name="" value=""><input type="text" name="optionLabel" value="" class="ml-2" onkeyup="optionLabelKeyPress($(this))" >
+    </div>
 
 
     <script type="text/javascript" src="question.js"></script>

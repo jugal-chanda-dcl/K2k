@@ -25,9 +25,7 @@ function change_answer_type_selecting_questin_type(question){
   answerFormat.removeClass('d-none');
   answerContainer.append(answerFormat);
   var questionId = question.parents(".questionCard").attr("id");
-  questionOptionsIds[questionIDs.indexOf(questionId)] += 1;
   data[questionId]['question_type'] = questionType;
-  console.log(questionOptionsIds);
 }
 
 // $("select[name='question_type']").change(function(){
