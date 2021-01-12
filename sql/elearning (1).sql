@@ -208,20 +208,16 @@ INSERT INTO `learns` (`id`, `topic_id`, `user_id`, `content`, `created_at`, `upd
 (4, 4, 2, '<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus augue, pellentesque ac egestas in, tempor id eros. Morbi at nunc eu enim malesuada ultricies. Nunc neque massa, maximus id hendrerit finibus, pretium vel tortor. Curabitur sit amet nunc sit amet nulla lacinia sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean sed quam aliquet, cursus nulla quis, convallis dui. Fusce porta eu metus a lobortis. Vivamus ultrices eleifend nibh in porta. Praesent facilisis diam eget tortor dapibus porta. Duis id rhoncus turpis. Vestibulum efficitur neque ac lacus posuere ultrices. Aenean mattis blandit urna vehicula fermentum. Curabitur blandit consequat posuere. Quisque facilisis lacus nisl. Mauris quis mattis nibh, id consectetur sapien.<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec quam enim, tempor a convallis vel, pulvinar eget nisi. In eu interdum odio, eu viverra odio. Maecenas mollis euismod mauris, eget lacinia nisi hendrerit at. Fusce rutrum lorem lectus, et tincidunt lectus feugiat quis. Proin bibendum nisl neque, ac semper sapien gravida in. Cras dignissim faucibus urna quis feugiat. In feugiat tellus non nisi accumsan mollis. Ut condimentum mauris pretium risus maximus, sed euismod orci volutpat.</p></p>\n', '2020-12-26 08:29:02', '2020-12-26 08:29:02');
 
 
-INSERT INTO `questions` (`id`, `learn_id`, `question`, `type`, `created_at`, `updated_at`) VALUES
-(7, 3, 'Question 1 Short Answer', 'short_answer', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(8, 3, 'Question 2 Multiple Choice', 'multiple_choice', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(9, 3, 'Question 3 Checkbox', 'check_box', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
-(10, 3, 'Question 4 Paragraph', 'paragraph', '2020-12-26 08:16:04', '2020-12-26 08:16:04');
 
 
-INSERT INTO `options` (`id`, `question_id`, `value`, `created_at`, `updated_at`) VALUES
-(1, 8, '1st mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(2, 8, '2nd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(3, 8, '3rd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
-(4, 9, '1st check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
-(5, 9, '2nd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
-(6, 9, '3rd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04');
+
+-- INSERT INTO `options` (`id`, `question_id`, `value`, `created_at`, `updated_at`) VALUES
+-- (1, 8, '1st mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
+-- (2, 8, '2nd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
+-- (3, 8, '3rd mco', '2020-12-26 08:16:03', '2020-12-26 08:16:03'),
+-- (4, 9, '1st check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
+-- (5, 9, '2nd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04'),
+-- (6, 9, '3rd check', '2020-12-26 08:16:04', '2020-12-26 08:16:04');
 
 --
 -- Dumping data for table `permissions`

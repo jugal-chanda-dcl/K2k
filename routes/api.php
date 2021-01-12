@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/questions/create','QuestionController@store')->name('question.store');
 Route::post('/questions/edit','QuestionController@update')->name('question.update');
+Route::get('/questions/retrive/{learn}','QuestionController@retrive')->name('question.retrive');
 Route::post('/questions/destroy','QuestionController@destroy')->name('question.destroy');

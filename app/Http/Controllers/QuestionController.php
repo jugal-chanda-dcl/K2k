@@ -15,6 +15,12 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function retrive(Learn $learn)
+    {
+      $question = $learn->question;
+      return response()->json($question->content,200);
+    }
     public function index()
     {
         //
@@ -38,21 +44,23 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-      $question = new Question;
-      $question->learn_id = $request['learn_id'];
-      $question->question = $request['question'];
-      $question->type = $request['question_type'];
-      $question->save();
-      if($question->type == "multiple_choice" || $question->type == "check_box"){
-        $options = $request['options'];
-        foreach ($options as $option) {
-          $option_db = new Option;
-          $option_db->question_id = $question->id;
-          $option_db->value = $option;
-          $option_db->save();
+      $data = $request->all();
+      $learnId = $data['learnId'];
+
+      foreach ($data as $key=>$d)
+      {
+        if($key != "learnId")
+        {
+          $storeData[$key] = $d;
         }
       }
-      return response()->json($request,200);
+      $question = new Question;
+      $question->learn_id = $learnId;
+      $question->content = json_encode($storeData);
+      $question->save();
+
+      return response()->json($data,200);
+
     }
 
     /**

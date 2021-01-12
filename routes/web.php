@@ -80,7 +80,7 @@ Route::resource('studentProfile', 'StudentProfileController')->middleware('rolea
 Route::resource('contentDeveloperProfile', 'ContentDeveloperProfileController')->middleware('roleauth');
 // Route::get('student/subjects/','SubjectController@studentSubjectsAll')->middleware('roleauth')->name('student.subjects.all');
 
-Route::get('/question/{learn}','QuestionController@create')->name('question.create')->middleware('roleauth');
+Route::get('/question/{learn}/create','QuestionController@create')->name('question.create')->middleware('roleauth');
 Route::get('/question/{learn}/edit','QuestionController@edit')->name('question.edit')->middleware('roleauth');
 Route::get('learn/{learn}/questions','QuestionController@show')->name('learn.questions')->middleware('roleauth');
 
