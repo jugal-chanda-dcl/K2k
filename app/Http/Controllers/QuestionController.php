@@ -16,6 +16,7 @@ class QuestionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    // Used for retriving all question relatively on learning material for edit or view questions
     public function retrive(Learn $learn)
     {
       $question = $learn->question;

@@ -45,6 +45,7 @@
   <button type="button" name="button" class="question_save_btn btn btn-sm btn-success" onclick="questionSave()">Save</button>
 </div>
 
+<!-- Used for add another question this is the question format -->
 <div class="card mb-2 questionCard d-none" id="questionFormat" >
   <div class="card-body">
     <form class="" action="" method="post" >
