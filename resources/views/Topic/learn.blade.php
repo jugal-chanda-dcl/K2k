@@ -21,7 +21,7 @@
 
     </form>
     @endif
-    @if($learn->questions->count()>0)
+    @if($learn->question)
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.edit')))
         <a href="{{ route('question.edit',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Edit Questions</a>
       @endif

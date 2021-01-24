@@ -10,8 +10,4 @@ class Question extends Model
     {
       return $this->belongsTo(Learn::class);
     }
-    public function options()
-    {
-      return $this->hasMany(Option::class);
-    }
 }
