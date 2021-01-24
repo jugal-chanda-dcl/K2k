@@ -72,7 +72,7 @@ class QuestionController extends Controller
      */
     public function show(Learn $learn)
     {
-        return view('question.show',['questions'=>$learn->questions]);
+        return view('question.show',['learn'=>$learn]);
     }
 
     /**
@@ -93,51 +93,13 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,Learn $learn)
     {
-      $learn_id = $request['learn_id'];
-      if($request['question_id'])
-      {
-        $question = Question::find($request['question_id']);
-
-        $question->question = $request['question'];
-        $question->type = $request['question_type'];
-        $question->save();
-        $options = $question->options;
-
-        foreach ($options as $option) {
-          $option->delete();
-        }
-        if($question->type == "multiple_choice" || $question->type == "checkbox")
-        {
-          $options = $request['options'];
-          foreach ($options as $option) {
-            $option_db = new Option;
-            $option_db->question_id = $question->id;
-            $option_db->value = $option;
-            $option_db->save();
-          }
-        }
-      }
-      else{
-        $question = new Question;
-        $question->learn_id = $request['learn_id'];
-        $question->question = $request['question'];
-        $question->type = $request['question_type'];
-        $question->save();
-        if($question->type == "multiple_choice" || $question->type == "check_box"){
-          $options = $request['options'];
-          foreach ($options as $option) {
-            $option_db = new Option;
-            $option_db->question_id = $question->id;
-            $option_db->value = $option;
-            $option_db->save();
-          }
-        }
-
-      }
-      return response()->json($request,200);
-
+      $data = $request->all();
+      $question = $learn->question;
+      $question->content = json_encode($data);
+      $question->save();
+      return response()->json($data,200);
     }
 
     /**
@@ -148,8 +110,5 @@ class QuestionController extends Controller
      */
     public function destroy(Request $request)
     {
-      $question_id = $request['question_id'];
-      Question::destroy($question_id);
-      return response()->json("deleted",200);
     }
 }

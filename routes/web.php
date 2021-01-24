@@ -82,6 +82,7 @@ Route::resource('contentDeveloperProfile', 'ContentDeveloperProfileController')-
 
 Route::get('/question/{learn}/create','QuestionController@create')->name('question.create')->middleware('roleauth');
 Route::get('/question/{learn}/edit','QuestionController@edit')->name('question.edit')->middleware('roleauth');
+
 Route::get('learn/{learn}/questions','QuestionController@show')->name('learn.questions')->middleware('roleauth');
 
 

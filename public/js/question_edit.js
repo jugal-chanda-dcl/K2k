@@ -3,6 +3,8 @@ var questionIdFormat = "q_";
 var questionOptionsIds = [];
 var learnId = $("input[name='learn_id']").val();
 var retriveURL = $("input[name='learn_id']").attr('url');
+var submitUrl  = $("input[name='learn_id']").attr('subUrl');
+var viewUrl = $("input[name='learn_id']").attr('viewUrl');
 var data = ""
 
 
@@ -200,20 +202,22 @@ function answered(el){
 
 function questionSave(){
   // console.log(JSON.stringify(data));
-  console.log(data);
-  // $.ajax({
-  //   url: '/api/questions/create/',
-  //   type: 'post',
-  //   dataType: 'json',
-  //   contentType: 'application/json',
-  //   success: function (responseData) {
-  //     while(!responseData){
-  //
-  //     }
-  //     window.location.replace("/question/"+ learnId +"/edit");
-  //
-  //
-  //   },
-  //   data: JSON.stringify(data)
-  // });
+  // console.log(data);
+  // console.log(submitUrl);
+
+  $.ajax({
+    url: submitUrl,
+    type: 'post',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function (responseData) {
+      while(!responseData){
+
+      }
+      window.location.replace(viewUrl);
+
+
+    },
+    data: JSON.stringify(data)
+  });
 }

@@ -8,7 +8,7 @@
 
 <div class="card">
   <div class="card-header">Create new question</div>
-  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn])}}">
+  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn])}}" subUrl = "{{ route('question.update',['learn'=>$learn]) }}" viewUrl = "{{route('learn.questions',['learn'=>$learn])}}">
   <div class="card-body question_conatiner">
     <!-- Question -->
 
