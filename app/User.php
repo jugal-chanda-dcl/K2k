@@ -58,6 +58,10 @@ class User extends Authenticatable
     {
       return $this->hasOne(StudentProfile::class);
     }
+    public function answers()
+    {
+      return $this->hasMany('App\Answer');
+    }
     public function contentDeveloperProfile($value='')
     {
       return $this->hasOne(ContentDeveloperProfile::class);
