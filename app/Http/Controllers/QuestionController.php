@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Question;
 use App\Option;
 use App\Learn;
+use App\User;
 
 class QuestionController extends Controller
 {
@@ -17,11 +18,19 @@ class QuestionController extends Controller
      */
 
     // Used for retriving all question relatively on learning material for edit or view questions
-    public function retrive(Learn $learn)
+    public function retrive(Learn $learn,User $user)
     {
       $question = $learn->question;
+      $answer = $question->answers->where('user_id',$user->id)->first();
+      if($answer != null)
+      {
+        return response()->json($answer->answer,200);
+      }
       return response()->json($question->content,200);
+
+
     }
+
     public function index()
     {
         //

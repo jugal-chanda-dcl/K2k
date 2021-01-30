@@ -8,7 +8,7 @@
 
 <div class="card">
   <div class="card-header">Question</div>
-  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn])}}" subUrl = "{{route('answer.store',['question'=>$learn->question,'user'=>Auth::user()])}}">
+  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn,'user'=>Auth::user()])}}" subUrl = "{{route('answer.store',['question'=>$learn->question,'user'=>Auth::user()])}}">
   <div class="card-body question_conatiner">
     <!-- Question -->
   <ol class="questionContainer">

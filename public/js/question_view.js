@@ -36,16 +36,44 @@ $( document ).ready(function() {
     return question;
   }
 
+  // Load answer for answerd question
+  function answerd(question,key) {
+    if(data[key]['question_type'] == 'short_answer'){
+      var answer = question.find('input').val(data[key]['answer']);
+      answer.attr('readonly',true);
+
+    }else if(data[key]['question_type'] == 'paragraph'){
+      var answer = question.find('textarea').val(data[key]['answer']);
+      answer.attr('readonly',true);
+    }else{
+      var answer = question.find("div[data_id="+ data[key]['question_type']+"_format" +"]");
+      $.each(answer.children(),function(){
+        $(this).find("input").attr("disabled",true);
+        var id = $(this).find("input").attr("id");
+        console.log(id);
+        if(data[key]['answer'].includes(id)){
+          $(this).find("input").attr("checked",true);
+        }
+      });
+    }
+    $(".question_save_btn").attr("disabled",true);
+    return question;
+  }
+
+  // if not answerd or first view make data object for answering question
+  function notAnswered(key) {
+    if(data[key]['question_type'] == 'short_answer' || data[key]['question_type'] == 'paragraph'){
+      data[key]['answer'] = "";
+    }else{
+      data[key]['answer'] = [];
+    }
+  }
 
   function loadHTMl() {
     var questionContainer = $('.questionContainer');
     var questionFormat = $('#questionFormat');
     $.each(data, function(key,val){
-      if(data[key]['question_type'] == 'short_answer' || data[key]['question_type'] == 'paragraph'){
-        data[key]['answer'] = "";
-      }else{
-        data[key]['answer'] = [];
-      }
+
       questionIDs.push(key);
       questionOptionsIds.push(0);
       temp = questionFormat.clone();
@@ -66,6 +94,11 @@ $( document ).ready(function() {
       answerInput.append(answerFormat);
       if(data[key]['question_type'] == "multiple_choice" || data[key]['question_type'] == "checkbox"){
         temp = addOptions(temp,key);
+      }
+      if('answer' in data[key]){
+        temp = answerd(temp,key);
+      }else{
+        notAnswered(key);
       }
       questionContainer.append(temp);
     });
