@@ -28,6 +28,9 @@
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.questions')))
         <a href="{{ route('learn.questions',['learn'=>$learn]) }}" class="btn btn-sm btn-info">View Questions</a>
       @endif
+      @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('answer.review_answers')))
+        <a href="{{ route('answer.review_answers',['learn'=>$learn]) }}" class="btn btn-sm btn-info">Riview Answers</a>
+      @endif
     @else
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.create')))
       <a href="{{ route('question.create',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Add Question</a>

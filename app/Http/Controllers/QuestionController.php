@@ -27,9 +27,9 @@ class QuestionController extends Controller
         return response()->json($answer->answer,200);
       }
       return response()->json($question->content,200);
-
-
     }
+
+
 
     public function index()
     {

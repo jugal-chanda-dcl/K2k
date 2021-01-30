@@ -23,3 +23,4 @@ Route::post('/questions/edit/{learn}','QuestionController@update')->name('questi
 Route::get('/questions/retrive/learn/{learn}/user/{user}','QuestionController@retrive')->name('question.retrive');
 // Route::post('/questions/destroy','QuestionController@destroy')->name('question.destroy');
 Route::post('/answer/submit/{question}/{user}','AnswerController@store')->name('answer.store');
+Route::post('/answer/{answer}/update','AnswerController@update')->name('answer.update');

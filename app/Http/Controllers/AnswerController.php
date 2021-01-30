@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Learn;
 use App\Question;
 use App\Answer;
 use App\User;
@@ -14,6 +15,18 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function review_answers(Learn $learn)
+    {
+     $question = $learn->question;
+     $answers = $question->answers;
+     return view('question.reviewAnswers',['answers'=>$answers]);
+    }
+
+    public function answer_scripts(Answer $answer)
+    {
+      return view('question.answerScripts',['answer'=>$answer]);
+    }
     public function index()
     {
         //
@@ -74,9 +87,18 @@ class AnswerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Answer $answer)
     {
-        //
+      $data = $request->all();
+      $totalQuestion = $data['totalQuestion'];
+      unset($data['totalQuestion']);
+      $score = $data['totalScore'];
+      unset($data['totalScore']);
+      $checked = $data['checked'];
+      unset($data['checked']);
+      $answer->answer = json_encode($data);
+      $answer->save();
+      return response()->json($data,200);
     }
 
     /**

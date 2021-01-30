@@ -69,21 +69,23 @@ Route::get('/learn/{learn}','LearnController@show')->middleware('roleauth')->nam
 
 
 
-Route::get('subject/{subject}/topics/','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
+Route::get('/subject/{subject}/topics','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
 Route::get('/topic/{topic}/learn','TopicController@learn')->middleware('roleauth')->name('topic.learn');
 
-Route::resource('content', 'ContentController')->middleware('roleauth');
-Route::get('teacher/resources', 'ResourceController@teacherResourceAll')->middleware('roleauth')->name('teacher.resource.all');
-Route::get('teacher/resources/{resource}', 'ResourceController@teacherResourceSingle')->middleware('roleauth')->name('teacher.resource.single');
-Route::resource('teacherProfile', 'TeacherProfileController')->middleware('roleauth');
-Route::resource('studentProfile', 'StudentProfileController')->middleware('roleauth');
-Route::resource('contentDeveloperProfile', 'ContentDeveloperProfileController')->middleware('roleauth');
+Route::resource('/content', 'ContentController')->middleware('roleauth');
+Route::get('/teacher/resources', 'ResourceController@teacherResourceAll')->middleware('roleauth')->name('teacher.resource.all');
+Route::get('/teacher/resources/{resource}', 'ResourceController@teacherResourceSingle')->middleware('roleauth')->name('teacher.resource.single');
+Route::resource('/teacherProfile', 'TeacherProfileController')->middleware('roleauth');
+Route::resource('/studentProfile', 'StudentProfileController')->middleware('roleauth');
+Route::resource('/contentDeveloperProfile', 'ContentDeveloperProfileController')->middleware('roleauth');
 // Route::get('student/subjects/','SubjectController@studentSubjectsAll')->middleware('roleauth')->name('student.subjects.all');
 
 Route::get('/question/{learn}/create','QuestionController@create')->name('question.create')->middleware('roleauth');
 Route::get('/question/{learn}/edit','QuestionController@edit')->name('question.edit')->middleware('roleauth');
 
-Route::get('learn/{learn}/questions','QuestionController@show')->name('learn.questions')->middleware('roleauth');
+Route::get('/learn/{learn}/questions','QuestionController@show')->name('learn.questions')->middleware('roleauth');
+Route::get('/learn/{learn}/review/answers','AnswerController@review_answers')->name('answer.review_answers')->middleware('roleauth');
+Route::get('/answers/{answer}','AnswerController@answer_scripts')->name('answer.script')->middleware('roleauth');
 
 
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');
