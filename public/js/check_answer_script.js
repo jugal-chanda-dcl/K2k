@@ -71,15 +71,6 @@ $( document ).ready(function() {
     return question;
   }
 
-  // if not answerd or first view make data object for answering question
-  function notAnswered(key) {
-    if(data[key]['question_type'] == 'short_answer' || data[key]['question_type'] == 'paragraph'){
-      data[key]['answer'] = "";
-    }else{
-      data[key]['answer'] = [];
-    }
-  }
-
   function loadHTMl() {
     var questionContainer = $('.questionContainer');
     var questionFormat = $('#questionFormat');
