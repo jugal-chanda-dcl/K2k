@@ -5,9 +5,9 @@ var learnId = $("input[name='learn_id']").val();
 var retriveURL = $("input[name='learn_id']").attr('url');
 var answerSubmitUrl = $("input[name='learn_id']").attr('subUrl');
 var data = ""
+var isAnswered = $("input[name='learn_id']").attr('answered');
 
 $( document ).ready(function() {
-
   function addOptions(question,key){
     var questionType = data[key]['question_type'];
     var optionFormat = $("#"+questionType+"_option_format");
@@ -69,6 +69,26 @@ $( document ).ready(function() {
     }
   }
 
+  function setUpQuestion(el,questionId) {
+    el.attr("id",questionId);
+    el.removeClass("d-none");
+    el.find(".question").html(data[questionId]['question']);
+    return el;
+  }
+
+  function anseredAnserFormat(el,questionId) {
+
+  }
+
+  function setUpAnswerFormat(el,questionId){
+    if(isAnswed){
+
+    }else{
+
+    }
+    return el;
+  }
+
   function loadHTMl() {
     var questionContainer = $('.questionContainer');
     var questionFormat = $('#questionFormat');
@@ -77,9 +97,10 @@ $( document ).ready(function() {
       questionIDs.push(key);
       questionOptionsIds.push(0);
       temp = questionFormat.clone();
-      temp.attr('id',key);
-      temp.removeClass('d-none');
-      temp.find(".question").html(val['question']);
+      temp = setUpQuestion(temp,key);
+      // temp.attr('id',key);
+      // temp.removeClass('d-none');
+      // temp.find(".question").html(val['question']);
       var answerInput = temp.find('.answer form');
       var answerFormat = $("#"+data[key]['question_type']+"_format").clone();
       answerFormat.attr("id","");

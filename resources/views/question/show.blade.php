@@ -34,6 +34,9 @@
 <div class="form-group d-none" id="short_answer_format">
   <input type="text" name="" value="" class="form-control" onkeyup="anwerShortAnswer($(this))">
 </div>
+<div class="d-none" id="text_answer_format">
+  
+</div>
 <div class="form-group d-none" id="paragraph_format">
   <textarea name="" rows="8" cols="80" class="form-control" onkeyup="answerParagraph($(this))"></textarea>
 </div>
@@ -51,6 +54,8 @@
 <div class="option_format d-none" id="checkbox_option_format">
   <input type="checkbox" name="" value=""  id="" class="mr-2" onclick="answerCheckbox($(this))"><label for=""></label>
 </div>
+
+
 
 @endsection
 
