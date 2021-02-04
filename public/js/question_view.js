@@ -85,7 +85,7 @@ $( document ).ready(function() {
     return el;
   }
 
-  function answerContainer(el) {
+  function answerContainer(el) { //el = main question format
     return el.find('.answer form');
   }
 
@@ -111,9 +111,15 @@ $( document ).ready(function() {
     return el;
   }
 
-  function multipleChoiceOptionAdd(el,questionId) {
+  function checkboxInputSet(el,name,id) {
+    el.attr("id",id);
+    el.attr("name",name);
+    return el;
+  }
+
+  function multipleChoiceOptionAdd(el,questionId) { //el = option container
     var optionFormat = $("#multiple_choice_option_format");
-    $.each(data[key]['options'],function(id,val){
+    $.each(data[questionId]['options'],function(id,val){
       var optionFormatClone = optionFormat.clone();
       var radioInput = optionFormatClone.find("input:radio");
       var optionLabel = optionFormatClone.find('label');
@@ -123,21 +129,42 @@ $( document ).ready(function() {
 
       radioInput = radioInputSet(radioInput,questionId,id);
       optionLabel = optionLabelSet(optionLabel,val,id);
+      el.append(optionFormatClone);
     }
+    return el;
 
   }
 
-  function addOption(el,questionId) {
+  function checkboxOptionAdd(el,questionId){ //el = optionContainer
+    var optionFormat = $("#checkbox_option_format");
+    $.each(data[questionId]['options'],function(id,val){
+      var optionFormatClone = optionFormat.clone();
+      var checkboxInput = optionFormatClone.find("input:checkbox");
+      var optionLabel = optionFormatClone.find("label");
+
+      optionFormatClone = removeId(optionFormatClone);
+      optionFormatClone.removeClass("d-none");
+
+      checkboxInput = checkboxInputSet(checkboxInput,id,id);
+      optionLabel = optionLabelSet(optionLabel,val,id);
+      el.append(optionFormatClone);
+    }
+    return el;
+  }
+
+  function addOption(el,questionId) { // el = answerFormat ex (#multiple_choice_format)
 
     if(data[questionId]['question_type'] == 'multiple_choice'){
-      multipleChoiceOptionAdd(el,questionId);
+      el = multipleChoiceOptionAdd(el,questionId);
+    }else{
+      el = checkboxOptionAdd(el, qustionId);
     }
   }
 
-  function notAnsweredAnswerFormat(el,questionId) {
-    var answerContainer = answerContainer(el);
+  function notAnsweredAnswerFormat(el,questionId) {  //el = Main Question Format
+    var answerContainer = answerContainer(el);  // return answer container (.answer form)
     var answerFormat = $("#"+data[questionId]['question_type']+"_format").clone();
-    answerFormat = removeId(el);
+    answerFormat = removeId(answerFormat);
     answerFormat.removeClass("d-none");
     if(data[questionId]['question_type'] == "short_answer"){
       answerFormat.find("input").attr("name",questionId)
@@ -146,7 +173,7 @@ $( document ).ready(function() {
       answerFormat.find("textarea").attr("name",questionId)
     }
     else{
-      addOption();
+      answerFormat = addOption(answerFormat,questionId);
     }
   }
 
@@ -169,13 +196,10 @@ $( document ).ready(function() {
       questionOptionsIds.push(0);
       temp = questionFormat.clone();
       temp = setUpQuestion(temp,key);
-      // temp.attr('id',key);
-      // temp.removeClass('d-none');
-      // temp.find(".question").html(val['question']);
+
       var answerInput = temp.find('.answer form');
       var answerFormat = $("#"+data[key]['question_type']+"_format").clone();
-      answerFormat.attr("id","");
-      answerFormat.attr("data_id",data[key]['question_type']+"_format");
+      answerFormat = removeId(answerFormat);
       answerFormat.removeClass('d-none');
       if(data[key]['question_type'] == "short_answer"){
         answerFormat.find("input").attr("name",key)
