@@ -101,6 +101,9 @@ class AnswerController extends Controller
       $checked = $data['checked'];
       unset($data['checked']);
       $answer->answer = json_encode($data);
+      $answer->score = $score;
+      $answer->total = $totalQuestion;
+      $answer->checked = true;
       $answer->save();
       return response()->json($data,200);
     }

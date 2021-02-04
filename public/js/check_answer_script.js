@@ -5,71 +5,154 @@ var learnId = $("input[name='learn_id']").val();
 var retriveURL = $("input[name='learn_id']").attr('url');
 var answerSubmitUrl = $("input[name='learn_id']").attr('subUrl');
 var data = ""
+var total = 2;
 var totalScore = 0;
+var isAnswered = 1;
 
 $( document ).ready(function() {
-
-  function addOptions(question,key){
-    var questionType = data[key]['question_type'];
-    var optionFormat = $("#"+questionType+"_option_format");
-
-    $.each(data[key]['options'],function(id,val){
-      var optionFormatClone = optionFormat.clone();
-      optionFormatClone.attr("id","");
-      optionFormatClone.removeClass("d-none");
-      if(data[key]['question_type'] == "multiple_choice"){
-        var radioInput = optionFormatClone.find("input:radio");
-        radioInput.attr("name",key);
-        radioInput.attr("id",id);
+  function optionColor(el,questionId,optionId) {
+    if(data[questionId]['answer'].includes(optionId)){
+      if(data[questionId]['options_answer'].includes(optionId)){
+        el.addClass("correct");
+        data[questionId]['score']=data[questionId]['score']+(1/Object.keys(data[questionId]['options']).length );
       }else{
-        var checkInput = optionFormatClone.find("input:checkbox");
-        checkInput.attr("name",id);
-        checkInput.attr("id",id);
+        el.addClass("wrong");
       }
-      var optionLabel = optionFormatClone.find("label");
-      optionLabel.attr("for",id);
-      optionLabel.html(val);
-      question.find(".options").append(optionFormatClone);
-      var questionIdIndex = questionIDs.indexOf(key);
-      questionOptionsIds[questionIdIndex] = parseInt(id.split('>')[1].split('_')[1]);
-    });
-
-    return question;
-  }
-
-  // Load answer for answerd question
-  function answerd(question,key) {
-    if(data[key]['question_type'] == 'short_answer'){
-      var answer = question.find('#short_answer_format_answer').text(data[key]['answer']);
-      answer.attr('readonly',true);
-
-    }else if(data[key]['question_type'] == 'paragraph'){
-      var answer = question.find('#paragraph_format_answer').val(data[key]['answer']);
-      answer.attr('readonly',true);
-    }else{
-      var answer = question.find("div[data_id="+ data[key]['question_type']+"_format" +"]");
-      var options = answer.children();
-      var totalOption = data[key]['answer'].length;
-      var correct = 0;
-      $.each(options,function(){
-        $(this).find("input").attr("disabled",true);
-        var id = $(this).find("input").attr("id");
-        if(data[key]['answer'].includes(id)){
-          $(this).find("input").attr("checked",true);
-          if(data[key]['options_answer'].includes(id)){
-            $(this).addClass('correct');
-            correct++;
-          }else{
-              $(this).addClass('wrong');
-          }
-        }
-      });
-      data[key]['score'] = correct/totalOption;
-      totalScore+=data[key]['score'];
-      question.find('.score').text(data[key]['score']);
     }
-    return question;
+
+    return el;
   }
+  function showScore(el,questionId) {
+    el.text(data[questionId]['score']);
+    return el;
+  }
+
+  function print(object) {
+    console.log(object);
+  }
+  function removeId(el) {
+    var temp = el.attr("id");
+    el.attr("id","");
+    el.attr("data_id",temp);
+    return el;
+  }
+  function checkedOrNot(questionId,optionId) {
+    if(data[questionId]['answer'].includes(optionId)) {
+      return true;
+    }
+    return false;
+  }
+  function radioInputSet(el,name,id,checked=false) { // el = radio input element
+    el.attr("name",name);
+    el.attr("id",id);
+    el.attr("checked",checked);
+    el.attr("disabled",true);
+    return el;
+  }
+
+  function checkboxInputSet(el,name,id,checked=false) { // el = check box input element
+    el.attr("id",id);
+    el.attr("name",name);
+    el.attr("checked",checked);
+    el.attr("disabled",true);
+    return el;
+  }
+
+  function optionLabelSet(el,label,id) { // el = label element
+    el.attr("for",id);
+    el.html(label);
+    return el;
+  }
+
+  function setUpQuestion(el,questionId) { // el = question element
+    el.attr("id",questionId);
+    el.removeClass("d-none");
+    el.find(".question").html(data[questionId]['question']);
+    return el;
+  }
+  function returnAnswerContainer(el) { //el = main question format
+    return el.find('.answer form');
+  }
+
+  function textAnsFormat(questionId) {
+    var answer = $("#text_answer_format");
+    answer = removeId(answer);
+    answer.removeClass("d-none");
+    answer.html(data[questionId]['answer']);
+    return answer;
+  }
+
+  function multipleChoiceOptionAdd(el,questionId) { //el = option container
+    var optionFormat = $("#multiple_choice_option_format");
+    $.each(data[questionId]['options'],function(id,val){
+      var optionFormatClone = optionFormat.clone();
+      var radioInput = optionFormatClone.find("input:radio");
+      var optionLabel = optionFormatClone.find('label');
+
+      optionFormatClone = removeId(optionFormatClone);
+      optionFormatClone.remvoeClass("d-none");
+
+      radioInput = radioInputSet(radioInput,questionId,id,checked=checkedOrNot(questionId,id));
+      optionLabel = optionLabelSet(optionLabel,val,id);
+      optionFormatClone = optionColor(optionFormatClone,questionId,id);
+      el.append(optionFormatClone);
+    });
+    return el;
+
+  }
+
+  function checkboxOptionAdd(el,questionId){ //el = optionContainer
+    var optionFormat = $("#checkbox_option_format");
+    $.each(data[questionId]['options'],function(id,val){
+      var optionFormatClone = optionFormat.clone();
+      var checkboxInput = optionFormatClone.find("input:checkbox");
+      var optionLabel = optionFormatClone.find("label");
+
+      optionFormatClone = removeId(optionFormatClone);
+      optionFormatClone.removeClass("d-none");
+
+      checkboxInput = checkboxInputSet(checkboxInput,id,id,checked=checkedOrNot(questionId,id));
+      optionLabel = optionLabelSet(optionLabel,val,id);
+      optionFormatClone = optionColor(optionFormatClone,questionId,id);
+      el.append(optionFormatClone);
+    });
+    return el;
+  }
+
+
+  function addOption(el,questionId) { // el = answerFormat ex (#multiple_choice_format)
+
+    if(data[questionId]['question_type'] == 'multiple_choice'){
+      el = multipleChoiceOptionAdd(el,questionId);
+    }else{
+      el = checkboxOptionAdd(el, questionId);
+    }
+    return el;
+  }
+
+  function makeAnswerFormat(el,questionId) {  //el = Main Question Format / questionFormatClone
+    var answerContainer = returnAnswerContainer(el);  // return answer container (.answer form)
+    var answerFormat = $("#"+data[questionId]['question_type']+"_format").clone();
+    answerFormat = removeId(answerFormat);
+    answerFormat.removeClass("d-none");
+    if(data[questionId]['question_type'] == "short_answer"){
+      answerFormat.append(textAnsFormat(questionId));
+    }
+    else if(data[questionId]['question_type'] == "paragraph"){
+      answerFormat.append(textAnsFormat(questionId));
+    }
+    else{
+      answerFormat = addOption(answerFormat,questionId);
+    }
+    answerContainer.append(answerFormat);
+    return el;
+  }
+
+  function setUpAnswerFormat(el,questionId){ // el = questionFormatClone
+    el = makeAnswerFormat(el,questionId)
+    return el;
+  }
+
 
   function loadHTMl() {
     var questionContainer = $('.questionContainer');
@@ -78,32 +161,18 @@ $( document ).ready(function() {
 
       questionIDs.push(key);
       questionOptionsIds.push(0);
-      temp = questionFormat.clone();
-      temp.attr('id',key);
-      temp.removeClass('d-none');
-      temp.find(".question").html(val['question']);
-      var answerInput = temp.find('.answer form');
-      var answerFormat = $("#"+data[key]['question_type']+"_format").clone();
-      answerFormat.attr("id","");
-      answerFormat.attr("data_id",data[key]['question_type']+"_format");
-      answerFormat.removeClass('d-none');
-      if(data[key]['question_type'] == "short_answer"){
-        answerFormat.find("input").attr("name",key)
-      }
-      else if(data[key]['question_type'] == "paragraph"){
-        answerFormat.find("textarea").attr("name",key)
-      }
-      answerInput.append(answerFormat);
-      if(data[key]['question_type'] == "multiple_choice" || data[key]['question_type'] == "checkbox"){
-        temp = addOptions(temp,key);
-      }
-      if('answer' in data[key]){
-        temp = answerd(temp,key);
-      }else{
-        notAnswered(key);
-      }
-      questionContainer.append(temp);
+      data[key]['score'] = 0;
+      var questionFormatClone = questionFormat.clone();
+      questionFormatClone = removeId(questionFormatClone);
+      questionFormatClone.removeClass('d-none');
+      questionFormatClone = setUpQuestion(questionFormatClone,key);
+      questionFormatClone = setUpAnswerFormat(questionFormatClone,key);
+      var scoreboard = questionFormatClone.find(".score");
+      scoreboard = showScore(scoreboard,key);
+      totalScore+=data[key]['score'];
+      questionContainer.append(questionFormatClone);
     });
+    console.log(totalScore);
 
   }
 
@@ -130,6 +199,7 @@ function right(el) {
   var questionId = el.parents("li").attr("id");
   data[questionId]['score'] = 1;
   totalScore+=data[questionId]['score'];
+  console.log(el.parents("li").find('.score'));
   el.parents("li").find('.score').text(data[questionId]['score']);
 }
 
@@ -139,42 +209,6 @@ function wrong(el) {
   data[questionId]['score'] = 0;
   totalScore+=data[questionId]['score'];
   el.parents("li").find('.score').text(data[questionId]['score']);
-}
-
-
-//Called when keyup on short answering
-function anwerShortAnswer(el) {
-  var questionId = el.parents("li").attr("id");
-  data[questionId]['answer'] = el.val();
-}
-
-function answerParagraph(el){
-  var questionId = el.parents("li").attr("id");
-  data[questionId]['answer'] = el.val();
-}
-
-function answerMultipleChoice(el) {
-  var questionId = el.parents("li").attr("id");
-  if(el.is(":checked")){
-    data[questionId]['answer'] = [];
-    data[questionId]['answer'].push(el.attr("id"));
-  }else{
-    data[questionId]['answer'] = [];
-  }
-}
-
-function answerCheckbox(el) {
-  var questionId = el.parents("li").attr("id");
-  var optionId = el.attr("id");
-  if(el.is(':checked')){
-    data[questionId]['answer'].push(optionId);
-  }
-  else{
-    if(data[questionId]['answer'].includes(optionId)) {
-      var index = data[questionId]['answer'].indexOf(optionId);
-      data[questionId]['answer'].splice(index,1);
-    }
-  }
 }
 
 function submitAnswer() {

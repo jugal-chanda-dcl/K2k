@@ -65,7 +65,7 @@ $( document ).ready(function() {
       optionFormatClone = removeId(optionFormatClone);
       optionFormatClone.remvoeClass("d-none");
 
-      radioInput = radioInputSet(radioInput,questionId,id,checked=false);
+      radioInput = radioInputSet(radioInput,questionId,id,checked=checkedOrNot(questionId,id));
       optionLabel = optionLabelSet(optionLabel,val,id);
       el.append(optionFormatClone);
     });
