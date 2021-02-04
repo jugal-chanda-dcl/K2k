@@ -47,20 +47,18 @@
   </div>
 </li>
 <div class="form-group d-none mt-2" id="short_answer_format">
-  <div id="short_answer_format_answer" class="bg-light p-2">
-
-  </div>
   <button type="button" name="button" onclick="right($(this))" class="btn btn-success btn-sm mt-2">Right</button>
   <button type="button" name="button" onclick="wrong($(this))" class="btn btn-danger btn-sm mt-2">Wrong</button>
   <!-- <input type="text" name="" value="" class="form-control" onkeyup="anwerShortAnswer($(this))"> -->
 </div>
 <div class="form-group d-none mt-2" id="paragraph_format">
-  <div id="paragraph_format_answer" class="bg-light p-2">
-
-  </div>
   <button type="button" name="button" onclick="right($(this))" class="btn btn-success btn-sm mt-2">Right</button>
   <button type="button" name="button" onclick="wrong($(this))" class="btn btn-danger btn-sm mt-2">Wrong</button>
 </div>
+<div class="d-none bg-light px-2 py-1 mt-2" id="text_answer_format" style="min-height: 50px;">
+
+</div>
+
 <div class="mt-2 d-none options" style="" id="multiple_choice_format">
 
 </div>
@@ -69,10 +67,10 @@
 
 </div>
 
-<div class="option_format  d-none" id="multiple_choice_option_format">
+<div class="option_format mb-1 d-none" id="multiple_choice_option_format">
   <input type="radio" name="" value="" id="" class="mr-2" onclick="answerMultipleChoice($(this))"><label for=""></label>
 </div>
-<div class="option_format d-none" id="checkbox_option_format">
+<div class="option_format mb-1 d-none" id="checkbox_option_format">
   <input type="checkbox" name="" value=""  id="" class="mr-2" onclick="answerCheckbox($(this))"><label for=""></label>
 </div>
 
