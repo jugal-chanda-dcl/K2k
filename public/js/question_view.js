@@ -135,7 +135,7 @@ $( document ).ready(function() {
     return answerFormat;
   }
 
-  function notAnsweredAnswerFormat(el,questionId) {  //el = Main Question Format / questionFormatClone
+  function makeAnswerFormat(el,questionId) {  //el = Main Question Format / questionFormatClone
     var answerContainer = returnAnswerContainer(el);  // return answer container (.answer form)
     var answerFormat = $("#"+data[questionId]['question_type']+"_format").clone();
     answerFormat = removeId(answerFormat);
@@ -153,17 +153,15 @@ $( document ).ready(function() {
     return el;
   }
 
-  function anseredAnswerFormat(el,questionID) {
+  function anseredAnswerFormat() {
     $("#answer_save_btn").addClass("d-none");
     $("#answer_save_btn").attr("disabled","true");
   }
   function setUpAnswerFormat(el,questionId){ // el = questionFormatClone
-    el = notAnsweredAnswerFormat(el,questionId)
-    // if(isAnswered == 1){
-    //   el = anseredAnswerFormat(el,questionId);
-    // }else{
-    //   el = notAnsweredAnswerFormat(el,questionId)
-    // }
+    if(isAnswered == 1){
+      anseredAnswerFormat();
+    }
+    el = makeAnswerFormat(el,questionId)
     return el;
   }
   function readyForAnswer(questionId) {
