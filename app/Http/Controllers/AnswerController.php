@@ -51,11 +51,15 @@ class AnswerController extends Controller
     public function store(Request $request,Question $question,User $user)
     {
       $answer = new Answer;
-      $answer->submited_by = $user->id;
-      $answer->question = $question->id;
+      $answer->user_id = $user->id;
+      $answer->question_id = $question->id;
       $answer->answer = json_encode($request->all());
+      $answer->answered = true;
+      $answer->score = 0;
+      $answer->total = count($request->all());
+      $answer->checked = false;
       $answer->save();
-
+      return response()->json("ok",200);
     }
 
     /**

@@ -17,7 +17,7 @@
     <!-- End question -->
 
   </div>
-  <button type="button" name="button" class="question_save_btn btn btn-sm btn-success" onclick="submitAnswer()">Submit</button>
+  <button type="button" name="button" id="answer_save_btn" class="btn btn-sm btn-success" onclick="submitAnswer()">Submit</button>
 </div>
 
 <li class="d-none" id="questionFormat">
@@ -31,18 +31,22 @@
 
   </div>
 </li>
-<div class="form-group d-none" id="short_answer_format">
-  <input type="text" name="" value="" class="form-control" onkeyup="anwerShortAnswer($(this))">
-</div>
-<div class="d-none" id="short_answer_intput">
+<div class="d-none" id="short_answer_format">
 
 </div>
-<div class="d-none" id="text_answer_format">
+<div class="form-group d-none" id="short_answer_intput">
+  <input type="text" name="" value="" class="form-control" onkeyup="anwerShortAnswer($(this))">
+</div>
+<div class="d-none bg-light px-2 py-1 mt-2" id="text_answer_format" style="min-height: 50px;">
 
 </div>
 <div class="form-group d-none" id="paragraph_format">
+
+</div>
+<div class="form-group d-none" id="paragraph_input">
   <textarea name="" rows="8" cols="80" class="form-control" onkeyup="answerParagraph($(this))"></textarea>
 </div>
+
 <div class="mt-2 d-none options" style="" id="multiple_choice_format">
 
 </div>

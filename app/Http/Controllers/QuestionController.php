@@ -22,6 +22,7 @@ class QuestionController extends Controller
     {
       $question = $learn->question;
       $answer = $question->answers->where('user_id',$user->id)->first();
+      // return response()->json($answer,200);
       if($answer != null)
       {
         return response()->json($answer->answer,200);
