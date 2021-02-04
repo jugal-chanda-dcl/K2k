@@ -8,7 +8,7 @@
 
 <div class="card">
   <div class="card-header">Create new question</div>
-  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly>
+  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly subUrl = "{{ route('question.store') }}">
   <div class="card-body question_conatiner">
     <!-- Question -->
     <div class="card mb-2 questionCard" id="q_1" >

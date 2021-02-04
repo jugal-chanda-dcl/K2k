@@ -8,6 +8,7 @@ var questionIdFormat = "q_"; // Used for set question ids format
 var questionOptionsIds = [0,];
 //Get the learn id form an hidden html input field
 var learnId = $("input[name='learn_id']").val();
+var subUrl = $("input[name='learn_id']").attr('subUrl');
 
  var data = {
    'learnId': learnId,
@@ -164,7 +165,7 @@ function answered(el){
 function questionSave(){
   // console.log(JSON.stringify(data));
   $.ajax({
-    url: '/api/questions/create/',
+    url: subUrl,
     type: 'post',
     dataType: 'json',
     contentType: 'application/json',
