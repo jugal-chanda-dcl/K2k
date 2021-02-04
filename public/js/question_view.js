@@ -1,11 +1,13 @@
 var questionIDs = [];
 var questionIdFormat = "q_";
 var questionOptionsIds = [];
-var learnId = $("input[name='learn_id']").val();
-var retriveURL = $("input[name='learn_id']").attr('url');
-var answerSubmitUrl = $("input[name='learn_id']").attr('subUrl');
+
+var learnId = $("input[name='information']").val();
+var retriveURL = $("input[name='information']").attr('url');
+var answerSubmitUrl = $("input[name='information']").attr('subUrl');
+var isAnswered = $("input[name='information']").attr('answered');
+
 var data = ""
-var isAnswered = $("input[name='learn_id']").attr('answered');
 
 $( document ).ready(function() {
   function addOptions(question,key){
@@ -76,15 +78,84 @@ $( document ).ready(function() {
     return el;
   }
 
+  function removeId(el) {
+    var temp = el.attr("id");
+    el.attr("id","");
+    el.attr("data_id",temp);
+    return el;
+  }
+
+  function answerContainer(el) {
+    return el.find('.answer form');
+  }
+
   function anseredAnserFormat(el,questionId) {
+    var questionType = data[questionId]['question_type'];
+    if(questionType == 'short_answer' || questionType == 'paragraph'){
+      var answerFormat = $("#text_answer_format").clone();
+      answerFormat = removeId(answerFormat);
+      answerFormat.removeClass("d-none");
+
+    }
+    // var answerFormat = $("#"+data[key]['question_type']+"_format").clone();
+    return answerFormat;
+  }
+  function radioInputSet(el,name,id) {
+    el.attr("name",name);
+    el.attr("id",id);
+    return el;
+  }
+  function optionLabelSet(el,label,id) {
+    el.attr("for",id);
+    el.html(label);
+    return el;
+  }
+
+  function multipleChoiceOptionAdd(el,questionId) {
+    var optionFormat = $("#multiple_choice_option_format");
+    $.each(data[key]['options'],function(id,val){
+      var optionFormatClone = optionFormat.clone();
+      var radioInput = optionFormatClone.find("input:radio");
+      var optionLabel = optionFormatClone.find('label');
+
+      optionFormatClone = removeId(optionFormatClone);
+      optionFormatClone.remvoeClass("d-none");
+
+      radioInput = radioInputSet(radioInput,questionId,id);
+      optionLabel = optionLabelSet(optionLabel,val,id);
+    }
 
   }
 
+  function addOption(el,questionId) {
+
+    if(data[questionId]['question_type'] == 'multiple_choice'){
+      multipleChoiceOptionAdd(el,questionId);
+    }
+  }
+
+  function notAnsweredAnswerFormat(el,questionId) {
+    var answerContainer = answerContainer(el);
+    var answerFormat = $("#"+data[questionId]['question_type']+"_format").clone();
+    answerFormat = removeId(el);
+    answerFormat.removeClass("d-none");
+    if(data[questionId]['question_type'] == "short_answer"){
+      answerFormat.find("input").attr("name",questionId)
+    }
+    else if(data[questionId]['question_type'] == "paragraph"){
+      answerFormat.find("textarea").attr("name",questionId)
+    }
+    else{
+      addOption();
+    }
+  }
+
   function setUpAnswerFormat(el,questionId){
+    var answerInput = el.find('.answer form');
     if(isAnswed){
-
+      el = anseredAnserFormat(el,questionId);
     }else{
-
+      el = notAnsweredAnswerFormat(el,questionId)
     }
     return el;
   }
@@ -137,7 +208,7 @@ $( document ).ready(function() {
       }
       // window.location.replace("/question/"+ learnId +"/edit");
       data = JSON.parse(responseData);
-      loadHTMl();
+      // loadHTMl();
       console.log(data);
     },
     data: JSON.stringify(data)

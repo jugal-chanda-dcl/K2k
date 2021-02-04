@@ -14,4 +14,14 @@ class Question extends Model
     {
       return $this->hasMany('App\Answer');
     }
+
+    public function isAnswered($userId)
+    {
+      if($this->answers->where('user_id',$userId)->first() != null){
+        return 1;
+      }
+      else{
+        return 0;
+      }
+    }
 }

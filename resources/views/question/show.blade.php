@@ -8,7 +8,7 @@
 
 <div class="card">
   <div class="card-header">Question</div>
-  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn,'user'=>Auth::user()])}}" subUrl = "{{route('answer.store',['question'=>$learn->question,'user'=>Auth::user()])}}">
+  <input type="text" name="information" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn,'user'=>Auth::user()])}}" subUrl = "{{route('answer.store',['question'=>$learn->question,'user'=>Auth::user()])}}" answered="{{ $learn->question->isAnswered(Auth::user()->id) }}">
   <div class="card-body question_conatiner">
     <!-- Question -->
   <ol class="questionContainer">
@@ -34,8 +34,11 @@
 <div class="form-group d-none" id="short_answer_format">
   <input type="text" name="" value="" class="form-control" onkeyup="anwerShortAnswer($(this))">
 </div>
+<div class="d-none" id="short_answer_intput">
+
+</div>
 <div class="d-none" id="text_answer_format">
-  
+
 </div>
 <div class="form-group d-none" id="paragraph_format">
   <textarea name="" rows="8" cols="80" class="form-control" onkeyup="answerParagraph($(this))"></textarea>
