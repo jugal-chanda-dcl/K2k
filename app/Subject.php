@@ -8,7 +8,7 @@ class Subject extends Model
 {
     //
     protected $fillable = [
-        'name', 'class',
+        'name', 'class','user_id'
     ];
 
     public function topics()

@@ -9,7 +9,7 @@
 <div class="card">
   <div class="card-header">
     <h3>Topic Name: {{ $learn->topic->name }}</h3>
-    <h4>Created by: {{ $learn->user->name }}</h4>
+    <h4>Created by: {{ $learn->topic->subject->name }}</h4>
     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.edit')))
     <a href="{{route('learn.edit',['learn'=>$learn->id])}}" class="btn btn-info btn-sm">Edit</a>
     @endif

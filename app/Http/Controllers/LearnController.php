@@ -72,7 +72,6 @@ class LearnController extends Controller
 
       $learn = Learn::create([
         'topic_id' => $topic->id,
-        'user_id' => $user->id,
         'content' => $content,
       ]);
       return redirect()->route('topic.learn',['topic'=>$topic]);

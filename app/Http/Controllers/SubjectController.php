@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Subject;
+use Auth;
+use Session;
 
 class SubjectController extends Controller
 {
@@ -37,12 +39,13 @@ class SubjectController extends Controller
     {
         //
         $validatedData = $request->validate([
-          'name' => 'required|unique:subjects|max:255',
+          'name' => 'required|max:255',
           'class' => 'required',
         ]);
         $subjects = Subject::create([
             'name' => $validatedData['name'],
             'class' => $validatedData['class'],
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect()->route('subject.index');
@@ -80,7 +83,7 @@ class SubjectController extends Controller
     public function update(Request $request, $id)
     {
       $validatedData = $request->validate([
-        'name' => 'required|unique:subjects|max:255',
+        'name' => 'required|max:255',
         'class' => 'required',
       ]);
       $subject = Subject::find($id);
