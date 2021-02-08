@@ -16,7 +16,6 @@ class CreateLearnsTable extends Migration
         Schema::create('learns', function (Blueprint $table) {
             $table->id();
             $table->foreignId('topic_id')->references('id')->on('topics')->onDelete('cascade');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('content');
             $table->timestamps();
         });
