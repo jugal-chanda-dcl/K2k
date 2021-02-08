@@ -11,8 +11,18 @@
                 {{ session('status') }}
             </div>
         @endif
+        <div class="row">
+          @foreach($subjects as $subject)
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-header text-center">
+                {{ $subject->name }}
+              </div>
+            </div>
+          </div>
+          @endforeach
 
-        {{ __('You are logged in!') }}
+        </div>
     </div>
 </div>
 
