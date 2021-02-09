@@ -14,9 +14,16 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function subscribe(Subject $subject)
+    {
+      $user = Auth::user();
+      $user->subscribedSubjects()->toggle($subject->id);
+      return redirect()->route('home');
+    }
     public function index()
     {
-        return view('subjects.index',['subjects'=>Subject::all()]);
+        $subjects = Auth::user()->subscribedSubjects;
+        return view('subjects.index',['subjects'=>$subjects]);
     }
 
     /**

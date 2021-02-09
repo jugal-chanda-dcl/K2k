@@ -57,6 +57,10 @@ Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth'
 
 // Route::resource('learn', 'LearnController')->middleware('roleauth');
 
+// This route is for subscribe or unsubscribe 
+Route::get('/subscribe/{subject}','SubjectController@subscribe')->middleware('roleauth')->name('subject.subscribe');
+
+
 Route::get('/learn','LearnController@index')->middleware('roleauth')->name('learn.index');
 Route::get('/learn/create/{subject}','LearnController@create')->middleware('roleauth')->name('learn.create');
 Route::post('/learn/{subject}','LearnController@store')->middleware('roleauth')->name('learn.store');

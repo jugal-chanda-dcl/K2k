@@ -17,6 +17,7 @@
             <div class="card">
               <div class="card-header text-center">
                 Subject Name: {{ $subject->name }} <br>
+                Class: {{ $subject->class }} <br>
                 Teacher: {{  $subject->user->name }}
               </div>
               <div class="card-body">
@@ -32,9 +33,17 @@
                 </div>
                 @endif
               </div>
-              <div class="footer">
-                <button type="button" name="button" class="btn btn-success btn-sm w-100">Subcribe</button>
-              </div>
+              @if($subject->users->contains(Auth::user()->id))
+                <div class="footer">
+                  <a href="{{ route('subject.subscribe',['subject'=>$subject]) }}"class="btn btn-danger btn-sm w-100">Unsubscribe</a>
+                </div>
+              @else
+                @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.subscribe')))
+                <div class="footer">
+                  <a href="{{ route('subject.subscribe',['subject'=>$subject]) }}"class="btn btn-success btn-sm w-100">Subcribe</a>
+                </div>
+                @endif
+              @endif
             </div>
 
           </div>

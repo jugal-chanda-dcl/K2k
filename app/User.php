@@ -37,10 +37,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function FunctionName($value='')
+
+    // This is for teacher
+    public function createdSubjects()
     {
       return $this->hasMany(Subject::class);
     }
+    // For students
+    public function subscribedSubjects()
+    {
+      return $this->belongsToMany(Subject::class,'subscriptions');
+    }
+
     public function contents()
     {
       return $this->hasMany('App\Content');
@@ -65,6 +73,7 @@ class User extends Authenticatable
     {
       return $this->hasOne(ContentDeveloperProfile::class);
     }
+
 
     public function hasPermission(Route $route)
     {
