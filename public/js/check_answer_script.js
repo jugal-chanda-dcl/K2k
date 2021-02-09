@@ -75,7 +75,7 @@ $( document ).ready(function() {
   }
 
   function textAnsFormat(questionId) {
-    var answer = $("#text_answer_format");
+    var answer = $("#text_answer_format").clone();
     answer = removeId(answer);
     answer.removeClass("d-none");
     answer.html(data[questionId]['answer']);
@@ -90,7 +90,7 @@ $( document ).ready(function() {
       var optionLabel = optionFormatClone.find('label');
 
       optionFormatClone = removeId(optionFormatClone);
-      optionFormatClone.remvoeClass("d-none");
+      optionFormatClone.removeClass("d-none");
 
       radioInput = radioInputSet(radioInput,questionId,id,checked=checkedOrNot(questionId,id));
       optionLabel = optionLabelSet(optionLabel,val,id);

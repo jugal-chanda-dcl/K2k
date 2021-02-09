@@ -63,7 +63,7 @@ $( document ).ready(function() {
       var optionLabel = optionFormatClone.find('label');
 
       optionFormatClone = removeId(optionFormatClone);
-      optionFormatClone.remvoeClass("d-none");
+      optionFormatClone.removeClass("d-none");
 
       radioInput = radioInputSet(radioInput,questionId,id,checked=checkedOrNot(questionId,id));
       optionLabel = optionLabelSet(optionLabel,val,id);
