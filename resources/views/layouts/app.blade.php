@@ -102,6 +102,11 @@
                       <a href="{{route('subject.index')}}" style="text-decoration: none;">Subjects && Classes</a>
                     </li>
                     @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subjects.subscibed')))
+                    <li class="list-group-item">
+                      <a href="{{route('subjects.subscibed')}}" style="text-decoration: none;">Subjects and Classes</a>
+                    </li>
+                    @endif
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('content.index')))
                     <li class="list-group-item">
                       <a href="{{route('content.index')}}" style="text-decoration: none;">All Contents</a>

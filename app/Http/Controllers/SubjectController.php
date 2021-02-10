@@ -20,9 +20,15 @@ class SubjectController extends Controller
       $user->subscribedSubjects()->toggle($subject->id);
       return redirect()->route('home');
     }
+    public function subscribed()
+    {
+      $subjects = Auth::user()->subscribedSubjects;
+      return view('subjects.index',['subjects'=>$subjects]);
+
+    }
     public function index()
     {
-        $subjects = Auth::user()->subscribedSubjects;
+        $subjects = Auth::user()->createdSubjects;
         return view('subjects.index',['subjects'=>$subjects]);
     }
 
