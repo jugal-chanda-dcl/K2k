@@ -45,6 +45,7 @@ class TeacherProfileController extends Controller
       $validatedData = $request->validate([
         'year_of_experience' => 'required',
         'specilization' => 'required',
+        'avatar' => 'required|image'
       ]);
       // dd($validatedData['content']);
       $specilization = $request->input('specilization');
@@ -68,10 +69,15 @@ class TeacherProfileController extends Controller
       }
       $specilization = $dom->saveHTML();
 
+      $avatar = $request->avatar;
+      $avatar_new_name = time().$avatar->getClientOriginalName();
+      $avatar->move('upload/avatars',$avatar_new_name);
+
       $teacherProfile = TeacherProfile::create([
         'user_id' => $user->id,
         'year_of_experience' => $validatedData['year_of_experience'],
         'specilization' => $specilization,
+        'avatar' => 'upload/avatars/'.$avatar_new_name,
       ]);
       return redirect()->route('teacherProfile.index');
     }
@@ -108,18 +114,16 @@ class TeacherProfileController extends Controller
     public function update(Request $request, TeacherProfile $teacherProfile)
     {
       $user = Auth::user();
-      if ($user->teacherProfile)
-      {
-        Session::flash('status',"Already profile created. You can update your profile");
-        return redirect()->back();
-      }
       $validatedData = $request->validate([
         'year_of_experience' => 'required',
         'specilization' => 'required',
+        // 'avatar' => 'required|image'
       ]);
       // dd($validatedData['content']);
       $specilization = $request->input('specilization');
+      // dd($specilization);
       $dom = new \DomDocument();
+      // libxml_use_internal_errors(false);
       $dom->loadHtml($specilization, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
       $images = $dom->getElementsByTagName('img');
 
@@ -141,6 +145,13 @@ class TeacherProfileController extends Controller
 
       $teacherProfile->year_of_experience = $validatedData['year_of_experience'];
       $teacherProfile->specilization = $specilization;
+      if($request->avatar){
+        $avatar = $request->avatar;
+        $avatar_new_name = time().$avatar->getClientOriginalName();
+        $avatar->move('upload/avatars',$avatar_new_name);
+        $teacherProfile->avatar = 'upload/avatars/'.$avatar_new_name;
+      }
+
       $teacherProfile->save();
       return redirect()->route('teacherProfile.index');
     }

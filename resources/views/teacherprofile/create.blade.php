@@ -16,9 +16,18 @@
         {{ session('status') }}
     </div>
     @endif
-    <form method="POST" action="{{ route('teacherProfile.store') }}">
+    <form method="POST" action="{{ route('teacherProfile.store') }}" enctype="multipart/form-data">
 
         @csrf
+        <div class="form-group">
+          <label for="">Avatar</label>
+          <input type="file" name="avatar" value="{{ old('class') }}" class="form-control form-control @error('avatar') is-invalid @enderror" required>
+          @error('avatar')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+        </div>
 
         <div class="form-group mx-2">
             <label for="year_of_experience" class="">Years of experience</label>

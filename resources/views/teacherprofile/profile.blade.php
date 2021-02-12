@@ -14,6 +14,17 @@
   /* align-items: center; */
   transform: translate(0,10%);
 }
+img{
+  width: 100%;
+  height: 100%;
+}
+.profile_img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  overflow: hidden;
+}
 </style>
 @endsection
 
@@ -30,6 +41,17 @@
   </div>
 
   <div class="card-body">
+
+    <div class="d-flex justify-content-center mb-2">
+      <div class="profile_img d-flex align-items-end">
+        @if($user->teacherProfile)
+        <img src="{{ asset($user->teacherProfile->avatar) }}" alt="">
+        @else
+        <img src="{{ asset('img/blank_person.png') }}" alt="">
+        @endif
+      </div>
+
+    </div>
 
     <table class="table">
       <tr>

@@ -11,10 +11,19 @@
   <div class="card-header">Edit Profile</div>
 
   <div class="card-body">
-    <form method="POST" action="{{ route('teacherProfile.update',['teacherProfile'=>Auth::user()->teacherProfile]) }}">
+    <form method="POST" action="{{ route('teacherProfile.update',['teacherProfile'=>Auth::user()->teacherProfile]) }}" enctype="multipart/form-data">
 
         @csrf
         @method('put')
+        <div class="form-group">
+          <label for="">Avatar</label>
+          <input type="file" name="avatar" value="{{ old('class') }}" class="form-control form-control @error('avatar') is-invalid @enderror">
+          @error('avatar')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+        </div>
 
         <div class="form-group mx-2">
             <label for="year_of_experience" class="">Years of experience</label>
@@ -28,7 +37,9 @@
 
         <div class="form-group mx-2">
           <label for="specilization">Specilization</label>
-          <textarea  id="specilization" name="specilization" class="form-control @error('specilization') is-invalid @enderror" rows="8" cols="80">{!! $user->teacherProfile->specilization !!}</textarea>
+          <textarea  id="specilization" name="specilization" class="form-control @error('specilization') is-invalid @enderror" rows="8" cols="80">
+            {!! $user->teacherProfile->specilization !!}
+          </textarea>
           @error('specilization')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
@@ -51,7 +62,7 @@
 @section('script')
 <script>
   $('#specilization').summernote({
-    placeholder: 'Hello Bootstrap 4',
+    placeholder: 'Teacher Specilization',
     tabsize: 2,
     height: 100
   });
