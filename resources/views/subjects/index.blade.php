@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="card">
-  <div class="card-header">All Subjects && Classes</div>
+  <div class="card-header">All Subjects</div>
 
   <div class="card-body">
     @if($subjects->count() > 0)

@@ -36,7 +36,7 @@
           <td>{{$answer->user->name}}</td>
           <td>{{ $answer->user->email }}</td>
           <td class=""> <a href="{{ route('answer.script',['answer'=>$answer]) }}">Answer Scripts</a> </td>
-          <td>0</td>
+          <td>{{ $answer->score }}/{{ $answer->total }}</td>
         </tr>
         @endforeach
       </tbody>
