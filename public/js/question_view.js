@@ -258,7 +258,7 @@ function submitAnswer() {
 
       }
       // console.log(responseData);
-      // window.location.replace("/question/"+ learnId +"/edit");
+      window.location.replace("/subjects");
 
     },
     data: JSON.stringify(data)

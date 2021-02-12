@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Subject;
 use App\Topic;
+use Auth;
 
 class TopicController extends Controller
 {
@@ -104,11 +105,14 @@ class TopicController extends Controller
         $subject = Topic::find($id)->subject;
         Topic::destroy($id);
         return redirect()->route('subject.topics',['subject'=>$subject->id]);
-
     }
+    
     public function learn(Topic $topic)
     {
-
-      return view('topic.learn',['learn'=>$topic->learn]);
+      $answer = $topic->learn->question->answers()->where('user_id',Auth::user()->id)->first();
+      return view('topic.learn',[
+        'learn'=>$topic->learn,
+        'answer' => $answer
+      ]);
     }
 }

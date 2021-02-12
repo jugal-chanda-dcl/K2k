@@ -25,8 +25,19 @@
 
         @foreach($topics as $topic)
         <tr>
-          <td>{{ $topic->name }}</td>
+          <td>
+            <div class="mb-2">
+              {{ $topic->name }}
+            </div>
+            @if(Auth::user()->role->id == 1)
+            <strong class="border border-primary p-1">{{ Auth::user()->practiceStatus($topic->learn->question->id) }}</strong>
+            @endif
+
+          </td>
           <td class="">
+            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.learn')))
+            <a href="{{route('topic.learn',['topic'=>$topic])}}" class="btn btn-info btn-sm">Learn</a>
+            @endif
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.destroy')))
             <form class="d-inline" action="{{ route('topic.destroy',['topic'=>$topic->id]) }}" method="post">
                   @csrf
@@ -35,9 +46,7 @@
 
             </form>
             @endif
-            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.learn')))
-            <a href="{{route('topic.learn',['topic'=>$topic])}}" class="btn btn-info btn-sm">Learn</a>
-            @endif
+
 
           </td>
         </tr>

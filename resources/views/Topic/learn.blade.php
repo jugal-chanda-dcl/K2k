@@ -27,6 +27,13 @@
       @endif
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.questions')))
         <a href="{{ route('learn.questions',['learn'=>$learn]) }}" class="btn btn-sm btn-info">View Questions</a>
+        @if($answer)
+          @if($answer->checked)
+            <span class="bg-success p-1 rounded" style="color: white;">Score: {{ $answer->score }} / {{ $answer->total }}</span>
+          @else
+            <span class="bg-info p-1 rounded" style="color: white;">Answer Not Checked By Teacher</span>
+          @endif
+        @endif
       @endif
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('answer.review_answers')))
         <a href="{{ route('answer.review_answers',['learn'=>$learn]) }}" class="btn btn-sm btn-info">Riview Answers</a>
