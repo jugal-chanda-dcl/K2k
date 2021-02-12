@@ -99,12 +99,12 @@
                     @endif
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.index')))
                     <li class="list-group-item">
-                      <a href="{{route('subject.index')}}" style="text-decoration: none;">Subjects && Classes</a>
+                      <a href="{{route('subject.index')}}" style="text-decoration: none;">Own subjects</a>
                     </li>
                     @endif
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subjects.subscibed')))
                     <li class="list-group-item">
-                      <a href="{{route('subjects.subscibed')}}" style="text-decoration: none;">Subjects and Classes</a>
+                      <a href="{{route('subjects.subscibed')}}" style="text-decoration: none;">Subscribed Subjects</a>
                     </li>
                     @endif
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('content.index')))

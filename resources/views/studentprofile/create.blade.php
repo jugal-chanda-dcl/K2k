@@ -16,10 +16,18 @@
         {{ session('status') }}
     </div>
     @endif
-    <form method="POST" action="{{ route('studentProfile.store') }}">
+    <form method="POST" action="{{ route('studentProfile.store') }}" enctype="multipart/form-data">
 
         @csrf
-
+        <div class="form-group">
+          <label for="">Avatar</label>
+          <input type="file" name="avatar" value="{{ old('class') }}" class="form-control form-control @error('avatar') is-invalid @enderror" required>
+          @error('avatar')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+        </div>
         <div class="form-group mx-2">
             <label for="class" class="">Current Class</label>
             <input id="class" type="number" class="form-control @error('class') is-invalid @enderror" name="class" value="{{ old('class') }}" required autocomplete="class" min="1">

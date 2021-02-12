@@ -23,8 +23,27 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+      $distinctSubjects = Subject::distinct()->orderBy('name')->get(['name']);
+      $distinctClass = Subject::distinct()->orderBy('class')->get(['class']);
       $subjects = Subject::all();
-        return view('home',['subjects'=>$subjects]);
+      $filters = ['subject'=> "",'class'=>""];
+      if(isset($_GET['subject'])) {
+        $subjects = $subjects->where('name',$_GET['subject']);
+        $filters['subject'] = $_GET['subject'];
+      }
+      if(isset($_GET['class'])) {
+        $subjects = $subjects->where('class',$_GET['class']);
+        $filters['class'] = $_GET['class'];
+      }
+
+        return view('home',[
+          'subjects'=>$subjects,
+          'distinctSubjects'=>$distinctSubjects,
+          'distinctClass' => $distinctClass,
+          'filters' => $filters
+
+        ]);
     }
     public function question()
     {

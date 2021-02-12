@@ -48,13 +48,18 @@ class StudentProfileController extends Controller
           'institute' => 'required',
           'study_focus' => 'required',
           'group' => 'required',
+          'avatar' => 'required|image'
         ]);
+        $avatar = $request->avatar;
+        $avatar_new_name = time().$avatar->getClientOriginalName();
+        $avatar->move('upload/avatars',$avatar_new_name);
         $studentProfile = StudentProfile::create([
           'user_id' => $user->id,
           'class' => $validatedData['class'],
           'institute' => $validatedData['institute'],
           'study_focus' => $validatedData['study_focus'],
           'group' => $validatedData['group'],
+          'avatar' => 'upload/avatars/'.$avatar_new_name,
         ]);
         return redirect()->route('studentProfile.index');
     }
@@ -102,6 +107,14 @@ class StudentProfileController extends Controller
       $studentProfile->institute = $validatedData['institute'];
       $studentProfile->study_focus = $validatedData['study_focus'];
       $studentProfile->group = $validatedData['group'];
+
+      if($request->avatar){
+        $avatar = $request->avatar;
+        $avatar_new_name = time().$avatar->getClientOriginalName();
+        $avatar->move('upload/avatars',$avatar_new_name);
+        $studentProfile->avatar = 'upload/avatars/'.$avatar_new_name;
+      }
+
       $studentProfile->save();
       return redirect()->route('studentProfile.index');
     }

@@ -56,7 +56,7 @@ class SubjectController extends Controller
           'class' => 'required',
         ]);
         $subjects = Subject::create([
-            'name' => $validatedData['name'],
+            'name' => strtolower($validatedData['name']),
             'class' => $validatedData['class'],
             'user_id' => Auth::user()->id,
         ]);

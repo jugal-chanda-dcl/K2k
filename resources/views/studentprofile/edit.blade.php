@@ -16,10 +16,20 @@
         {{ session('status') }}
     </div>
     @endif
-    <form method="POST" action="{{ route('studentProfile.update',['studentProfile'=>Auth::user()->studentProfile]) }}">
+    <form method="POST" action="{{ route('studentProfile.update',['studentProfile'=>Auth::user()->studentProfile]) }}" enctype="multipart/form-data">
 
         @csrf
         @method('put')
+        <div class="form-group">
+          <label for="">Avatar</label>
+          <input type="file" name="avatar" value="{{ old('class') }}" class="form-control form-control @error('avatar') is-invalid @enderror">
+          @error('avatar')
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+              </span>
+          @enderror
+        </div>
+
         <div class="form-group mx-2">
             <label for="class" class="">Class</label>
             <input id="class" type="number" class="form-control @error('class') is-invalid @enderror" name="class" value="{{ $user->studentProfile->class }}" required autocomplete="class" min="1">
