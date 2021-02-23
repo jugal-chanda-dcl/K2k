@@ -24,3 +24,5 @@ Route::get('/questions/retrive/learn/{learn}/user/{user}','QuestionController@re
 // Route::post('/questions/destroy','QuestionController@destroy')->name('question.destroy');
 Route::post('/answer/submit/{question}/{user}','AnswerController@store')->name('answer.store');
 Route::post('/answer/{answer}/update','AnswerController@update')->name('answer.update');
+
+Route::get('/subject/{subject}/toggle/aprove','SubjectController@toggleAprove')->name('subject.toggle_aprove');

@@ -20,6 +20,14 @@ class SubjectController extends Controller
       $user->subscribedSubjects()->toggle($subject->id);
       return redirect()->route('home');
     }
+
+    public function toggleAprove(Subject $subject)
+    {
+      $subject->auto_aprove = !$subject->auto_aprove;
+      $subject->save();
+      return response()->json($subject->auto_aprove,200);
+    }
+
     public function subscribed()
     {
       $subjects = Auth::user()->subscribedSubjects;
@@ -54,11 +62,13 @@ class SubjectController extends Controller
         $validatedData = $request->validate([
           'name' => 'required|max:255',
           'class' => 'required',
+          'auto_aprove' => 'required'
         ]);
         $subjects = Subject::create([
             'name' => strtolower($validatedData['name']),
             'class' => $validatedData['class'],
             'user_id' => Auth::user()->id,
+            'auto_aprove' => $validatedData['auto_aprove']
         ]);
 
         return redirect()->route('subject.index');
