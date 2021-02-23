@@ -30,4 +30,3 @@ class AddAutoAproveToSubjectsTable extends Migration
         });
     }
 }
-Check
