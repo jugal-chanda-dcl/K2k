@@ -21,6 +21,10 @@
         <tr>
           <th scope="col">Subject Name</th>
           <th scope="col">Class</th>
+          <!-- if auth user is teacher  -->
+          @if(Auth::user()->role->id == 2)
+              <th scope="col">Auto Aprove</th>
+          @endif
           <th scope="col">Action</th>
         </tr>
 
@@ -30,23 +34,28 @@
         <tr>
           <td>{{$subject->name}}</td>
           <td>{{ $subject->class }}</td>
+          @if(Auth::user()->role->id == 2)
           <td>
             <input type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" onchange="toggleAutoAprove($(this))"  data-url="{{ route('subject.toggle_aprove',['subject'=>$subject]) }}"  @if($subject->auto_aprove) checked @endif >
           </td>
+          @endif
           <td class="">
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.destroy')))
             <form class="d-inline" action="{{ route('subject.destroy',['subject'=>$subject->id])}}" method="post">
                   @csrf
                   @method('delete')
-                  <button type="submit" name="button"  class="btn btn-danger btn-sm">Delete</button>
+                  <button type="submit" name="button"  class="btn btn-danger btn-sm mb-2">Delete</button>
 
             </form>
             @endif
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.edit')))
-            <a href="{{ route('subject.edit',['subject'=>$subject->id]) }}" class="btn btn-info btn-sm">Edit</a>
+            <a href="{{ route('subject.edit',['subject'=>$subject->id]) }}" class="btn btn-info btn-sm mb-2">Edit</a><br>
             @endif
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.topics')))
-            <a href="{{ route('subject.topics',['subject'=>$subject->id]) }}" class="btn btn-info btn-sm">Topics</a>
+            <a href="{{ route('subject.topics',['subject'=>$subject->id]) }}" class="btn btn-info btn-sm mb-2">Topics</a>
+            @endif
+            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.subscriptions')))
+            <a href="{{ route('subject.subscriptions',['subject'=>$subject]) }}" class="btn btn-info btn-sm mb-2">Suscriptions</a>
             @endif
           </td>
         </tr>

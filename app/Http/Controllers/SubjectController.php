@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Subject;
 use Auth;
+use App\User;
 use Session;
 
 class SubjectController extends Controller
@@ -28,7 +29,24 @@ class SubjectController extends Controller
       return redirect()->route('home');
     }
 
+    public function subscriptions(Subject $subject)
+    {
+      return view('subjects.subscriptions',[
+        'subject' => $subject,
+        'users' => $subject->users()->orderBy('is_aproved')->get()
+      ]);
+    }
+    public function deleteSubscription(Subject $subject,User $user)
+    {
+      $user->subscribedSubjects()->detach($subject->id);
+      return redirect()->back();
+    }
 
+    public function aproveSubscription(Subject $subject,User $user)
+    {
+      $subject->users()->updateExistingPivot($user->id,['is_aproved'=>true]);
+      return redirect()->back();
+    }
 
     public function toggleAprove(Subject $subject)
     {

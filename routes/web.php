@@ -79,6 +79,10 @@ Route::get('/learn/{learn}','LearnController@show')->middleware('roleauth')->nam
 
 
 Route::get('/subject/{subject}/topics','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
+Route::get('/subject/{subject}/subscriptions','SubjectController@subscriptions')->middleware('roleauth')->name('subject.subscriptions');
+Route::get('/subject/{subject}/subscriptions/{user}/delete','SubjectController@deleteSubscription')->middleware('roleauth')->name('subject.delete_subscription');
+Route::get('/subject/{subject}/subscriptions/{user}/aprove','SubjectController@aproveSubscription')->middleware('roleauth')->name('subject.aprove_subscription');
+
 Route::get('/topic/{topic}/learn','TopicController@learn')->middleware('roleauth')->name('topic.learn');
 
 Route::resource('/content', 'ContentController')->middleware('roleauth');
