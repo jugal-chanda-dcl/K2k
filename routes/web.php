@@ -44,7 +44,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
 });
 
 Route::resource('/subject', 'SubjectController')->middleware('roleauth');
-Route::get('/subjects','SubjectController@subscribed')->middleware('roleauth')->name('subjects.subscibed');
+
+// For show in student panel
+Route::get('/subjects/subscribed','SubjectController@subscribed')->middleware('roleauth')->name('subjects.subscibed');
 
 // Route::resource('topic', 'TopicController')->middleware('roleauth');
 // Route::resource('topic', 'TopicController')->middleware('roleauth');
@@ -60,6 +62,8 @@ Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth'
 
 // This route is for subscribe or unsubscribe
 Route::get('/subscribe/{subject}','SubjectController@subscribe')->middleware('roleauth')->name('subject.subscribe');
+Route::get('/unsubscribe/{subject}','SubjectController@unsubscribe')->middleware('roleauth')->name('subject.unsubscribe');
+// Route::get('/unsubscribe/{subject}','SubjectController@unsubscribe')->middleware('roleauth')->name('subject.unsubscribe');
 
 
 Route::get('/learn','LearnController@index')->middleware('roleauth')->name('learn.index');
@@ -75,6 +79,10 @@ Route::get('/learn/{learn}','LearnController@show')->middleware('roleauth')->nam
 
 
 Route::get('/subject/{subject}/topics','SubjectController@topics')->middleware('roleauth')->name('subject.topics');
+Route::get('/subject/{subject}/subscriptions','SubjectController@subscriptions')->middleware('roleauth')->name('subject.subscriptions');
+Route::get('/subject/{subject}/subscriptions/{user}/delete','SubjectController@deleteSubscription')->middleware('roleauth')->name('subject.delete_subscription');
+Route::get('/subject/{subject}/subscriptions/{user}/aprove','SubjectController@aproveSubscription')->middleware('roleauth')->name('subject.aprove_subscription');
+
 Route::get('/topic/{topic}/learn','TopicController@learn')->middleware('roleauth')->name('topic.learn');
 
 Route::resource('/content', 'ContentController')->middleware('roleauth');

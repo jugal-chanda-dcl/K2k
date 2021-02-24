@@ -48,29 +48,26 @@
                 Teacher: {{  $subject->user->name }}
               </div>
               <div class="card-body">
-                @if(count($subject->topics))
-                <ol>
-                  @foreach($subject->topics as $topic)
-                  <li>{{ $topic->name }}</li>
-                  @endforeach
-                </ol>
-                @else
-                <div class="text-center text-secondary">
-                  No Topic Upload Yet
-                </div>
-                @endif
+                <div class="">Total Topic: {{ $subject->topics()->count() }} Topics</div>
+                <div class="">Total Subscribed Students: {{ $subject->users()->wherePivot('is_aproved',1)->count() }} Topics</div>
               </div>
-              @if($subject->users->contains(Auth::user()->id))
+
                 <div class="footer">
-                  <a href="{{ route('subject.subscribe',['subject'=>$subject]) }}"class="btn btn-danger btn-sm w-100">Unsubscribe</a>
+                  {{ $subject->id }}
+                  @if($subject->subscriptionStatus(Auth::user()->id) == "aproved")
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.unsubscribe')))
+                      <a href="{{ route('subject.unsubscribe',['subject'=>$subject]) }}" class="btn btn-danger btn-sm w-100">Unsubscribe </a>
+                    @endif
+                  @elseif($subject->subscriptionStatus(Auth::user()->id) == "not aproved")
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.unsubscribe')))
+                      <a href="{{ route('subject.unsubscribe',['subject'=>$subject]) }}" class="btn btn-warning btn-sm w-100">Cancel Request</a>
+                    @endif
+                  @else
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.subscribe')))
+                      <a href="{{ route('subject.subscribe',['subject'=>$subject]) }}" class="btn btn-success btn-sm w-100">Subscribe</a>
+                    @endif
+                  @endif
                 </div>
-              @else
-                @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.subscribe')))
-                <div class="footer">
-                  <a href="{{ route('subject.subscribe',['subject'=>$subject]) }}"class="btn btn-success btn-sm w-100">Subcribe</a>
-                </div>
-                @endif
-              @endif
             </div>
 
           </div>
