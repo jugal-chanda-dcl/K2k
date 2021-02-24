@@ -17,9 +17,18 @@ class SubjectController extends Controller
     public function subscribe(Subject $subject)
     {
       $user = Auth::user();
-      $user->subscribedSubjects()->toggle($subject->id);
+      $user->subscribedSubjects()->attach($subject->id,['is_aproved'=>$subject->auto_aprove]);
       return redirect()->route('home');
     }
+
+    public function unsubscribe(Subject $subject)
+    {
+      $user = Auth::user();
+      $user->subscribedSubjects()->detach($subject->id);
+      return redirect()->route('home');
+    }
+
+
 
     public function toggleAprove(Subject $subject)
     {
@@ -32,8 +41,8 @@ class SubjectController extends Controller
     {
       $subjects = Auth::user()->subscribedSubjects;
       return view('subjects.index',['subjects'=>$subjects]);
-
     }
+
     public function index()
     {
         $subjects = Auth::user()->createdSubjects;

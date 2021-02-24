@@ -35,4 +35,17 @@ class Subject extends Model
         return "Off";
       }
     }
+
+    public function subscriptionStatus($userId)
+    {
+      if($this->users->contains($userId)){
+        if($this->users()->wherePivot('is_aproved',1)->get()->contains($userId)){
+          return "aproved";
+        }else{
+          return "not aproved";
+        }
+      }else{
+        return "not subscribe";
+      }
+    }
 }

@@ -98,15 +98,12 @@ class User extends Authenticatable
       }
     }
 
-
     public function hasPermission(Route $route)
     {
 
       $role = $this->role;
       $permissions = $role->permissions;
-      // get requested action
       $actionName = class_basename($route->getActionName());
-      // check if requested action is in permissions list
       foreach ($permissions as $permission)
       {
         $_namespaces_chunks = explode('\\', $permission->controller);

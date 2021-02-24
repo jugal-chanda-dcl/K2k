@@ -44,7 +44,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
 });
 
 Route::resource('/subject', 'SubjectController')->middleware('roleauth');
-Route::get('/subjects','SubjectController@subscribed')->middleware('roleauth')->name('subjects.subscibed');
+
+// For show in student panel
+Route::get('/subjects/subscribed','SubjectController@subscribed')->middleware('roleauth')->name('subjects.subscibed');
 
 // Route::resource('topic', 'TopicController')->middleware('roleauth');
 // Route::resource('topic', 'TopicController')->middleware('roleauth');
@@ -60,6 +62,8 @@ Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth'
 
 // This route is for subscribe or unsubscribe
 Route::get('/subscribe/{subject}','SubjectController@subscribe')->middleware('roleauth')->name('subject.subscribe');
+Route::get('/unsubscribe/{subject}','SubjectController@unsubscribe')->middleware('roleauth')->name('subject.unsubscribe');
+// Route::get('/unsubscribe/{subject}','SubjectController@unsubscribe')->middleware('roleauth')->name('subject.unsubscribe');
 
 
 Route::get('/learn','LearnController@index')->middleware('roleauth')->name('learn.index');
