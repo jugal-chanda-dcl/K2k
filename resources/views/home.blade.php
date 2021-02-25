@@ -49,7 +49,7 @@
               </div>
               <div class="card-body">
                 <div class="">Total Topic: {{ $subject->topics()->count() }} Topics</div>
-                <div class="">Total Subscribed Students: {{ $subject->users()->wherePivot('is_aproved',1)->count() }} Topics</div>
+                <div class="">Total Subscribed Students: {{ $subject->users()->wherePivot('is_aproved',1)->count() }} Students</div>
               </div>
 
                 <div class="footer">
