@@ -19,7 +19,7 @@
 
 <div class="card">
   <div class="card-header">Answer script of {{ $answer->user->name }}</div>
-  <input type="text" name="learn_id" value="{{ $answer->question->learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $answer->question->learn,'user'=>$answer->user])}}" subUrl = "{{ route('answer.update',['answer'=>$answer]) }}">
+  <input type="text" name="learn_id" value="{{ $answer->question->learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $answer->question->learn,'user'=>$answer->user])}}" subUrl = "{{ route('answer.update',['answer'=>$answer]) }}" redirectUrl = "{{ route('answer.review_answers',['learn'=>$answer->question->learn]) }}">
   <div class="card-body question_conatiner">
     <!-- Question -->
   <ol class="questionContainer">
@@ -77,6 +77,23 @@
 @endsection
 
 @section('script')
+
+<script type="text/javascript">
+function setSession(key,txt) {
+  sessionStorage.setItem(key,txt);
+}
+function showtoastr(type,key) {
+  if(sessionStorage.getItem(key)){
+    if(type=='success'){
+      toastr.success(sessionStorage.getItem(key));
+      sessionStorage.removeItem(key);
+    }
+  }
+}
+
+showtoastr('success','scriptChecked');
+
+</script>
 
 <script type="text/javascript" src="{{ asset('js/check_answer_script.js') }}"></script>
 

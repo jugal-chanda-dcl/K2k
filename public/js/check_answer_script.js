@@ -1,9 +1,23 @@
+function setSession(key,txt) {
+  sessionStorage.setItem(key,txt);
+}
+function showtoastr(type,key) {
+  if(sessionStorage.getItem(key)){
+    if(type=='success'){
+      toastr.success(sessionStorage.getItem(key));
+      sessionStorage.removeItem(key);
+    }
+  }
+}
+
+
 var questionIDs = [];
 var questionIdFormat = "q_";
 var questionOptionsIds = [];
 var learnId = $("input[name='learn_id']").val();
 var retriveURL = $("input[name='learn_id']").attr('url');
 var answerSubmitUrl = $("input[name='learn_id']").attr('subUrl');
+var redirectUrl = $("input[name='learn_id']").attr('redirectUrl');
 var data = ""
 var total = 2;
 var totalScore = 0;
@@ -226,8 +240,8 @@ function submitAnswer() {
       while(!responseData){
 
       }
-      console.log(responseData);
-      // window.location.replace("/question/"+ learnId +"/edit");
+      setSession('scriptChecked','Script Checked');
+      window.location.replace(redirectUrl);
 
     },
     data: JSON.stringify(data)
