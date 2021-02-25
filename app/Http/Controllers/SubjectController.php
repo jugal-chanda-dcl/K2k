@@ -57,7 +57,8 @@ class SubjectController extends Controller
 
     public function subscribed()
     {
-      $subjects = Auth::user()->subscribedSubjects;
+      $subjects = Auth::user()->subscribedSubjects()->wherePivot('is_aproved',1)->get();
+      // dd($subjects);
       return view('subjects.index',['subjects'=>$subjects]);
     }
 
