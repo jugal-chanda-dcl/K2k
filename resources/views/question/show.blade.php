@@ -3,11 +3,19 @@
 @section('style')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 @endsection
 @section('content')
 
 <div class="card">
-  <div class="card-header">Question</div>
+  <div class="card-header">
+    Question
+    @if (session('status'))
+      <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+      </div>
+    @endif
+  </div>
   <input type="text" name="information" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn,'user'=>Auth::user()])}}" subUrl = "{{route('answer.store',['question'=>$learn->question,'user'=>Auth::user()])}}" answered="{{ $learn->question->isAnswered(Auth::user()->id) }}">
   <div class="card-body question_conatiner">
     <!-- Question -->

@@ -74,6 +74,21 @@
 
 <script type="text/javascript">
 
+function setSession(key,txt) {
+  sessionStorage.setItem(key,txt);
+}
+function showtoastr(type,key) {
+  if(sessionStorage.getItem(key)){
+    if(type=='success'){
+      toastr.success(sessionStorage.getItem(key));
+      sessionStorage.removeItem(key);
+    }
+  }
+}
+
+
+showtoastr('success','answerSubmit');
+
 function toggleAutoAprove(el) {
   $.ajax({
     url: el.attr('data-url'),
@@ -82,13 +97,10 @@ function toggleAutoAprove(el) {
     contentType: 'application/json',
     success: function (responseData) {
       if(responseData){
-        $("#status").removeClass("d-none");
-        $("#status").text("Auto Aproved Turned On");
+        toastr.success("Auto Aproved Turned On");
       }else{
-        $("#status").removeClass("d-none");
-        $("#status").text("Auto Aproved Turned Off");
+        toastr.success("Auto Aproved Turned Off");
       }
-      console.log(responseData);
     },
   });
 }

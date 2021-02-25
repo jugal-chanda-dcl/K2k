@@ -106,10 +106,14 @@ class TopicController extends Controller
         Topic::destroy($id);
         return redirect()->route('subject.topics',['subject'=>$subject->id]);
     }
-    
+
     public function learn(Topic $topic)
     {
-      $answer = $topic->learn->question->answers()->where('user_id',Auth::user()->id)->first();
+      $answer = $topic->learn->question;
+      if($answer)
+      {
+        $answer = $answer->answers()->where('user_id',Auth::user()->id)->first();
+      }
       return view('topic.learn',[
         'learn'=>$topic->learn,
         'answer' => $answer

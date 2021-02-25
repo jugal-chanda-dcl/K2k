@@ -7,7 +7,14 @@
 @section('content')
 
 <div class="card">
-  <div class="card-header">Create new question</div>
+  <div class="card-header">
+    Create new question
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+      {{ session('status') }}
+    </div>
+  @endif
+</div>
   <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly subUrl = "{{ route('question.store') }}">
   <div class="card-body question_conatiner">
     <!-- Question -->

@@ -1,3 +1,16 @@
+function setSession(key,txt) {
+  sessionStorage.setItem(key,txt);
+}
+function showtoastr(type,key) {
+  if(sessionStorage.getItem(key)){
+    if(type=='success'){
+      toastr.success(sessionStorage.getItem(key));
+      sessionStorage.removeItem(key);
+    }
+  }
+}
+
+
 var questionIDs = [];
 var questionIdFormat = "q_";
 var questionOptionsIds = [];
@@ -8,6 +21,13 @@ var answerSubmitUrl = $("input[name='information']").attr('subUrl');
 var isAnswered = $("input[name='information']").attr('answered');
 
 var data = ""
+
+showtoastr('success','questionEdited');
+
+if(sessionStorage.questionEdited){
+  toastr.success(sessionStorage.questionEdited);
+  sessionStorage.removeItem("questionEdited");
+}
 
 $( document ).ready(function() {
   function print(object) {
@@ -257,8 +277,8 @@ function submitAnswer() {
       while(!responseData){
 
       }
-      // console.log(responseData);
-      window.location.replace("/subjects");
+      setSession('answerSubmit','Answer Submitted');
+      window.location.replace("/subjects/subscribed");
 
     },
     data: JSON.stringify(data)

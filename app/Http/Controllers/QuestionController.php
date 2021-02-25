@@ -8,6 +8,7 @@ use App\Question;
 use App\Option;
 use App\Learn;
 use App\User;
+use Session;
 
 class QuestionController extends Controller
 {
@@ -109,6 +110,8 @@ class QuestionController extends Controller
       $question = $learn->question;
       $question->content = json_encode($data);
       $question->save();
+      $data = array();
+      $data['status'] = "Question edit successfully";
       return response()->json($data,200);
     }
 

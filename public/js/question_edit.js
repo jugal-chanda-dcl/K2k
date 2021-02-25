@@ -1,3 +1,17 @@
+function setSession(key,txt) {
+  sessionStorage.setItem(key,txt);
+}
+function showtoastr(type,key) {
+  if(sessionStorage.getItem(key)){
+    if(type=='success'){
+      toastr.success(sessionStorage.getItem(key));
+      sessionStorage.removeItem(key);
+    }
+  }
+}
+
+
+
 var questionIDs = [];
 var questionIdFormat = "q_";
 var questionOptionsIds = [];
@@ -192,7 +206,6 @@ function answered(el){
     else{
       if(data[questionId]['options_answer'].includes(optionId)){
         var index = data[questionId]['options_answer'].indexOf(optionId);
-        console.log("ok");
         data[questionId]['options_answer'].splice(index,1);
       }
     }
@@ -201,9 +214,7 @@ function answered(el){
 }
 
 function questionSave(){
-  // console.log(JSON.stringify(data));
-  // console.log(data);
-  // console.log(submitUrl);
+
 
   $.ajax({
     url: submitUrl,
@@ -214,6 +225,7 @@ function questionSave(){
       while(!responseData){
 
       }
+      setSession('questionEdited','Question Edited');
       window.location.replace(viewUrl);
 
 
