@@ -30,6 +30,23 @@ if(sessionStorage.questionEdited){
 }
 
 $( document ).ready(function() {
+
+  function optionColor(el,questionId,optionId) {
+    if(data[questionId]['answer'].includes(optionId)){
+      if(data[questionId]['options_answer'].includes(optionId)){
+        el.addClass("correct");
+      }else{
+        el.addClass("wrong");
+      }
+    }
+    if(data[questionId]['options_answer'].includes(optionId)){
+      el.find("span").removeClass("d-none");
+    }
+
+    return el;
+  }
+
+
   function print(object) {
     console.log(object);
   }
@@ -87,6 +104,10 @@ $( document ).ready(function() {
 
       radioInput = radioInputSet(radioInput,questionId,id,checked=checkedOrNot(questionId,id));
       optionLabel = optionLabelSet(optionLabel,val,id);
+      if('score' in data[questionId])
+      {
+        optionFormatClone = optionColor(optionFormatClone,questionId,id);
+      }
       el.append(optionFormatClone);
     });
     return el;
@@ -105,6 +126,10 @@ $( document ).ready(function() {
 
       checkboxInput = checkboxInputSet(checkboxInput,id,id,checked=checkedOrNot(questionId,id));
       optionLabel = optionLabelSet(optionLabel,val,id);
+      if('score' in data[questionId])
+      {
+        optionFormatClone = optionColor(optionFormatClone,questionId,id);
+      }
       el.append(optionFormatClone);
     });
     return el;
@@ -124,10 +149,20 @@ $( document ).ready(function() {
     return el.find('.answer form');
   }
   function textAnsFormat(questionId) {
-    var answer = $("#text_answer_format");
+    var answer = $("#text_answer_format").clone();
     answer = removeId(answer);
     answer.removeClass("d-none");
     answer.html(data[questionId]['answer']);
+    if('score' in data[questionId]){
+      if(data[questionId]['score'] == 1){
+        answer.removeClass('bg-light')
+        answer.addClass('correct');
+      }else{
+        answer.removeClass('bg-light')
+        answer.addClass('wrong');
+      }
+
+    }
     return answer;
   }
   function shortAnswerFormat(answerFormat,questionId) {

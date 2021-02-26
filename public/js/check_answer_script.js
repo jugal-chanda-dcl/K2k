@@ -175,7 +175,6 @@ $( document ).ready(function() {
 
       questionIDs.push(key);
       questionOptionsIds.push(0);
-      data[key]['score'] = 0;
       var questionFormatClone = questionFormat.clone();
       questionFormatClone = removeId(questionFormatClone);
       questionFormatClone.removeClass('d-none');
@@ -186,7 +185,6 @@ $( document ).ready(function() {
       totalScore+=data[key]['score'];
       questionContainer.append(questionFormatClone);
     });
-    console.log(totalScore);
 
   }
 

@@ -3,6 +3,20 @@
 @section('style')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<style media="screen">
+  .correct {
+    background-color: rgba(40,167,69,0.4);
+  }
+  .wrong{
+    background-color: rgba(220,53,59,0.4);
+  }
+  .right{
+    background-color: rgba(40,167,69,0.8);
+  }
+  .score_div {
+    font-weight: 600;
+  }
+</style>
 
 @endsection
 @section('content')
@@ -68,6 +82,7 @@
 </div>
 <div class="option_format d-none" id="checkbox_option_format">
   <input type="checkbox" name="" value=""  id="" class="mr-2" onclick="answerCheckbox($(this))"><label for=""></label>
+  <span class="float-right mr-2 d-none">Correct Answer</span>
 </div>
 
 
