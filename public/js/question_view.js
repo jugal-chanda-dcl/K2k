@@ -32,6 +32,7 @@ if(sessionStorage.questionEdited){
 $( document ).ready(function() {
 
   function optionColor(el,questionId,optionId) {
+    el.find("input").attr("disabled",true);
     if(data[questionId]['answer'].includes(optionId)){
       if(data[questionId]['options_answer'].includes(optionId)){
         el.addClass("correct");
@@ -90,9 +91,9 @@ $( document ).ready(function() {
     el.find(".question").html(data[questionId]['question']);
     return el;
   }
-
-
-  function multipleChoiceOptionAdd(el,questionId) { //el = option container
+  //el = option container
+  //return to addOption
+  function multipleChoiceOptionAdd(el,questionId) {
     var optionFormat = $("#multiple_choice_option_format");
     $.each(data[questionId]['options'],function(id,val){
       var optionFormatClone = optionFormat.clone();
@@ -134,8 +135,9 @@ $( document ).ready(function() {
     });
     return el;
   }
-
-  function addOption(el,questionId) { // el = answerFormat ex (#multiple_choice_format)
+  // el = answerFormat ex (#multiple_choice_format)
+  // Reeturn to makeAnswerFormat
+  function addOption(el,questionId) {
 
     if(data[questionId]['question_type'] == 'multiple_choice'){
       el = multipleChoiceOptionAdd(el,questionId);
