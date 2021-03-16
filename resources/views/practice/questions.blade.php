@@ -26,6 +26,13 @@
       @if($topic->learn->question)
       <li>
         <a href="{{ route('learn.questions',['learn'=>$topic->learn]) }}">Practice {{ $topic->name }}</a>
+        @if($topic->learn->question->answers()->where('user_id',Auth::user()->id)->count())
+          <ul>
+            @foreach($topic->learn->question->answers()->where('user_id',Auth::user()->id)->get() as $answer)
+              <li><span>Score: {{  $answer->score  }} out of {{ $answer->total }}</span></li>
+            @endforeach
+          </ul>
+        @endif
       </li>
       @endif
       @endforeach
