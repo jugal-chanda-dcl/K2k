@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
+  /**
+
+  Fields = [
+  id: pk
+  name : string
+  description : nullabe
+  timestamps : datetime
+]
+  **/
   protected $fillable = [
       'name', 'description',
   ];

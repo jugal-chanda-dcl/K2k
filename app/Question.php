@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+    /**
+
+    Fields = [id,learn_id,content,timestamps,practice_limit]
+
+    **/
     public function learn()
     {
       return $this->belongsTo(Learn::class);
