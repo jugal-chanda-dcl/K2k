@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use App\Subject;
 class PracticeController extends Controller
 {
+    public function subjects()
+    {
+      $subjects = Auth::user()->subscribedSubjects()->wherePivot('is_aproved',1)->get();
+      // dd($subjects);
+      return view('practice.subjects',['subjects'=>$subjects]);
+    }
+    public function topics(Subject $subject)
+    {
+      return view('practice.questions',['subject'=>$subject]);
+    }
     /**
      * Display a listing of the resource.
      *

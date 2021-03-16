@@ -91,6 +91,7 @@ Route::get('/learn/{learn}/questions','QuestionController@show')->name('learn.qu
 Route::get('/learn/{learn}/review/answers','AnswerController@review_answers')->name('answer.review_answers')->middleware('roleauth');
 Route::get('/answers/{answer}','AnswerController@answer_scripts')->name('answer.script')->middleware('roleauth');
 
-// Route::get('/practices','PracticeController@subjects')
+Route::get('/practices/subjects','PracticeController@subjects')->name('practices.subjects')->middleware('roleauth');
+Route::get('/practices/{subject}/topics','PracticeController@topics')->name('practices.topics')->middleware('roleauth');
 
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');

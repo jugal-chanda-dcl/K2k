@@ -124,6 +124,11 @@
                       <a href="{{route('teacher.resource.all')}}" style="text-decoration: none;">Resourcces</a>
                     </li>
                     @endif
+                    @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('practices.subjects')))
+                    <li class="list-group-item">
+                      <a href="{{ route('practices.subjects') }}" style="text-decoration: none;">Practices</a>
+                    </li>
+                    @endif
                     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('teacherProfile.index')))
                     <li class="list-group-item">
                       <a href="{{route('teacherProfile.index')}}" style="text-decoration: none;">Profile</a>
