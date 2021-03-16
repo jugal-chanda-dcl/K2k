@@ -9,7 +9,7 @@
 <div class="card">
   <div class="card-header">
     <h3>Topic Name: {{ $learn->topic->name }}</h3>
-    <h4>Created by: {{ $learn->topic->subject->name }}</h4>
+    <h4>Created by: {{ $learn->topic->subject->user->name }}</h4>
     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.edit')))
     <a href="{{route('learn.edit',['learn'=>$learn->id])}}" class="btn btn-info btn-sm">Edit</a>
     @endif
@@ -26,10 +26,10 @@
         <a href="{{ route('question.edit',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Edit Questions</a>
       @endif
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.questions')))
-        <a href="{{ route('learn.questions',['learn'=>$learn]) }}" class="btn btn-sm btn-info">View Questions</a>
+        <a href="{{ route('learn.questions',['learn'=>$learn]) }}" class="btn btn-sm btn-info">View Questions and Practice</a>
         @if($answer)
           @if($answer->checked)
-            <span class="bg-success p-1 rounded" style="color: white;">Score: {{ $answer->score }} / {{ $answer->total }}</span>
+            <span class="bg-success p-1 rounded" style="color: white;">Score: {{ $answer->score }} out of {{ $answer->total }}</span>
           @else
             <span class="bg-info p-1 rounded" style="color: white;">Answer Not Checked By Teacher</span>
           @endif

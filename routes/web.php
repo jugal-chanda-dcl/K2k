@@ -28,8 +28,6 @@ Auth::routes();
 
 
 Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('admin.login');
-
-
 Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 
@@ -48,17 +46,9 @@ Route::resource('/subject', 'SubjectController')->middleware('roleauth');
 // For show in student panel
 Route::get('/subjects/subscribed','SubjectController@subscribed')->middleware('roleauth')->name('subjects.subscibed');
 
-// Route::resource('topic', 'TopicController')->middleware('roleauth');
-// Route::resource('topic', 'TopicController')->middleware('roleauth');
-// Route::get('/topic','TopicController@index')->middleware('roleauth')->name('topic.index');
-// Route::get('/topic/create','TopicController@create')->middleware('roleauth')->name('topic.create');
-// Route::post('/topic','TopicController@store')->middleware('roleauth')->name('topic.store');
-Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth')->name('topic.destroy');
-// Route::put('/topic/{topic}','TopicController@update')->middleware('roleauth')->name('topic.update');
-// Route::get('/topic/{topic}','TopicController@show')->middleware('roleauth')->name('topic.show');
-// Route::get('/topic/{topic}/edit','TopicController@edit')->middleware('roleauth')->name('topic.edit');
 
-// Route::resource('learn', 'LearnController')->middleware('roleauth');
+Route::delete('/topic/{topic}','TopicController@destroy')->middleware('roleauth')->name('topic.destroy');
+
 
 // This route is for subscribe or unsubscribe
 Route::get('/subscribe/{subject}','SubjectController@subscribe')->middleware('roleauth')->name('subject.subscribe');
@@ -100,5 +90,6 @@ Route::get('/learn/{learn}/questions','QuestionController@show')->name('learn.qu
 Route::get('/learn/{learn}/review/answers','AnswerController@review_answers')->name('answer.review_answers')->middleware('roleauth');
 Route::get('/answers/{answer}','AnswerController@answer_scripts')->name('answer.script')->middleware('roleauth');
 
+// Route::get('/practices','PracticeController@subjects')
 
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');

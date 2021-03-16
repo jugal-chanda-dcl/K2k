@@ -4,7 +4,12 @@
 
 <div class="card">
   <div class="card-header">
-    All topics of {{ $subject->name }}(Class {{ $subject->class }})
+    <div class="">
+        Class: {{ $subject->class }}
+    </div>
+    <div class="">
+        Subject : {{ $subject->name }}
+    </div>
     @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.create')))
     <a href="{{ route('learn.create',['subject'=>$subject]) }}" class="btn btn-sm btn-success">Create Learning Materials</a>
     @endif
@@ -37,6 +42,9 @@
           <td class="">
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.learn')))
             <a href="{{route('topic.learn',['topic'=>$topic])}}" class="btn btn-info btn-sm">Learn</a>
+            @endif
+            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.questions')))
+            <a href="{{ route('learn.questions',['learn'=>$topic->learn]) }}" class="btn btn-sm btn-info">View Questions and Practice</a>
             @endif
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.destroy')))
             <form class="d-inline" action="{{ route('topic.destroy',['topic'=>$topic->id]) }}" method="post">
