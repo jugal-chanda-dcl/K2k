@@ -31,7 +31,13 @@ class QuestionController extends Controller
       return response()->json($question->content,200);
     }
 
-
+    public function updatePracticeLimit(Request $request,Question $question)
+    {
+      $question->practice_limit = $request['practice_limit'];
+      $question->save();
+      Session::flash('status',"Practice Limit Updated");
+      return redirect()->back();
+    }
 
     public function index()
     {

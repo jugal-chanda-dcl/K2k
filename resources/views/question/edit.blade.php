@@ -16,6 +16,19 @@
   @endif
 </div>
   <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn,'user'=>Auth::user()])}}" subUrl = "{{ route('question.update',['learn'=>$learn]) }}" viewUrl = "{{route('learn.questions',['learn'=>$learn])}}">
+  <div class="card-body question_limit">
+    <form class="" action="{{ route('question.update_practice_limit',['question' => $learn->question]) }}" method="post">
+      @csrf
+      <div class="form-group">
+        <label for="">Practice Limit</label>
+        <input type="number" class="form-control" name="practice_limit" value="{{ $learn->question->practice_limit }}" min="1" required placeholder="Enter practice limit here" >
+        <div class="text-center">
+          <button type="submit" name="button" class="btn btn-sm btn-success my-1">Update Practice Limit</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
   <div class="card-body question_conatiner">
     <!-- Question -->
 
