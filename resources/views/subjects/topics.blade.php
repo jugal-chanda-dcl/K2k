@@ -35,7 +35,9 @@
               {{ $topic->name }}
             </div>
             @if(Auth::user()->role->id == 1)
-            <strong class="border border-primary p-1">{{ Auth::user()->practiceStatus($topic->learn->question->id) }}</strong>
+              @if($topic->learn->question)
+                <strong class="border border-primary p-1">{{ Auth::user()->practiceStatus($topic->learn->question->id) }}</strong>
+              @endif
             @endif
 
           </td>
