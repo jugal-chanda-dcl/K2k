@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
   protected $fillable = [
-      'path', 'learn_id'
+      'path', 'learn_id','type'
   ];
     public function learn()
     {

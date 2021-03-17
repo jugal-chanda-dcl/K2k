@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\ContentController' => $baseDir . '/app/Http/Controllers/ContentController.php',
     'App\\Http\\Controllers\\ContentDeveloperProfileController' => $baseDir . '/app/Http/Controllers/ContentDeveloperProfileController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\FileController' => $baseDir . '/app/Http/Controllers/FileController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\LearnController' => $baseDir . '/app/Http/Controllers/LearnController.php',
     'App\\Http\\Controllers\\PracticeController' => $baseDir . '/app/Http/Controllers/PracticeController.php',

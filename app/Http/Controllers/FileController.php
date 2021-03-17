@@ -47,7 +47,9 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        header('content-type:application/pdf');
+        // dd(public_path($file->path));
+        echo file_get_contents(public_path($file->path));
     }
 
     /**

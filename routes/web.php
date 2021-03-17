@@ -96,4 +96,5 @@ Route::get('/practices/subjects','PracticeController@subjects')->name('practices
 Route::get('/practices/{subject}/topics','PracticeController@topics')->name('practices.topics')->middleware('roleauth');
 
 Route::get('/file/{file}/delete','FileController@destroy')->name('file.delete')->middleware('roleauth');
+Route::get('/show-pdf/{file}','FileController@show')->name('file.show');
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');

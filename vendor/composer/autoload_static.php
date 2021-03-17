@@ -500,6 +500,7 @@ class ComposerStaticInitac7d8f8372b2954c3925b98bdbd25dfa
         'App\\Http\\Controllers\\ContentController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContentController.php',
         'App\\Http\\Controllers\\ContentDeveloperProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContentDeveloperProfileController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FileController' => __DIR__ . '/../..' . '/app/Http/Controllers/FileController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LearnController' => __DIR__ . '/../..' . '/app/Http/Controllers/LearnController.php',
         'App\\Http\\Controllers\\PracticeController' => __DIR__ . '/../..' . '/app/Http/Controllers/PracticeController.php',

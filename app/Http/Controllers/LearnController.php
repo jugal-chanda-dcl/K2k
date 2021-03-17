@@ -79,8 +79,15 @@ class LearnController extends Controller
         foreach($request->file('images') as $k=>$file) {
           $name = $file->getClientOriginalName();
           $image_name= "/learn_image/".time().$k.'.'.$file->extension();
+          $image_extentions = array("jpg","png","jpeg");
+          $pdf_extensions = array("pdf");
+          if(in_array($file->extension(),$image_extentions)){
+            $type = "image";
+          }
+          else if(in_array($file->extension(),$pdf_extensions)){
+            $type = "pdf";
+          }
           $file->move(public_path("learn_image"), $image_name);
-
           File::create([
             'path' => $image_name,
             'learn_id' => $learn->id
@@ -166,11 +173,20 @@ class LearnController extends Controller
         foreach($request->file('images') as $k=>$file) {
           $name = $file->getClientOriginalName();
           $image_name= "/learn_image/".time().$k.'.'.$file->extension();
+          $image_extentions = array("jpg","png","jpeg");
+          $pdf_extensions = array("pdf");
+          if(in_array($file->extension(),$image_extentions)){
+            $type = "image";
+          }
+          else if(in_array($file->extension(),$pdf_extensions)){
+            $type = "pdf";
+          }
           $file->move(public_path("learn_image"), $image_name);
 
           File::create([
             'path' => $image_name,
-            'learn_id' => $learn->id
+            'learn_id' => $learn->id,
+            'type' => $type
           ]);
         }
       }
