@@ -15,10 +15,10 @@ function showtoastr(type,key) {
 var questionIDs = [];
 var questionIdFormat = "q_";
 var questionOptionsIds = [];
-var learnId = $("input[name='learn_id']").val();
-var retriveURL = $("input[name='learn_id']").attr('url');
-var submitUrl  = $("input[name='learn_id']").attr('subUrl');
-var viewUrl = $("input[name='learn_id']").attr('viewUrl');
+// var learnId = $("input[name='information']").val();
+var questionRetriveUrl = $("input[name='information']").attr('questionRetriveUrl');
+var updateUrl  = $("input[name='information']").attr('updateUrl');
+// var viewUrl = $("input[name='learn_id']").attr('viewUrl');
 var data = ""
 
 
@@ -86,7 +86,7 @@ $( document ).ready(function() {
   }
 
   $.ajax({
-    url: retriveURL,
+    url: questionRetriveUrl,
     type: 'get',
     dataType: 'json',
     contentType: 'application/json',
@@ -95,10 +95,9 @@ $( document ).ready(function() {
 
       }
       // window.location.replace("/question/"+ learnId +"/edit");
-      data = JSON.parse(responseData);
+      data = JSON.parse(responseData['content']);
       loadHTMl();
     },
-    data: JSON.stringify(data)
   });
 
 });
@@ -217,7 +216,7 @@ function questionSave(){
 
 
   $.ajax({
-    url: submitUrl,
+    url: updateUrl,
     type: 'post',
     dataType: 'json',
     contentType: 'application/json',
@@ -226,7 +225,7 @@ function questionSave(){
 
       }
       setSession('questionEdited','Question Edited');
-      window.location.replace(viewUrl);
+      // window.location.replace("/");
 
 
     },

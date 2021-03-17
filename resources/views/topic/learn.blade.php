@@ -23,7 +23,7 @@
     @endif
     @if($learn->question)
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('question.edit')))
-        <a href="{{ route('question.edit',['learn'=>$learn]) }}" class="btn btn-sm btn-success">Edit Questions</a>
+        <a href="{{ route('question.edit',['question'=>$learn->question]) }}" class="btn btn-sm btn-success">Edit Questions</a>
       @endif
       @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.questions')))
         <a href="{{ route('learn.questions',['learn'=>$learn]) }}" class="btn btn-sm btn-info">View Questions and Practice</a>

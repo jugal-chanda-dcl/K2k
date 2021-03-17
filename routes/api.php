@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/question/{question}/retrive','QuestionController@retrive')->name('question.retrive');
 Route::post('/questions/create','QuestionController@store')->name('question.store');
-Route::post('/questions/edit/{learn}','QuestionController@update')->name('question.update');
+Route::post('/questions/{question}/edit/','QuestionController@update')->name('question.update');
 // Route::get('/questions/retrive/learn/{learn}/user/{user}','QuestionController@retrive')->name('question.retrive');
 // Route::post('/questions/destroy','QuestionController@destroy')->name('question.destroy');
 Route::post('/answer/submit/{question}/{user}','AnswerController@store')->name('answer.store');

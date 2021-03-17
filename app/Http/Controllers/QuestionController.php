@@ -91,9 +91,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Learn $learn)
+    public function edit(Question $question)
     {
-      return view('question.edit',['learn'=>$learn]);
+      return view('question.edit',['question'=>$question]);
     }
 
     /**
@@ -103,10 +103,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Learn $learn)
+    public function update(Request $request,Question $question)
     {
       $data = $request->all();
-      $question = $learn->question;
       $question->content = json_encode($data);
       $question->save();
       $data = array();

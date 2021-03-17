@@ -15,13 +15,13 @@
     </div>
   @endif
 </div>
-  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="" subUrl = "{{ route('question.update',['learn'=>$learn]) }}" viewUrl = "{{route('learn.questions',['learn'=>$learn])}}">
+  <input type="text" name="information" value="" hidden readonly questionRetriveUrl="{{ route('question.retrive',['question' => $question]) }}" updateUrl = "{{ route('question.update',['question' => $question]) }}" viewUrl = "">
   <div class="card-body question_limit">
-    <form class="" action="{{ route('question.update_practice_limit',['question' => $learn->question]) }}" method="post">
+    <form class="" action="{{ route('question.update_practice_limit',['question' => $question]) }}" method="post">
       @csrf
       <div class="form-group">
         <label for="">Practice Limit</label>
-        <input type="number" class="form-control" name="practice_limit" value="{{ $learn->question->practice_limit }}" min="1" required placeholder="Enter practice limit here" >
+        <input type="number" class="form-control" name="practice_limit" value="{{ $question->practice_limit }}" min="1" required placeholder="Enter practice limit here" >
         <div class="text-center">
           <button type="submit" name="button" class="btn btn-sm btn-success my-1">Update Practice Limit</button>
         </div>
