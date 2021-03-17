@@ -10,7 +10,7 @@
   <div class="card-header">Update learning material</div>
 
   <div class="card-body">
-    <form method="POST" action="{{ route('learn.update',['learn'=>$learn]) }}">
+    <form method="POST" action="{{ route('learn.update',['learn'=>$learn]) }}" enctype="multipart/form-data">
 
         @csrf
         @method('put')
@@ -24,6 +24,10 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+        </div>
+        <div class="form-group mx-2">
+          <label for="images">Upload Multiple Images</label>
+          <input type="file" multiple name="images[]" value="" class="form-control" >
         </div>
         <div class="form-group mx-2">
           <label for="content">Content</label>

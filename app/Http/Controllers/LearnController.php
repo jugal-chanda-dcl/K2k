@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Learn;
 use App\Topic;
 use App\Subject;
+use App\File;
 Use Auth;
 
 class LearnController extends Controller
@@ -69,11 +70,24 @@ class LearnController extends Controller
         'name'=>$validatedData['name'],
         'subject_id'=> $subject->id,
       ]);
-
       $learn = Learn::create([
         'topic_id' => $topic->id,
         'content' => $content,
       ]);
+      if($request->hasfile('images')){
+
+        foreach($request->file('images') as $k=>$file) {
+          $name = $file->getClientOriginalName();
+          $image_name= "/learn_image/".time().$k.'.'.$file->extension();
+          $file->move(public_path("learn_image"), $image_name);
+
+          File::create([
+            'path' => $image_name,
+            'learn_id' => $learn->id
+          ]);
+        }
+      }
+
       return redirect()->route('topic.learn',['topic'=>$topic]);
 
     }
@@ -147,6 +161,19 @@ class LearnController extends Controller
 
       $learn->content = $content;
       $learn->save();
+      if($request->hasfile('images')){
+
+        foreach($request->file('images') as $k=>$file) {
+          $name = $file->getClientOriginalName();
+          $image_name= "/learn_image/".time().$k.'.'.$file->extension();
+          $file->move(public_path("learn_image"), $image_name);
+
+          File::create([
+            'path' => $image_name,
+            'learn_id' => $learn->id
+          ]);
+        }
+      }
       return redirect()->route('topic.learn',['topic'=>$topic]);
     }
 
