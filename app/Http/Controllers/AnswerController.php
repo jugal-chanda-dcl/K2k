@@ -7,6 +7,7 @@ use App\Learn;
 use App\Question;
 use App\Answer;
 use App\User;
+use Auth;
 
 class AnswerController extends Controller
 {
@@ -18,6 +19,10 @@ class AnswerController extends Controller
 
     public function submitView(Question $question)
     {
+      $attempts = $question->answers()->where('user_id',Auth::user()->id)->count();
+      if($attempts == $question->practice_limit){
+        return "You cross your practice limit this question";
+      }
       return view('question.answer_submit',[
         'question' => $question
       ]);
