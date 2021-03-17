@@ -12,6 +12,7 @@ return array(
     'App\\Content' => $baseDir . '/app/Content.php',
     'App\\ContentDeveloperProfile' => $baseDir . '/app/ContentDeveloperProfile.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\File' => $baseDir . '/app/File.php',
     'App\\Http\\Controllers\\AnswerController' => $baseDir . '/app/Http/Controllers/AnswerController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

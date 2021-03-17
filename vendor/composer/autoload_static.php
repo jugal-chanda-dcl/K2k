@@ -489,6 +489,7 @@ class ComposerStaticInitac7d8f8372b2954c3925b98bdbd25dfa
         'App\\Content' => __DIR__ . '/../..' . '/app/Content.php',
         'App\\ContentDeveloperProfile' => __DIR__ . '/../..' . '/app/ContentDeveloperProfile.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\File' => __DIR__ . '/../..' . '/app/File.php',
         'App\\Http\\Controllers\\AnswerController' => __DIR__ . '/../..' . '/app/Http/Controllers/AnswerController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

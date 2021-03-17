@@ -95,4 +95,5 @@ Route::get('/answers/submit/question/{question}/view','AnswerController@submitVi
 Route::get('/practices/subjects','PracticeController@subjects')->name('practices.subjects')->middleware('roleauth');
 Route::get('/practices/{subject}/topics','PracticeController@topics')->name('practices.topics')->middleware('roleauth');
 
+Route::get('/file/{file}/delete','FileController@destroy')->name('file.delete')->middleware('roleauth');
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');

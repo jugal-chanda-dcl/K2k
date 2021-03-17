@@ -57,6 +57,20 @@
   <div class="card-body">
     {!! $learn->content !!}
   </div>
+  <div class="">
+    <h1 class="text-center">Images</h1>
+    <div class="row">
+      @foreach($learn->files as $file)
+      <div class="col-md-3 p-1">
+        <a href="{{ asset($file->path) }}"><img src="{{ asset($file->path) }}" alt="" style="width: 100%"></a>
+            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('file.delete')))
+              <a href="{{ route('file.delete',['file'=>$file]) }}" class="btn btn-danger btn-sm">Delete</a>
+            @endif
+      </div>
+      @endforeach
+
+    </div>
+  </div>
 </div>
 
 @endsection

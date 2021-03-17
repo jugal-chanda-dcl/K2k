@@ -18,4 +18,8 @@ class Learn extends Model
     {
       return $this->hasOne(Question::class);
     }
+    public function files()
+    {
+      return $this->hasMany(File::class);
+    }
 }
