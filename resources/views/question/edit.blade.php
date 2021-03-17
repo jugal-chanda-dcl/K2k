@@ -15,7 +15,7 @@
     </div>
   @endif
 </div>
-  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $learn,'user'=>Auth::user()])}}" subUrl = "{{ route('question.update',['learn'=>$learn]) }}" viewUrl = "{{route('learn.questions',['learn'=>$learn])}}">
+  <input type="text" name="learn_id" value="{{ $learn->id }}" hidden readonly url="" subUrl = "{{ route('question.update',['learn'=>$learn]) }}" viewUrl = "{{route('learn.questions',['learn'=>$learn])}}">
   <div class="card-body question_limit">
     <form class="" action="{{ route('question.update_practice_limit',['question' => $learn->question]) }}" method="post">
       @csrf

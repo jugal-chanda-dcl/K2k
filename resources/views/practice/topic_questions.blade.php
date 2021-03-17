@@ -25,7 +25,7 @@
       @foreach($subject->topics as $topic)
       @if($topic->learn->question)
       <li>
-        <a href="{{ route('learn.questions',['learn'=>$topic->learn]) }}">Practice {{ $topic->name }}</a>
+        <a href="{{ route('answer.submit_view',['question'=>$topic->learn->question]) }}">Practice {{ $topic->name }}</a>
         @if($topic->learn->question->answers()->where('user_id',Auth::user()->id)->count())
           <ul>
             @foreach($topic->learn->question->answers()->where('user_id',Auth::user()->id)->get() as $answer)

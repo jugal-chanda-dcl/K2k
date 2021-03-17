@@ -1,8 +1,6 @@
 INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@admin.com', '01521461643', 'Admin', 'Dhaka', '1986-01-01', '12773', '$2y$10$ZXUXiRylsEOoB8qP7nZb5OZwoZYV0wvnXVqsXYb6B/TguKQUM0ZAi', 0, NULL, '2020-12-19 22:03:44', '2020-12-19 22:03:44');
 
-INSERT INTO `answers` (`id`, `user_id`, `question_id`, `answer`, `created_at`, `updated_at`, `answered`, `score`, `total`, `checked`) VALUES
-(3, 3, 1, '{\"q_1\":{\"question\":\"Question 1000\",\"question_type\":\"short_answer\",\"options\":[],\"options_answer\":[],\"answer\":\"Question 1 answer\",\"score\":1},\"q_2\":{\"question\":\"Question 2\",\"question_type\":\"multiple_choice\",\"options\":{\"q_2>O_1\":\"1\",\"q_2>O_2\":\"2\",\"q_2>O_3\":\"3\"},\"options_answer\":[\"q_2>O_1\"],\"answer\":[\"q_2>O_1\"],\"score\":0.6666666666666666},\"q_3\":{\"question\":\"Question 3\",\"question_type\":\"checkbox\",\"options\":{\"q_3>O_1\":\"1\",\"q_3>O_2\":\"2\",\"q_3>O_3\":\"3\"},\"options_answer\":[\"q_3>O_2\",\"q_3>O_3\"],\"answer\":[\"q_3>O_2\",\"q_3>O_1\"],\"score\":0.6666666666666666},\"q_4\":{\"question\":\"Question 4\",\"question_type\":\"paragraph\",\"options\":[],\"options_answer\":[],\"answer\":\"Question 4 answer\",\"score\":0}}', '2021-02-25 20:34:39', '2021-02-26 07:16:25', 1, 3, 4, 1);
 
 
 INSERT INTO `learns` (`id`, `topic_id`, `content`, `created_at`, `updated_at`) VALUES
@@ -174,10 +172,6 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `
 (67, 108, 2, NULL, NULL),
 (68, 109, 2, NULL, NULL),
 (69, 110, 2, NULL, NULL);
-
-
-INSERT INTO `questions` (`id`, `learn_id`, `content`, `created_at`, `updated_at`) VALUES
-(1, 1, '{\"q_1\":{\"question\":\"Question 1\",\"question_type\":\"short_answer\",\"options\":[],\"options_answer\":[]},\"q_2\":{\"question\":\"Question 2\",\"question_type\":\"multiple_choice\",\"options\":{\"q_2>O_1\":\"1\",\"q_2>O_2\":\"2\",\"q_2>O_3\":\"3\"},\"options_answer\":[\"q_2>O_1\"]},\"q_3\":{\"question\":\"Question 3\",\"question_type\":\"checkbox\",\"options\":{\"q_3>O_1\":\"1\",\"q_3>O_2\":\"2\",\"q_3>O_3\":\"3\"},\"options_answer\":[\"q_3>O_2\",\"q_3>O_3\"]},\"q_4\":{\"question\":\"Question 4\",\"question_type\":\"paragraph\",\"options\":[],\"options_answer\":[]}}', '2021-02-25 08:50:27', '2021-02-25 20:30:04');
 
 
 

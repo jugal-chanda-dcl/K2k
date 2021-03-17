@@ -1,0 +1,303 @@
+// function setSession(key,txt) {
+//   sessionStorage.setItem(key,txt);
+// }
+// function showtoastr(type,key) {
+//   if(sessionStorage.getItem(key)){
+//     if(type=='success'){
+//       toastr.success(sessionStorage.getItem(key));
+//       sessionStorage.removeItem(key);
+//     }
+//   }
+// }
+
+
+var questionIDs = [];
+var questionIdFormat = "q_";
+var questionOptionsIds = [];
+
+
+var questionRetriveUrl = $("input[name='information']").attr('questionRetriveUrl');
+
+var data = ""
+
+// showtoastr('success','questionEdited');
+//
+// if(sessionStorage.questionEdited){
+//   toastr.success(sessionStorage.questionEdited);
+//   sessionStorage.removeItem("questionEdited");
+// }
+
+$( document ).ready(function() {
+
+  function optionColor(el,questionId,optionId) {
+    el.find("input").attr("disabled",true);
+    if(data[questionId]['answer'].includes(optionId)){
+      if(data[questionId]['options_answer'].includes(optionId)){
+        el.addClass("correct");
+      }else{
+        el.addClass("wrong");
+      }
+    }
+    if(data[questionId]['options_answer'].includes(optionId)){
+      el.find("span").removeClass("d-none");
+    }
+
+    return el;
+  }
+
+
+  function print(object) {
+    console.log(object);
+  }
+  function removeId(el) {
+    var temp = el.attr("id");
+    el.attr("id","");
+    el.attr("data_id",temp);
+    return el;
+  }
+  function checkedOrNot(questionId,optionId) {
+    if(isAnswered == 1){
+      if(data[questionId]['answer'].includes(optionId)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  function radioInputSet(el,name,id,checked=false) { // el = radio input element
+    el.attr("name",name);
+    el.attr("id",id);
+    el.attr("checked",checked);
+    return el;
+  }
+
+  function checkboxInputSet(el,name,id,checked=false) { // el = check box input element
+    el.attr("id",id);
+    el.attr("name",name);
+    el.attr("checked",checked);
+    return el;
+  }
+
+  function optionLabelSet(el,label,id) { // el = label element
+    el.attr("for",id);
+    el.html(label);
+    return el;
+  }
+
+
+  //el = option container
+  //return to addOption
+  function multipleChoiceOptionAdd(el,questionId) {
+    var optionFormat = $("#multiple_choice_option_format");
+    $.each(data[questionId]['options'],function(id,val){
+      var optionFormatClone = optionFormat.clone();
+      var radioInput = optionFormatClone.find("input:radio");
+      var optionLabel = optionFormatClone.find('label');
+
+      optionFormatClone = removeId(optionFormatClone);
+      optionFormatClone.removeClass("d-none");
+
+      radioInput = radioInputSet(radioInput,questionId,id,checked=false);
+      optionLabel = optionLabelSet(optionLabel,val,id);
+      el.append(optionFormatClone);
+    });
+    return el;
+
+  }
+
+  function checkboxOptionAdd(el,questionId){ //el = optionContainer
+    var optionFormat = $("#checkbox_option_format");
+    $.each(data[questionId]['options'],function(id,val){
+      var optionFormatClone = optionFormat.clone();
+      var checkboxInput = optionFormatClone.find("input:checkbox");
+      var optionLabel = optionFormatClone.find("label");
+
+      optionFormatClone = removeId(optionFormatClone);
+      optionFormatClone.removeClass("d-none");
+
+      checkboxInput = checkboxInputSet(checkboxInput,id,id,checked=false);
+      optionLabel = optionLabelSet(optionLabel,val,id);
+      el.append(optionFormatClone);
+    });
+    return el;
+  }
+  // el = answerFormat ex (#multiple_choice_format)
+  // Reeturn to makeAnswerFormat
+  function addOption(el,questionId) {
+
+    if(data[questionId]['question_type'] == 'multiple_choice'){
+      el = multipleChoiceOptionAdd(el,questionId);
+    }else{
+      el = checkboxOptionAdd(el, questionId);
+    }
+    return el;
+  }
+
+  function returnAnswerContainer(el) { //el = main question format
+    return el.find('.answer form');
+  }
+  function textAnsFormat(questionId) {
+    var answer = $("#text_answer_format").clone();
+    answer = removeId(answer);
+    answer.removeClass("d-none");
+    answer.html(data[questionId]['answer']);
+    if('score' in data[questionId]){
+      if(data[questionId]['score'] == 1){
+        answer.removeClass('bg-light')
+        answer.addClass('correct');
+      }else{
+        answer.removeClass('bg-light')
+        answer.addClass('wrong');
+      }
+
+    }
+    return answer;
+  }
+  function shortAnswerFormat(answerFormat,questionId) {
+
+    var answerInput = $("#short_answer_intput");
+    answerInput = removeId(answerInput);
+    answerInput.removeClass("d-none");
+    answerInput.find("input").attr("name",questionId);
+    answerFormat.append(answerInput);
+    return answerFormat;
+  }
+  function paragraphAnswerFormat(answerFormat,questionId) {
+    var answerInput = $("#paragraph_input");
+    answerInput = removeId(answerInput);
+    answerInput.removeClass("d-none");
+    answerInput.find("textarea").attr("name",questionId);
+    answerFormat.append(answerInput);
+    return answerFormat;
+  }
+
+  function makeAnswerFormat(el,questionId) {  //el = Main Question Format / questionFormatClone
+    var answerContainer = returnAnswerContainer(el);  // return answer container (.answer form)
+    var answerFormat = $("#"+data[questionId]['question_type']+"_format").clone();
+    answerFormat = removeId(answerFormat);
+    answerFormat.removeClass("d-none");
+    if(data[questionId]['question_type'] == "short_answer"){
+      answerFormat = shortAnswerFormat(answerFormat,questionId);
+    }
+    else if(data[questionId]['question_type'] == "paragraph"){
+      answerFormat = paragraphAnswerFormat(answerFormat,questionId);
+    }
+    else{
+      answerFormat = addOption(answerFormat,questionId);
+    }
+    answerContainer.append(answerFormat);
+    return el;
+  }
+
+  function anseredAnswerFormat() {
+    $("#answer_save_btn").addClass("d-none");
+    $("#answer_save_btn").attr("disabled","true");
+  }
+
+  function setUpAnswerFormat(el,questionId){ // el = questionFormatClone
+    el = makeAnswerFormat(el,questionId)
+    return el;
+  }
+  function readyForAnswer(questionId) {
+    var questionType = data[questionId]['question_type'];
+    if(questionType == 'short_answer' || questionType == 'paragraph'){
+      data[questionId]['answer'] = "";
+    }else{
+      data[questionId]['answer'] = [];
+    }
+  }
+
+  function setUpQuestion(el,questionId) { // el = question element
+    el.attr("id",questionId);
+    el.removeClass("d-none");
+    el.find(".question").html(data[questionId]['question']);
+    return el;
+  }
+
+  function loadHTMl() {
+    var questionContainer = $('.questionContainer');
+    var questionFormat = $('#questionFormat');
+    $.each(data, function(key,val){
+      questionIDs.push(key);
+      questionOptionsIds.push(0);
+      readyForAnswer(key);
+      var questionFormatClone = questionFormat.clone();
+      questionFormatClone = removeId(questionFormatClone);
+      questionFormatClone.removeClass('d-none');
+      questionFormatClone = setUpQuestion(questionFormatClone,key);
+      questionFormatClone = setUpAnswerFormat(questionFormatClone,key);
+      questionContainer.append(questionFormatClone);
+    });
+
+  }
+  console.log(questionRetriveUrl)
+  $.ajax({
+    url: questionRetriveUrl,
+    type: 'get',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function (responseData) {
+      while(!responseData){
+
+      }
+      // window.location.replace("/question/"+ learnId +"/edit");
+      data = JSON.parse(responseData['content']);
+      loadHTMl();
+      // console.log(responseData);
+    },
+  });
+});
+
+//Called when keyup on short answering
+function anwerShortAnswer(el) {
+  var questionId = el.parents("li").attr("id");
+  data[questionId]['answer'] = el.val();
+}
+
+function answerParagraph(el){
+  var questionId = el.parents("li").attr("id");
+  data[questionId]['answer'] = el.val();
+}
+
+function answerMultipleChoice(el) {
+  var questionId = el.parents("li").attr("id");
+  if(el.is(":checked")){
+    data[questionId]['answer'] = [];
+    data[questionId]['answer'].push(el.attr("id"));
+  }else{
+    data[questionId]['answer'] = [];
+  }
+}
+
+function answerCheckbox(el) {
+  var questionId = el.parents("li").attr("id");
+  var optionId = el.attr("id");
+  if(el.is(':checked')){
+    data[questionId]['answer'].push(optionId);
+  }
+  else{
+    if(data[questionId]['answer'].includes(optionId)) {
+      var index = data[questionId]['answer'].indexOf(optionId);
+      data[questionId]['answer'].splice(index,1);
+    }
+  }
+}
+
+function submitAnswer() {
+  // console.log(data);
+  $.ajax({
+    url: answerSubmitUrl,
+    type: 'post',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function (responseData) {
+      while(!responseData){
+
+      }
+      setSession('answerSubmit','Answer Submitted');
+      window.location.replace("/subjects/subscribed");
+
+    },
+    data: JSON.stringify(data)
+  });
+
+}

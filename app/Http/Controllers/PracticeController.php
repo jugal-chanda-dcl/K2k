@@ -15,7 +15,7 @@ class PracticeController extends Controller
     }
     public function topics(Subject $subject)
     {
-      return view('practice.questions',['subject'=>$subject]);
+      return view('practice.topic_questions',['subject'=>$subject]);
     }
     /**
      * Display a listing of the resource.

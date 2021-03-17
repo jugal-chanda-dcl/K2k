@@ -173,7 +173,7 @@ function questionSave(){
       while(!responseData){
 
       }
-      window.location.replace("/question/"+ learnId +"/edit");
+      // window.location.replace("/question/"+ learnId +"/edit");
 
 
     },

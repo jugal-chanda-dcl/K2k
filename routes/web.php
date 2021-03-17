@@ -90,6 +90,7 @@ Route::post('/question/{question}/updaatePracticeLimit','QuestionController@upda
 Route::get('/learn/{learn}/questions','QuestionController@show')->name('learn.questions')->middleware('roleauth');
 Route::get('/learn/{learn}/review/answers','AnswerController@review_answers')->name('answer.review_answers')->middleware('roleauth');
 Route::get('/answers/{answer}','AnswerController@answer_scripts')->name('answer.script')->middleware('roleauth');
+Route::get('/answers/submit/question/{question}/view','AnswerController@submitView')->name('answer.submit_view');
 
 Route::get('/practices/subjects','PracticeController@subjects')->name('practices.subjects')->middleware('roleauth');
 Route::get('/practices/{subject}/topics','PracticeController@topics')->name('practices.topics')->middleware('roleauth');

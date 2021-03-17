@@ -16,6 +16,13 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function submitView(Question $question)
+    {
+      return view('question.answer_submit',[
+        'question' => $question
+      ]);
+    }
+
     public function review_answers(Learn $learn)
     {
      $question = $learn->question;
