@@ -30,7 +30,7 @@
       </div>
     @endif
   </div>
-  <input type="text" name="information" value="" hidden readonly url="" subUrl = "" answered="" questionRetriveUrl =" {{ route('question.retrive',['question' => $question]) }} ">
+  <input type="text" name="information" value="" hidden readonly url="" subUrl = "{{ route('answer.store',['question' => $question,'user'=>Auth::user()]) }}" answered="" questionRetriveUrl =" {{ route('question.retrive',['question' => $question]) }} ">
   <div class="card-body question_conatiner">
     <!-- Question -->
   <ol class="questionContainer">

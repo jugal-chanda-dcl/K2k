@@ -17,6 +17,7 @@ var questionOptionsIds = [];
 
 
 var questionRetriveUrl = $("input[name='information']").attr('questionRetriveUrl');
+var subUrl = $("input[name='information']").attr('subUrl');
 
 var data = ""
 
@@ -285,7 +286,7 @@ function answerCheckbox(el) {
 function submitAnswer() {
   // console.log(data);
   $.ajax({
-    url: answerSubmitUrl,
+    url: subUrl,
     type: 'post',
     dataType: 'json',
     contentType: 'application/json',
@@ -295,7 +296,6 @@ function submitAnswer() {
       }
       setSession('answerSubmit','Answer Submitted');
       window.location.replace("/subjects/subscribed");
-
     },
     data: JSON.stringify(data)
   });
