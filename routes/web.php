@@ -86,8 +86,8 @@ Route::resource('/contentDeveloperProfile', 'ContentDeveloperProfileController')
 Route::get('/question/{learn}/create','QuestionController@create')->name('question.create')->middleware('roleauth');
 Route::get('/question/{question}/edit','QuestionController@edit')->name('question.edit')->middleware('roleauth');
 Route::post('/question/{question}/updaatePracticeLimit','QuestionController@updatePracticeLimit')->name('question.update_practice_limit')->middleware('roleauth');
-
-Route::get('/learn/{learn}/questions','QuestionController@show')->name('learn.questions')->middleware('roleauth');
+// Route::get('/question/{question}','QuestionController@show')->name('question.show')->middleware('roleauth');
+// Route::get('/learn/{learn}/questions','QuestionController@show')->name('learn.questions')->middleware('roleauth');
 Route::get('/learn/{learn}/review/answers','AnswerController@review_answers')->name('answer.review_answers')->middleware('roleauth');
 Route::get('/answers/{answer}','AnswerController@answer_scripts')->name('answer.script')->middleware('roleauth');
 Route::get('/answers/submit/question/{question}/view','AnswerController@submitView')->name('answer.submit_view')->middleware('roleauth');

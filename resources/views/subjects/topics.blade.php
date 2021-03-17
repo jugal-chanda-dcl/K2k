@@ -45,8 +45,10 @@
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.learn')))
             <a href="{{route('topic.learn',['topic'=>$topic])}}" class="btn btn-info btn-sm">Learn</a>
             @endif
-            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('learn.questions')))
-            <a href="{{ route('learn.questions',['learn'=>$topic->learn]) }}" class="btn btn-sm btn-info">View Questions and Practice</a>
+            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('answer.submit_view')))
+              @if($topic->learn->question)
+                <a href="{{ route('answer.submit_view',['question'=>$topic->learn->question]) }}" class="btn btn-sm btn-info">View Questions and Practice</a>
+              @endif
             @endif
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('topic.destroy')))
             <form class="d-inline" action="{{ route('topic.destroy',['topic'=>$topic->id]) }}" method="post">
