@@ -24,5 +24,6 @@ Route::post('/questions/{question}/edit/','QuestionController@update')->name('qu
 // Route::post('/questions/destroy','QuestionController@destroy')->name('question.destroy');
 Route::post('/answer/submit/{question}/{user}','AnswerController@store')->name('answer.store');
 Route::post('/answer/{answer}/update','AnswerController@update')->name('answer.update');
+Route::get('/answer/{answer}/retrive','AnswerController@retrive')->name('answer.retrive');
 
 Route::get('/subject/{subject}/toggle/aprove','SubjectController@toggleAprove')->name('subject.toggle_aprove');

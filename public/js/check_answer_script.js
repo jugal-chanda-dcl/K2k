@@ -14,10 +14,10 @@ function showtoastr(type,key) {
 var questionIDs = [];
 var questionIdFormat = "q_";
 var questionOptionsIds = [];
-var learnId = $("input[name='learn_id']").val();
-var retriveURL = $("input[name='learn_id']").attr('url');
-var answerSubmitUrl = $("input[name='learn_id']").attr('subUrl');
-var redirectUrl = $("input[name='learn_id']").attr('redirectUrl');
+
+var retriveURL = $("input[name='information']").attr('retriveURL');
+var subUrl = $("input[name='information']").attr('subUrl');
+// var redirectUrl = $("input[name='learn_id']").attr('redirectUrl');
 var data = ""
 var total = 2;
 var totalScore = 0;
@@ -28,7 +28,7 @@ $( document ).ready(function() {
     if(data[questionId]['answer'].includes(optionId)){
       if(data[questionId]['options_answer'].includes(optionId)){
         el.addClass("correct");
-        data[questionId]['score']=data[questionId]['score']+(1/Object.keys(data[questionId]['options']).length );
+        data[questionId]['score']=data[questionId]['score']+(1/Object.keys(data[questionId]['options_answer']).length );
       }else{
         el.addClass("wrong");
       }
@@ -178,6 +178,7 @@ $( document ).ready(function() {
       var questionFormatClone = questionFormat.clone();
       questionFormatClone = removeId(questionFormatClone);
       questionFormatClone.removeClass('d-none');
+      data[key]['score'] = 0;
       questionFormatClone = setUpQuestion(questionFormatClone,key);
       questionFormatClone = setUpAnswerFormat(questionFormatClone,key);
       var scoreboard = questionFormatClone.find(".score");
@@ -197,8 +198,10 @@ $( document ).ready(function() {
       while(!responseData){
 
       }
+      console.log(responseData);
+      total =  responseData['total'];
       // window.location.replace("/question/"+ learnId +"/edit");
-      data = JSON.parse(responseData);
+      data = JSON.parse(responseData['answer']);
       loadHTMl();
       // console.log(data);
     },
@@ -225,12 +228,11 @@ function wrong(el) {
 
 function submitAnswer() {
   // console.log(data);
-  data['totalQuestion']=questionIDs.length;
   data['totalScore'] = totalScore;
   data['checked'] = 1;
 
   $.ajax({
-    url: answerSubmitUrl,
+    url: subUrl,
     type: 'post',
     dataType: 'json',
     contentType: 'application/json',
@@ -239,7 +241,7 @@ function submitAnswer() {
 
       }
       setSession('scriptChecked','Script Checked');
-      window.location.replace(redirectUrl);
+      console.log(responseData);
 
     },
     data: JSON.stringify(data)

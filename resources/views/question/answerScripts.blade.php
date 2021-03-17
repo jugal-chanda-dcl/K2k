@@ -19,7 +19,7 @@
 
 <div class="card">
   <div class="card-header">Answer script of {{ $answer->user->name }}</div>
-  <input type="text" name="learn_id" value="{{ $answer->question->learn->id }}" hidden readonly url="{{ route('question.retrive',['learn'=> $answer->question->learn,'user'=>$answer->user])}}" subUrl = "{{ route('answer.update',['answer'=>$answer]) }}" redirectUrl = "{{ route('answer.review_answers',['learn'=>$answer->question->learn]) }}">
+  <input type="text" name="information" value="" hidden readonly retriveURL="{{ route('answer.retrive',['answer'=>$answer]) }}" subUrl = "{{ route('answer.update',['answer'=>$answer]) }}" redirectUrl = "">
   <div class="card-body question_conatiner">
     <!-- Question -->
   <ol class="questionContainer">

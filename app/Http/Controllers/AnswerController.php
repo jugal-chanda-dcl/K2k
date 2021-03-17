@@ -28,6 +28,11 @@ class AnswerController extends Controller
       ]);
     }
 
+    public function retrive(Answer $answer)
+    {
+      return response()->json($answer,200);
+    }
+
     public function review_answers(Learn $learn)
     {
      $question = $learn->question;
@@ -106,15 +111,14 @@ class AnswerController extends Controller
     public function update(Request $request, Answer $answer)
     {
       $data = $request->all();
-      $totalQuestion = $data['totalQuestion'];
-      unset($data['totalQuestion']);
+
       $score = $data['totalScore'];
       unset($data['totalScore']);
       $checked = $data['checked'];
       unset($data['checked']);
+
       $answer->answer = json_encode($data);
       $answer->score = $score;
-      $answer->total = $totalQuestion;
       $answer->checked = true;
       $answer->save();
       return response()->json($data,200);

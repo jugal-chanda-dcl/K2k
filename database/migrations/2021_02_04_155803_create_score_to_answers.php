@@ -14,7 +14,7 @@ class CreateScoreToAnswers extends Migration
     public function up()
     {
         Schema::table('answers', function (Blueprint $table) {
-            $table->integer('score')->default(0);
+            $table->float('score',8,2)->default(0);
         });
     }
 
