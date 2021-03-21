@@ -58,10 +58,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'max:14', 'unique:users'],
-            'profession' => ['required', 'string'],
-            'address' => ['required', 'string'],
-            'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -87,13 +83,9 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'phone' => $data['phone'],
-            'profession' => $data['profession'],
-            'address' => $data['address'],
-            'birthdate' => $data['birthdate'],
             'password' => Hash::make($data['password']),
             'role_id' => $data['role_id'],
-            'age' => Carbon::parse($data['birthdate'])->diffInDays($now)
+
         ]);
 
     }
@@ -105,9 +97,6 @@ class RegisterController extends Controller
           'name' => ['required', 'string', 'max:255'],
           'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
           'phone' => ['required', 'string', 'max:14', 'unique:admins'],
-          'profession' => ['required', 'string'],
-          'address' => ['required', 'string'],
-          'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
           'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -116,11 +105,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $data['phone'],
-            'profession' => $data['profession'],
-            'address' => $data['address'],
-            'birthdate' => $data['birthdate'],
             'password' => Hash::make($request->password),
-            'age' => Carbon::parse($data['birthdate'])->diffInDays($now)
         ]);
         return redirect()->intended('login/admin');
     }

@@ -46,6 +46,7 @@ return array(
     'App\\Learn' => $baseDir . '/app/Learn.php',
     'App\\Permission' => $baseDir . '/app/Permission.php',
     'App\\Practice' => $baseDir . '/app/Practice.php',
+    'App\\Profile' => $baseDir . '/app/Profile.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

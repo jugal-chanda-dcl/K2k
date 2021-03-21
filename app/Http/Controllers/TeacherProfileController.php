@@ -6,6 +6,8 @@ use App\TeacherProfile;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use Carbon\Carbon;
+use App\Profile;
 class TeacherProfileController extends Controller
 {
     /**
@@ -42,12 +44,16 @@ class TeacherProfileController extends Controller
         Session::flash('status',"Already profile created. You can update your profile");
         return redirect()->back();
       }
+      $now = Carbon::now();
       $validatedData = $request->validate([
         'year_of_experience' => 'required',
         'specilization' => 'required',
-        'avatar' => 'required|image'
+        'avatar' => 'required|image',
+        'phone' => ['required', 'string', 'max:14', 'unique:profiles'],
+        'profession' => ['required', 'string'],
+        'address' => ['required', 'string'],
+        'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
       ]);
-      // dd($validatedData['content']);
       $specilization = $request->input('specilization');
       $dom = new \DomDocument();
       $dom->loadHtml($specilization, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -73,6 +79,15 @@ class TeacherProfileController extends Controller
       $avatar_new_name = time().$avatar->getClientOriginalName();
       $avatar->move('upload/avatars',$avatar_new_name);
 
+      $profile = Profile::create([
+        'user_id' => $user->id,
+        'phone' => $validatedData['phone'],
+        'profession' => $validatedData['profession'],
+        'address' => $validatedData['address'],
+        'birthdate' => $validatedData['birthdate'],
+        'age' => Carbon::parse($validatedData['birthdate'])->diffInDays($now)
+
+      ]);
       $teacherProfile = TeacherProfile::create([
         'user_id' => $user->id,
         'year_of_experience' => $validatedData['year_of_experience'],

@@ -523,6 +523,7 @@ class ComposerStaticInitac7d8f8372b2954c3925b98bdbd25dfa
         'App\\Learn' => __DIR__ . '/../..' . '/app/Learn.php',
         'App\\Permission' => __DIR__ . '/../..' . '/app/Permission.php',
         'App\\Practice' => __DIR__ . '/../..' . '/app/Practice.php',
+        'App\\Profile' => __DIR__ . '/../..' . '/app/Profile.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

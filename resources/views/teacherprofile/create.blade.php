@@ -29,7 +29,52 @@
           @enderror
         </div>
 
-        <div class="form-group mx-2">
+        <div class="form-group">
+          <label for="phone" class="">{{ __('Phone') }}</label>
+          <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+          @error('phone')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="profession" class="">{{ __('profession') }}</label>
+          <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ old('profession') }}" required autocomplete="profession">
+
+          @error('profession')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="address" class="">{{ __('address') }}</label>
+          <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+
+          @error('address')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="birthdate" class="">{{ __('birthdate') }}</label>
+
+          <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" required autocomplete="birthdate">
+
+          @error('birthdate')
+          <span class="invalid-feedback" role="alert">
+           <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="form-group">
             <label for="year_of_experience" class="">Years of experience</label>
             <input id="year_of_experience" type="number" class="form-control @error('year_of_experience') is-invalid @enderror" name="year_of_experience" value="{{ old('year_of_experience') }}" required autocomplete="year_of_experience" min="1">
             @error('year_of_experience')
@@ -39,7 +84,7 @@
             @enderror
         </div>
 
-        <div class="form-group mx-2">
+        <div class="form-group">
           <label for="specilization">Specilization</label>
           <textarea  id="specilization" name="specilization" class="form-control @error('specilization') is-invalid @enderror" rows="8" cols="80">{{ old('specilization') }}</textarea>
           @error('specilization')
