@@ -132,6 +132,10 @@ class TeacherProfileController extends Controller
       $validatedData = $request->validate([
         'year_of_experience' => 'required',
         'specilization' => 'required',
+        'phone' => ['required', 'string', 'max:14'],
+        'profession' => ['required', 'string'],
+        'address' => ['required', 'string'],
+        'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
         // 'avatar' => 'required|image'
       ]);
       // dd($validatedData['content']);
@@ -168,6 +172,12 @@ class TeacherProfileController extends Controller
       }
 
       $teacherProfile->save();
+      $profile = $user->profile;
+      $profile->phone = $validatedData['phone'];
+      $profile->profession = $validatedData['profession'];
+      $profile->address = $validatedData['address'];
+      $profile->birthdate = $validatedData['birthdate'];
+      $profile->save();
       return redirect()->route('teacherProfile.index');
     }
 

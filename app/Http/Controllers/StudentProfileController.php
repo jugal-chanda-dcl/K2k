@@ -6,6 +6,8 @@ use App\StudentProfile;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
+use Carbon\Carbon;
+use App\Profile;
 
 class StudentProfileController extends Controller
 {
@@ -43,16 +45,30 @@ class StudentProfileController extends Controller
           Session::flash('status',"Already profile created. You can update your profile");
           return redirect()->back();
         }
+        $now = Carbon::now();
         $validatedData = $request->validate([
           'class' => 'required',
           'institute' => 'required',
           'study_focus' => 'required',
           'group' => 'required',
-          'avatar' => 'required|image'
+          'avatar' => 'required|image',
+          'phone' => ['required', 'string', 'max:14', 'unique:profiles'],
+          'profession' => ['required', 'string'],
+          'address' => ['required', 'string'],
+          'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
         ]);
         $avatar = $request->avatar;
         $avatar_new_name = time().$avatar->getClientOriginalName();
         $avatar->move('upload/avatars',$avatar_new_name);
+        $profile = Profile::create([
+          'user_id' => $user->id,
+          'phone' => $validatedData['phone'],
+          'profession' => $validatedData['profession'],
+          'address' => $validatedData['address'],
+          'birthdate' => $validatedData['birthdate'],
+          'age' => Carbon::parse($validatedData['birthdate'])->diffInDays($now)
+
+        ]);
         $studentProfile = StudentProfile::create([
           'user_id' => $user->id,
           'class' => $validatedData['class'],
@@ -101,7 +117,18 @@ class StudentProfileController extends Controller
         'institute' => 'required',
         'study_focus' => 'required',
         'group' => 'required',
+        'phone' => ['required', 'string', 'max:14'],
+        'profession' => ['required', 'string'],
+        'address' => ['required', 'string'],
+        'birthdate' => 'required|date|date_format:Y-m-d|before: $now',
       ]);
+      $profile = $user->profile;
+      $profile->phone = $validatedData['phone'];
+      $profile->profession = $validatedData['profession'];
+      $profile->address = $validatedData['address'];
+      $profile->birthdate = $validatedData['birthdate'];
+      $profile->save();
+
       $studentProfile = $user->studentProfile;
       $studentProfile->class = $validatedData['class'];
       $studentProfile->institute = $validatedData['institute'];

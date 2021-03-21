@@ -64,25 +64,44 @@ img{
       </tr>
       <tr>
         <td>Phone</td>
-        <td>{{ $user->phone }}</td>
+
+        <td>
+        @if($user->profile)
+        {{ $user->profile->phone }}
+        @endif
+        </td>
       </tr>
       <tr>
         <td>Profession</td>
-        <td>{{ $user->profession }}</td>
+        <td>
+        @if($user->profile)
+        {{ $user->profile->profession }}
+        @endif
+        </td>
+
       </tr>
       <tr>
         <td>Address</td>
-        <td>{{ $user->address }}</td>
+        <td>
+        @if($user->profile)
+        {{ $user->profile->address }}
+        @endif
+        </td>
       </tr>
       <tr>
         <td>Birthdate</td>
-        <td>{{ $user->birthdate }}</td>
+        <td>
+        @if($user->profile)
+        {{ $user->profile->birthdate }}
+        @endif
+        </td>
       </tr>
       <tr>
         <td>Age</td>
         <td>
+        @if($user->profile)
           <?php
-          $age = $user->age;
+          $age = $user->profile->age;
           $year = intdiv($age,365);
           if($year == 0)
           {
@@ -110,6 +129,8 @@ img{
           }
 
           ?>
+          @endif
+
         </td>
       </tr>
       <tr>

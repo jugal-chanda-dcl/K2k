@@ -106,6 +106,13 @@ INSERT INTO `permissions` (`id`, `name`, `key`, `controller`, `method`, `created
 (110, '(Teacher) Approve Subscription ', NULL, 'App\\Http\\Controllers\\SubjectController', 'aproveSubscription', '2021-02-24 18:52:35', '2021-02-24 18:52:35');
 
 
+
+INSERT INTO `roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Student', 'This role is for student', NULL, NULL),
+(2, 'Teacher', 'This role is for teacher', NULL, NULL),
+(3, 'Content Developer', 'This role is for content developer', NULL, NULL);
+
+
 INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (2, 52, 1, NULL, NULL),
 (3, 53, 1, NULL, NULL),
@@ -169,10 +176,6 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `
 
 
 
-INSERT INTO `roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Student', 'This role is for student', NULL, NULL),
-(2, 'Teacher', 'This role is for teacher', NULL, NULL),
-(3, 'Content Developer', 'This role is for content developer', NULL, NULL);
 
 
 

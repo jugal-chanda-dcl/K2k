@@ -30,6 +30,51 @@
           @enderror
         </div>
 
+        <div class="form-group">
+          <label for="phone" class="">{{ __('Phone') }}</label>
+          <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $user->profile->phone }}" required autocomplete="phone">
+
+          @error('phone')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="profession" class="">{{ __('profession') }}</label>
+          <input id="profession" type="text" class="form-control @error('profession') is-invalid @enderror" name="profession" value="{{ $user->profile->profession }}" required autocomplete="profession">
+
+          @error('profession')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="address" class="">{{ __('address') }}</label>
+          <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $user->profile->address }}" required autocomplete="address">
+
+          @error('address')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="birthdate" class="">{{ __('birthdate') }}</label>
+
+          <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ $user->profile->birthdate }}" required autocomplete="birthdate">
+
+          @error('birthdate')
+          <span class="invalid-feedback" role="alert">
+           <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+        </div>
+
         <div class="form-group mx-2">
             <label for="class" class="">Class</label>
             <input id="class" type="number" class="form-control @error('class') is-invalid @enderror" name="class" value="{{ $user->studentProfile->class }}" required autocomplete="class" min="1">
