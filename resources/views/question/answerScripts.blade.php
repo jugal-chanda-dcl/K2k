@@ -47,13 +47,10 @@
   </div>
 </li>
 <div class="form-group d-none mt-2" id="short_answer_format">
-  <button type="button" name="button" onclick="right($(this))" class="btn btn-success btn-sm mt-2">Right</button>
-  <button type="button" name="button" onclick="wrong($(this))" class="btn btn-danger btn-sm mt-2">Wrong</button>
-  <!-- <input type="text" name="" value="" class="form-control" onkeyup="anwerShortAnswer($(this))"> -->
+  <input type="number" name="" value="0" min="0" placeholder="Mark" onkeyup="scoreInput($(this))"> <span>Maximum Mark: <span class="max_mark">4</span> </span>
 </div>
 <div class="form-group d-none mt-2" id="paragraph_format">
-  <button type="button" name="button" onclick="right($(this))" class="btn btn-success btn-sm mt-2">Right</button>
-  <button type="button" name="button" onclick="wrong($(this))" class="btn btn-danger btn-sm mt-2">Wrong</button>
+  <input type="number" name="" value="0" min="0" placeholder="Mark" onkeyup="scoreInput($(this))"> <span>Maximum Mark: <span class="max_mark">4</span> </span>
 </div>
 <div class="d-none bg-light px-2 py-1 mt-2" id="text_answer_format" style="min-height: 50px;">
 

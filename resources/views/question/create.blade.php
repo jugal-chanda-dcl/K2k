@@ -38,6 +38,13 @@
 
               </div>
             </div>
+            <div class="question_mark">
+              <div class="form-group">
+                <label for="">Mark</label>
+                <input type="number" name="mark" value="1" class="form-control" min="1" onkeyup="question_mark($(this))">
+              </div>
+
+            </div>
           </div>
         </form>
       </div>
@@ -72,6 +79,13 @@
           <div class="answerInput">
 
           </div>
+        </div>
+        <div class="question_mark">
+          <div class="form-group">
+            <label for="">Mark</label>
+            <input type="number" name="mark" value="1" class="form-control" min="1" onkeyup="question_mark($(this))">
+          </div>
+
         </div>
       </div>
     </form>

@@ -17,6 +17,7 @@ var subUrl = $("input[name='learn_id']").attr('subUrl');
      'question_type' : "",
      'options': {},
      'options_answer' : [],
+     'mark' : 1,
    }
  };
 
@@ -27,6 +28,7 @@ function initializeData() {
     'question_type' : "",
     'options': {},
     'options_answer' : [],
+    'mark' : 1,
   };
 }
 
@@ -121,6 +123,15 @@ function addAnotherOption(el) {
     checkInput.attr("name",optionId);
   }
   el.before(optionFormat);
+}
+
+
+// Add Individual Question Mark
+
+function question_mark(qustion_mark) {
+  var questionId = qustion_mark.parents(".questionCard").attr("id");
+  data[questionId]['mark'] = qustion_mark.val();
+  console.log(data);
 }
 
 

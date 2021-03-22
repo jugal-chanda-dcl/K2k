@@ -19,7 +19,7 @@ var retriveURL = $("input[name='information']").attr('retriveURL');
 var subUrl = $("input[name='information']").attr('subUrl');
 // var redirectUrl = $("input[name='learn_id']").attr('redirectUrl');
 var data = ""
-var total = 2;
+var total = 0;
 var totalScore = 0;
 var isAnswered = 1;
 
@@ -28,7 +28,7 @@ $( document ).ready(function() {
     if(data[questionId]['answer'].includes(optionId)){
       if(data[questionId]['options_answer'].includes(optionId)){
         el.addClass("correct");
-        data[questionId]['score']=data[questionId]['score']+(1/Object.keys(data[questionId]['options_answer']).length );
+        data[questionId]['score']=data[questionId]['score']+(data[questionId]['mark']/Object.keys(data[questionId]['options_answer']).length );
       }else{
         el.addClass("wrong");
       }
@@ -144,15 +144,25 @@ $( document ).ready(function() {
     return el;
   }
 
+  function setUpForScoreInput(answerFormat,questionId) {
+    var scoreInput = answerFormat.find("input");
+    scoreInput.attr('max',data[questionId]['mark']);
+    var maxMark = answerFormat.find(".max_mark");
+    maxMark.text(data[questionId]['mark']);
+    return answerFormat;
+  }
+
   function makeAnswerFormat(el,questionId) {  //el = Main Question Format / questionFormatClone
     var answerContainer = returnAnswerContainer(el);  // return answer container (.answer form)
     var answerFormat = $("#"+data[questionId]['question_type']+"_format").clone();
     answerFormat = removeId(answerFormat);
     answerFormat.removeClass("d-none");
     if(data[questionId]['question_type'] == "short_answer"){
+      answerFormat = setUpForScoreInput(answerFormat,questionId);
       answerFormat.append(textAnsFormat(questionId));
     }
     else if(data[questionId]['question_type'] == "paragraph"){
+      answerFormat = setUpForScoreInput(answerFormat,questionId);
       answerFormat.append(textAnsFormat(questionId));
     }
     else{
@@ -185,7 +195,9 @@ $( document ).ready(function() {
       scoreboard = showScore(scoreboard,key);
       totalScore+=data[key]['score'];
       questionContainer.append(questionFormatClone);
+      total+= parseInt(data[key]['mark']);
     });
+    console.log(total);
 
   }
 
@@ -199,7 +211,7 @@ $( document ).ready(function() {
 
       }
       console.log(responseData);
-      total =  responseData['total'];
+      total = 0;
       // window.location.replace("/question/"+ learnId +"/edit");
       data = JSON.parse(responseData['answer']);
       loadHTMl();
@@ -209,27 +221,24 @@ $( document ).ready(function() {
   });
 });
 
-// Called when teacher press right btn for short answer and paragraph answer
-function right(el) {
-  var questionId = el.parents("li").attr("id");
-  data[questionId]['score'] = 1;
-  totalScore+=data[questionId]['score'];
-  console.log(el.parents("li").find('.score'));
-  el.parents("li").find('.score').text(data[questionId]['score']);
-}
 
-// Called when teacher press right btn for short answer and paragraph answer
-function wrong(el) {
-  var questionId = el.parents("li").attr("id");
-  data[questionId]['score'] = 0;
-  totalScore+=data[questionId]['score'];
-  el.parents("li").find('.score').text(data[questionId]['score']);
+function scoreInput(el) {
+  if(el.val()){
+    var questionId = el.parents("li").attr("id");
+    data[questionId]['score'] = parseFloat(el.val());
+    totalScore+= data[questionId]['score'];
+    console.log(totalScore);
+    el.parents("li").find('.score').text(data[questionId]['score']);
+  }
+
+
 }
 
 function submitAnswer() {
   // console.log(data);
   data['totalScore'] = totalScore;
   data['checked'] = 1;
+  data['total'] = total;
 
   $.ajax({
     url: subUrl,
