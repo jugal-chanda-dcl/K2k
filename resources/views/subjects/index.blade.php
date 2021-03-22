@@ -21,6 +21,7 @@
         <tr>
           <th scope="col">Subject Name</th>
           <th scope="col">Class</th>
+          <th scope="col">Rating</th>
           <!-- if auth user is teacher  -->
           @if(Auth::user()->role->id == 2)
               <th scope="col">Auto Aprove</th>
@@ -34,12 +35,14 @@
         <tr>
           <td>{{$subject->name}}</td>
           <td>{{ $subject->class }}</td>
+          <td>{{ $subject->rating }}</td>
           @if(Auth::user()->role->id == 2)
           <td>
             <input type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" onchange="toggleAutoAprove($(this))"  data-url="{{ route('subject.toggle_aprove',['subject'=>$subject]) }}"  @if($subject->auto_aprove) checked @endif >
           </td>
           @endif
           <td class="">
+            <a href="{{ route('rating.create',['subject' => $subject ]) }}">Give Rating</a>
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.destroy')))
             <form class="d-inline" action="{{ route('subject.destroy',['subject'=>$subject->id])}}" method="post">
                   @csrf

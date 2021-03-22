@@ -98,3 +98,6 @@ Route::get('/practices/{subject}/topics','PracticeController@topics')->name('pra
 Route::get('/file/{file}/delete','FileController@destroy')->name('file.delete')->middleware('roleauth');
 Route::get('/show-pdf/{file}','FileController@show')->name('file.show');
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');
+
+Route::get('rating/create/subject/{subject}','RatingController@create')->name('rating.create');
+Route::post('rating/create/subject/{subject}','RatingController@store')->name('rating.store');
