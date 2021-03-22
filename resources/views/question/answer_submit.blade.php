@@ -20,10 +20,16 @@
 
 @endsection
 @section('content')
+@php
+  $attempts = $question->answers()->where('user_id',Auth::user()->id)->count();
+  $limit = $question->practice_limit;
+@endphp
 
 <div class="card">
   <div class="card-header">
     Question
+    <span>(<span class="text-danger text-bold">{{ $attempts }}</span> Attempts <span class="text-success">{{ $limit-$attempts }}</span> Remaining)</span>
+    <span>( <span  class="text-danger" style="font-weight: bolder:">Highest Score: {{ $question->answers()->where('user_id',Auth::user()->id)->max('score') }} out of {{ $question->answers()->where('user_id',Auth::user()->id)->max('total') }}</span> )</span>
     @if (session('status'))
       <div class="alert alert-success" role="alert">
         {{ session('status') }}
