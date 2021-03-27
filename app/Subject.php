@@ -26,6 +26,10 @@ class Subject extends Model
     {
       return $this->belongsToMany(User::class,'subscriptions');
     }
+    public function ratings()
+    {
+      return $this->hasMany(Rating::class);
+    }
 
     public function getAproveAttribute()
     {

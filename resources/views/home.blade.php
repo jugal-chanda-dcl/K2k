@@ -50,6 +50,17 @@
               <div class="card-body">
                 <div class="">Total Topic: {{ $subject->topics()->count() }} Topics</div>
                 <div class="">Total Subscribed Students: {{ $subject->users()->wherePivot('is_aproved',1)->count() }} Students</div>
+                <div class="">
+                  <h5>
+                    Rating:
+                    @if($subject->ratings()->count() > 0)
+                    {{ $subject->ratings()->avg('rating') }}
+                    @else
+                    No Rating Given
+                    @endif
+                  </h5>
+
+                </div>
               </div>
 
                 <div class="footer">

@@ -79,6 +79,12 @@ class User extends Authenticatable
     {
       return $this->hasOne(ContentDeveloperProfile::class);
     }
+    public function ratings()
+    {
+      return $this->hasMany(Rating::class);
+    }
+
+
 
     public function isPracticedLearn($questionId)
     {

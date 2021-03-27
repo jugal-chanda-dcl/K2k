@@ -40,11 +40,21 @@ class RatingController extends Controller
      */
     public function store(Request $request,Subject $subject)
     {
-        $rating = new Rating;
-        $rating->rating = $request['rating'];
-        $rating->user_id = Auth::user()->id;
-        $rating->subject_id = $subject->id;
-        $rating->save();
+        $user = Auth::user();
+        $rating = $user->ratings()->where('subject_id',$subject->id)->first();
+        if($rating)
+        {
+          $rating->rating = $request['rating'];
+          $rating->save();
+        }
+        else
+        {
+          $rating = new Rating;
+          $rating->rating = $request['rating'];
+          $rating->user_id = Auth::user()->id;
+          $rating->subject_id = $subject->id;
+          $rating->save();
+        }
         return redirect()->back();
     }
 
