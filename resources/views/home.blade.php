@@ -54,7 +54,7 @@
                   <h5>
                     Rating:
                     @if($subject->ratings()->count() > 0)
-                    {{ $subject->ratings()->avg('rating') }}
+                    {{ round($subject->ratings()->avg('rating')) }}
                     @else
                     No Rating Given
                     @endif

@@ -35,7 +35,7 @@
         <tr>
           <td>{{$subject->name}}</td>
           <td>{{ $subject->class }}</td>
-          <td>{{ $subject->rating }}</td>
+          <td>{{ round($subject->ratings()->avg('rating')) }}</td>
           @if(Auth::user()->role->id == 2)
           <td>
             <input type="checkbox" data-toggle="toggle" data-onstyle="success" data-offstyle="danger" onchange="toggleAutoAprove($(this))"  data-url="{{ route('subject.toggle_aprove',['subject'=>$subject]) }}"  @if($subject->auto_aprove) checked @endif >
