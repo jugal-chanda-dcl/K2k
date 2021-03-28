@@ -59,16 +59,18 @@
   </div>
   <div class="">
     <h1 class="text-center">Images/Documents</h1>
-    <ol>
+    <div class="row no-gutters">
       @foreach($learn->files as $file)
-      <li class="mb-1">
-        <a href="{{ asset($file->path) }}" class="btn btn-sm btn-info">View</a>
-        @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('file.delete')))
-          <a href="{{ route('file.delete',['file'=>$file]) }}" class="btn btn-sm btn-danger">Delete</a>
-        @endif
-      </li>
+        <div class="col-md-4 my-2">
+          <object type="" data="{{ asset($file->path) }}" style="width: 100%; height: 200px;"> </object>
+          <a href="{{ asset($file->path) }}" class="btn btn-sm btn-info">View</a>
+          @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('file.delete')))
+            <a href="{{ route('file.delete',['file'=>$file]) }}" class="btn btn-sm btn-danger">Delete</a>
+          @endif
+        </div>
       @endforeach
-    </ol>
+
+    </div>
   </div>
 </div>
 

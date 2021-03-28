@@ -1,30 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Mar 28, 2021 at 09:56 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
 
-SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `elearning`
---
-
---
--- Dumping data for table `admins`
---
 
 INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@admin.com', '', '$2y$10$ZXUXiRylsEOoB8qP7nZb5OZwoZYV0wvnXVqsXYb6B/TguKQUM0ZAi', 0, NULL, '2020-12-19 10:03:44', '2020-12-19 10:03:44');
@@ -43,47 +17,6 @@ INSERT INTO `files` (`id`, `path`, `learn_id`, `created_at`, `updated_at`, `type
 
 INSERT INTO `learns` (`id`, `topic_id`, `content`, `created_at`, `updated_at`) VALUES
 (3, 3, '<p>abcd</p>\n', '2021-03-28 07:45:32', '2021-03-28 07:45:32');
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2013_09_12_082156_create_roles_table', 1),
-(2, '2014_10_12_000000_create_users_table', 1),
-(3, '2014_10_12_100000_create_password_resets_table', 1),
-(4, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2020_11_12_075108_create_admins_table', 1),
-(6, '2020_11_12_112816_create_permissions_table', 1),
-(7, '2020_11_12_112944_create_permission_role_table', 1),
-(8, '2020_11_12_132039_create_subjects_table', 1),
-(9, '2020_11_13_074826_create_topics_table', 1),
-(10, '2020_11_13_102306_create_learns_table', 1),
-(11, '2020_11_14_083456_create_questions_table', 1),
-(12, '2020_11_14_102255_create_resources_table', 1),
-(13, '2020_11_15_081715_create_contents_table', 1),
-(14, '2020_11_15_114128_create_teacher_profiles_table', 1),
-(15, '2020_12_19_100809_create_student_profiles_table', 1),
-(16, '2020_12_20_094143_create_content_developer_profiles_table', 1),
-(17, '2021_01_24_025036_create_answers_table', 1),
-(18, '2021_02_04_155650_create_answered_to_answers', 1),
-(19, '2021_02_04_155803_create_score_to_answers', 1),
-(20, '2021_02_04_155948_create_total_to_answers', 1),
-(21, '2021_02_04_160211_create_checked_to_answers', 1),
-(22, '2021_02_10_022004_create_subscriptions_table', 1),
-(23, '2021_02_13_015526_add_avatar_to_student_profiles', 1),
-(24, '2021_02_13_022012_add_avatar_to_teacher_profiles', 1),
-(25, '2021_02_23_223134_add_is_aproved_to_subscriptions_table', 1),
-(26, '2021_02_23_223358_add_auto_aprove_to_subjects_table', 1),
-(27, '2021_03_16_135020_add_practice_limit_to_questions_table', 1),
-(28, '2021_03_17_160251_create_files_table', 1),
-(29, '2021_03_17_171753_add_type_to_files_table', 1),
-(30, '2021_03_21_134427_create_profiles_table', 1),
-(31, '2021_03_22_132127_create_ratings_table', 1);
-
---
--- Dumping data for table `permissions`
---
 
 INSERT INTO `permissions` (`id`, `name`, `key`, `controller`, `method`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'Facade\\Ignition\\Http\\Controllers\\HealthCheckController', 'Facade\\Ignition\\Http\\Controllers\\HealthCheckController', '2020-12-18 02:43:33', '2020-12-18 02:43:33'),
@@ -338,9 +271,3 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_completion`
 (4, 't1', 't1@teacher.com', NULL, 0, '$2y$10$oxE6NGWf..f0DK6F3YBj7usuSm4RxDERYN3gBgpYe2/0F6/Sk/FAK', NULL, 2, '2021-02-09 02:35:49', '2021-02-09 02:35:49'),
 (5, 's2', 's2@student.com', NULL, 0, '$2y$10$DKYjeyVgdDaR8d7wTXQ.OuxnprBOnILakHIjgjEzhGxWM4RaOWuru', NULL, 1, '2021-02-12 03:24:35', '2021-02-12 03:24:35'),
 (6, 's3', 's3@student.com', NULL, 0, '$2y$10$p5zM5LqUJKbPx4EDIP3Bnu5WBocoHOcHueClnBbwtin1N61YyDsQW', NULL, 1, '2021-02-12 03:28:07', '2021-02-12 03:28:07');
-SET FOREIGN_KEY_CHECKS=1;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
