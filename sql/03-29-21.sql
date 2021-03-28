@@ -1,18 +1,89 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 28, 2021 at 09:56 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
-INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@admin.com', '01521461643', 'Admin', 'Dhaka', '1986-01-01', '12773', '$2y$10$ZXUXiRylsEOoB8qP7nZb5OZwoZYV0wvnXVqsXYb6B/TguKQUM0ZAi', 0, NULL, '2020-12-19 10:03:44', '2020-12-19 10:03:44');
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-INSERT INTO `answers` (`id`, `user_id`, `question_id`, `answer`, `created_at`, `updated_at`, `answered`, `score`, `total`, `checked`) VALUES
-(1, 3, 3, '{\"q_1\":{\"question\":\"Question 1\",\"question_type\":\"short_answer\",\"options\":[],\"options_answer\":[],\"answer\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed enim odio, feugiat eget elementum et, imperdiet sed urna. Ut sapien risus, imperdiet quis posuere nec, dictum et ante. Curabitur volutpat at risus sed viverra. Sed id urna eros. Proin eu diam non neque\",\"score\":1},\"q_2\":{\"question\":\"Question 2000\",\"question_type\":\"multiple_choice\",\"options\":{\"q_2>O_1\":\"1\",\"q_2>O_2\":\"2\",\"q_2>O_3\":\"3\"},\"options_answer\":[\"q_2>O_2\"],\"answer\":[\"q_2>O_2\"],\"score\":1},\"q_3\":{\"question\":\"Question 3\",\"question_type\":\"checkbox\",\"options\":{\"q_3>O_1\":\"1\",\"q_3>O_2\":\"2\",\"q_3>O_3\":\"3\"},\"options_answer\":[\"q_3>O_2\",\"q_3>O_3\"],\"answer\":[\"q_3>O_1\",\"q_3>O_2\"],\"score\":0.5},\"q_4\":{\"question\":\"Question 4\",\"question_type\":\"paragraph\",\"options\":[],\"options_answer\":[],\"answer\":\"Ok\",\"score\":1}}', '2021-03-17 07:31:39', '2021-03-17 08:57:32', 1, 4, 4, 1),
-(2, 3, 3, '{\"q_1\":{\"question\":\"Question 1\",\"question_type\":\"short_answer\",\"options\":[],\"options_answer\":[],\"answer\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed enim odio, feugiat eget elementum et, imperdiet sed urna. Ut sapien risus, imperdiet quis posuere nec, dictum et ante. Curabitur volutpat at risus sed viverra. Sed id urna eros. Proin eu diam non neque\"},\"q_2\":{\"question\":\"Question 2000\",\"question_type\":\"multiple_choice\",\"options\":{\"q_2>O_1\":\"1\",\"q_2>O_2\":\"2\",\"q_2>O_3\":\"3\"},\"options_answer\":[\"q_2>O_2\"],\"answer\":[\"q_2>O_3\"]},\"q_3\":{\"question\":\"Question 3\",\"question_type\":\"checkbox\",\"options\":{\"q_3>O_1\":\"1\",\"q_3>O_2\":\"2\",\"q_3>O_3\":\"3\"},\"options_answer\":[\"q_3>O_2\",\"q_3>O_3\"],\"answer\":[\"q_3>O_2\",\"q_3>O_1\"]},\"q_4\":{\"question\":\"Question 4\",\"question_type\":\"paragraph\",\"options\":[],\"options_answer\":[],\"answer\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed enim odio, feugiat eget elementum et, imperdiet sed urna. Ut sapien risus, imperdiet quis posuere nec, dictum et ante. Curabitur volutpat at risus sed viverra. Sed id urna eros. Proin eu diam non neque\"}}', '2021-03-17 07:46:23', '2021-03-17 07:46:23', 1, 0, 4, 0);
+--
+-- Database: `elearning`
+--
 
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `email`, `phone`, `password`, `is_super`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@admin.com', '', '$2y$10$ZXUXiRylsEOoB8qP7nZb5OZwoZYV0wvnXVqsXYb6B/TguKQUM0ZAi', 0, NULL, '2020-12-19 10:03:44', '2020-12-19 10:03:44');
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`id`, `path`, `learn_id`, `created_at`, `updated_at`, `type`) VALUES
+(1, '/learn_image/16169175320.png', 3, '2021-03-28 07:45:32', '2021-03-28 07:45:32', 'file'),
+(2, '/learn_image/16169177460.pdf', 3, '2021-03-28 07:49:06', '2021-03-28 07:49:06', 'pdf');
+
+--
+-- Dumping data for table `learns`
+--
 
 INSERT INTO `learns` (`id`, `topic_id`, `content`, `created_at`, `updated_at`) VALUES
-(1, 1, '<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla suscipit dui in tempor consequat. Mauris felis tortor, eleifend vitae arcu id, efficitur interdum ipsum. Suspendisse potenti. Donec semper nulla id nibh elementum, vitae lacinia mi iaculis. Donec venenatis feugiat scelerisque. Aenean ac scelerisque augue, vitae tempus turpis. In sit amet ipsum ex. Sed nunc purus, varius eget cursus et, fermentum eu odio. Integer consectetur sit amet elit id iaculis. Mauris turpis enim, consectetur a lacinia sed, mattis sit amet leo. Quisque pellentesque, velit a blandit facilisis, ipsum odio convallis massa, interdum gravida turpis massa ut est.<p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Aliquam semper quis dui feugiat tempus. Nam sit amet sapien at nisl pellentesque dapibus ac et odio. Suspendisse potenti. Mauris finibus magna ac enim pharetra, ac eleifend quam egestas. In fringilla vestibulum turpis, at feugiat est convallis ac. Praesent luctus, nisl et semper malesuada, nibh velit gravida dolor, pulvinar imperdiet velit diam placerat tellus. Maecenas ultrices, nunc sed posuere mattis, augue neque mollis lectus, vel interdum lectus odio id libero. Maecenas dictum congue lectus. In egestas, est in egestas sagittis, felis turpis mollis metus, sed ultrices massa urna at urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Donec lacinia urna justo, ac cursus massa faucibus ut. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer id tempor ante.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Praesent et consequat quam. Vestibulum placerat sed sem sit amet pretium. Suspendisse sit amet mauris lectus. Maecenas molestie hendrerit nisi, at fermentum urna commodo fringilla. Nulla facilisi. Curabitur tellus massa, facilisis vitae pulvinar at, venenatis vel justo. Sed porta commodo eros nec mattis. Mauris imperdiet sed urna at venenatis. Donec ultricies quam lorem, vel consectetur tortor tincidunt in. Vivamus ac enim fringilla, auctor ante sed, consequat ligula.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Nam mattis justo et odio blandit commodo. Curabitur erat sapien, tristique vel sodales et, accumsan lobortis augue. Pellentesque consequat sollicitudin risus eu dictum. Nulla at placerat ipsum. Donec augue purus, bibendum eu dui in, vestibulum pretium massa. Sed vitae vehicula nisl. Maecenas tempus velit arcu, et sodales leo sollicitudin eget. Pellentesque aliquet risus sit amet rhoncus cursus. Donec vitae quam nisl. Maecenas et nisi id purus imperdiet tempor. Suspendisse semper ex ut tempor auctor. Curabitur vitae sagittis felis. In a interdum sem.</p><p style=\'margin-right: 0px; margin-bottom: 15px; margin-left: 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: \"Open Sans\", Arial, sans-serif; font-size: 14px;\'>Nulla dapibus sem eu sagittis dictum. Nunc rutrum magna id justo fringilla pretium. Donec felis nibh, feugiat ut lectus pretium, porttitor placerat tellus. Morbi volutpat tristique varius. Aliquam sed faucibus velit, eget sollicitudin magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec ex interdum dui blandit mollis a at nibh. Nulla nec orci arcu. Morbi mattis sit amet ante ut lobortis. Phasellus elit orci, faucibus eu massa condimentum, tincidunt vulputate massa. Integer eget tempor enim. Fusce vestibulum lacus magna, vitae tincidunt lorem faucibus at. Vivamus commodo nibh ex, nec euismod lectus pellentesque sed. Quisque hendrerit tempor ipsum eu ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p></p>\n', '2021-02-24 20:45:08', '2021-02-24 20:45:08');
+(3, 3, '<p>abcd</p>\n', '2021-03-28 07:45:32', '2021-03-28 07:45:32');
 
+--
+-- Dumping data for table `migrations`
+--
 
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2013_09_12_082156_create_roles_table', 1),
+(2, '2014_10_12_000000_create_users_table', 1),
+(3, '2014_10_12_100000_create_password_resets_table', 1),
+(4, '2019_08_19_000000_create_failed_jobs_table', 1),
+(5, '2020_11_12_075108_create_admins_table', 1),
+(6, '2020_11_12_112816_create_permissions_table', 1),
+(7, '2020_11_12_112944_create_permission_role_table', 1),
+(8, '2020_11_12_132039_create_subjects_table', 1),
+(9, '2020_11_13_074826_create_topics_table', 1),
+(10, '2020_11_13_102306_create_learns_table', 1),
+(11, '2020_11_14_083456_create_questions_table', 1),
+(12, '2020_11_14_102255_create_resources_table', 1),
+(13, '2020_11_15_081715_create_contents_table', 1),
+(14, '2020_11_15_114128_create_teacher_profiles_table', 1),
+(15, '2020_12_19_100809_create_student_profiles_table', 1),
+(16, '2020_12_20_094143_create_content_developer_profiles_table', 1),
+(17, '2021_01_24_025036_create_answers_table', 1),
+(18, '2021_02_04_155650_create_answered_to_answers', 1),
+(19, '2021_02_04_155803_create_score_to_answers', 1),
+(20, '2021_02_04_155948_create_total_to_answers', 1),
+(21, '2021_02_04_160211_create_checked_to_answers', 1),
+(22, '2021_02_10_022004_create_subscriptions_table', 1),
+(23, '2021_02_13_015526_add_avatar_to_student_profiles', 1),
+(24, '2021_02_13_022012_add_avatar_to_teacher_profiles', 1),
+(25, '2021_02_23_223134_add_is_aproved_to_subscriptions_table', 1),
+(26, '2021_02_23_223358_add_auto_aprove_to_subjects_table', 1),
+(27, '2021_03_16_135020_add_practice_limit_to_questions_table', 1),
+(28, '2021_03_17_160251_create_files_table', 1),
+(29, '2021_03_17_171753_add_type_to_files_table', 1),
+(30, '2021_03_21_134427_create_profiles_table', 1),
+(31, '2021_03_22_132127_create_ratings_table', 1);
+
+--
+-- Dumping data for table `permissions`
+--
 
 INSERT INTO `permissions` (`id`, `name`, `key`, `controller`, `method`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'Facade\\Ignition\\Http\\Controllers\\HealthCheckController', 'Facade\\Ignition\\Http\\Controllers\\HealthCheckController', '2020-12-18 02:43:33', '2020-12-18 02:43:33'),
@@ -117,11 +188,19 @@ INSERT INTO `permissions` (`id`, `name`, `key`, `controller`, `method`, `created
 (108, '(Teacher) All subscription', NULL, 'App\\Http\\Controllers\\SubjectController', 'subscriptions', '2021-02-24 05:35:01', '2021-02-24 05:35:01'),
 (109, '(Teacher) Delete Subscription', NULL, 'App\\Http\\Controllers\\SubjectController', 'deleteSubscription', '2021-02-24 06:31:56', '2021-02-24 06:31:56'),
 (110, '(Teacher) Approve Subscription ', NULL, 'App\\Http\\Controllers\\SubjectController', 'aproveSubscription', '2021-02-24 06:52:35', '2021-02-24 06:52:35'),
-(111, '(Teacher) Update Practice Limit', NULL, 'App\\Http\\Controllers\\QuestionController', 'updatePracticeLimit', '2021-03-17 00:20:41', '2021-03-17 00:20:41'),
-(112, '(Student) answer submit view', NULL, 'App\\Http\\Controllers\\AnswerController', 'submitView', '2021-03-17 00:20:41', '2021-03-17 00:20:41'),
-(113, '(Student) Show subjects for practices', NULL, 'App\\Http\\Controllers\\PracticeController', 'subjects', '2021-03-17 00:20:41', '2021-03-17 00:20:41'),
-(114, '(students) Show topics for practices', NULL, 'App\\Http\\Controllers\\PracticeController', 'topics', '2021-03-17 00:20:41', '2021-03-17 00:20:41');
+(111, NULL, NULL, 'App\\Http\\Controllers\\AnswerController', 'retrive', '2021-03-21 22:53:48', '2021-03-21 22:53:48'),
+(112, '(Teacher) Update practice Limit', NULL, 'App\\Http\\Controllers\\QuestionController', 'updatePracticeLimit', '2021-03-21 22:53:48', '2021-03-21 22:53:48'),
+(113, '(Student) Answer Submit View', NULL, 'App\\Http\\Controllers\\AnswerController', 'submitView', '2021-03-21 22:53:48', '2021-03-21 22:53:48'),
+(114, '(Student) All practice subjects', NULL, 'App\\Http\\Controllers\\PracticeController', 'subjects', '2021-03-21 22:53:48', '2021-03-21 22:53:48'),
+(115, '(Student) subject wise topics for practice', NULL, 'App\\Http\\Controllers\\PracticeController', 'topics', '2021-03-21 22:53:48', '2021-03-21 22:53:48'),
+(116, '(Teacher) File Delete', NULL, 'App\\Http\\Controllers\\FileController', 'destroy', '2021-03-21 22:53:48', '2021-03-21 22:53:48'),
+(117, '(All) File Show', NULL, 'App\\Http\\Controllers\\FileController', 'show', '2021-03-21 22:53:48', '2021-03-21 22:53:48'),
+(118, '(Student) Rating Give Form', NULL, 'App\\Http\\Controllers\\RatingController', 'create', '2021-03-27 17:50:03', '2021-03-27 17:50:03'),
+(119, '(Student) Rating Store ', NULL, 'App\\Http\\Controllers\\RatingController', 'store', '2021-03-27 17:50:03', '2021-03-27 17:50:03');
 
+--
+-- Dumping data for table `permission_role`
+--
 
 INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (2, 52, 1, NULL, NULL),
@@ -183,30 +262,50 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `
 (67, 108, 2, NULL, NULL),
 (68, 109, 2, NULL, NULL),
 (69, 110, 2, NULL, NULL),
-(70, 111, 2, NULL, NULL),
-(71, 112, 1, NULL, NULL),
+(70, 116, 2, NULL, NULL),
+(71, 117, 2, NULL, NULL),
 (72, 113, 1, NULL, NULL),
-(73, 114, 1, NULL, NULL);
+(73, 114, 1, NULL, NULL),
+(74, 115, 1, NULL, NULL),
+(75, 112, 2, NULL, NULL),
+(76, 118, 1, NULL, NULL),
+(77, 119, 1, NULL, NULL);
 
+--
+-- Dumping data for table `profiles`
+--
 
+INSERT INTO `profiles` (`id`, `phone`, `profession`, `address`, `birthdate`, `age`, `created_at`, `updated_at`, `user_id`) VALUES
+(1, '01845701122', 'Teacher', 'Dhaka', '2021-03-01', '20', '2021-03-21 04:39:41', '2021-03-21 04:39:41', 4);
 
-INSERT INTO `questions` (`id`, `learn_id`, `content`, `created_at`, `updated_at`, `practice_limit`) VALUES
-(3, 1, '{\"q_1\":{\"question\":\"Question 1\",\"question_type\":\"short_answer\",\"options\":[],\"options_answer\":[]},\"q_2\":{\"question\":\"Question 2000\",\"question_type\":\"multiple_choice\",\"options\":{\"q_2>O_1\":\"1\",\"q_2>O_2\":\"2\",\"q_2>O_3\":\"3\"},\"options_answer\":[\"q_2>O_2\"]},\"q_3\":{\"question\":\"Question 3\",\"question_type\":\"checkbox\",\"options\":{\"q_3>O_1\":\"1\",\"q_3>O_2\":\"2\",\"q_3>O_3\":\"3\"},\"options_answer\":[\"q_3>O_2\",\"q_3>O_3\"]},\"q_4\":{\"question\":\"Question 4\",\"question_type\":\"paragraph\",\"options\":[],\"options_answer\":[]}}', '2021-03-17 00:47:20', '2021-03-17 07:18:34', 2);
+--
+-- Dumping data for table `ratings`
+--
 
+INSERT INTO `ratings` (`id`, `rating`, `user_id`, `subject_id`, `created_at`, `updated_at`) VALUES
+(1, 5, 3, 2, '2021-03-27 17:42:17', '2021-03-27 17:42:17');
+
+--
+-- Dumping data for table `roles`
+--
 
 INSERT INTO `roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Student', 'This role is for student', NULL, NULL),
 (2, 'Teacher', 'This role is for teacher', NULL, NULL),
 (3, 'Content Developer', 'This role is for content developer', NULL, NULL);
 
-
+--
+-- Dumping data for table `subjects`
+--
 
 INSERT INTO `subjects` (`id`, `name`, `class`, `user_id`, `created_at`, `updated_at`, `auto_aprove`) VALUES
-(1, 'bangla', 10, 4, '2021-02-23 05:20:00', '2021-02-25 20:20:58', 0),
-(2, 'english', 10, 4, '2021-02-23 05:20:18', '2021-02-23 07:26:58', 0),
-(3, 'english', 10, 4, '2021-02-23 05:20:29', '2021-02-23 07:25:56', 1);
+(1, 'bangla', 10, 4, '2021-02-22 17:20:00', '2021-02-25 08:20:58', 0),
+(2, 'english', 10, 4, '2021-02-22 17:20:18', '2021-02-22 19:26:58', 0),
+(3, 'english', 10, 4, '2021-02-22 17:20:29', '2021-02-22 19:25:56', 1);
 
-
+--
+-- Dumping data for table `subscriptions`
+--
 
 INSERT INTO `subscriptions` (`id`, `user_id`, `subject_id`, `created_at`, `updated_at`, `is_aproved`) VALUES
 (10, 3, 3, NULL, NULL, 0),
@@ -216,14 +315,32 @@ INSERT INTO `subscriptions` (`id`, `user_id`, `subject_id`, `created_at`, `updat
 (17, 5, 1, NULL, NULL, 1),
 (19, 3, 1, NULL, NULL, 1);
 
+--
+-- Dumping data for table `teacher_profiles`
+--
+
+INSERT INTO `teacher_profiles` (`id`, `user_id`, `year_of_experience`, `specilization`, `created_at`, `updated_at`, `avatar`) VALUES
+(1, 4, 4, '<div class=\"elementor-element elementor-element-d7f343b elementor-widget elementor-widget-heading\" data-id=\"d7f343b\" data-element_type=\"widget\" data-widget_type=\"heading.default\" style=\'border: 0px; font-size: 18px; margin: 0px 0px 20px; outline: 0px; padding: 0px; vertical-align: baseline; position: relative; width: 224.562px; color: rgb(25, 25, 25); font-family: \"Roboto Condensed\", sans-serif;\'><div class=\"elementor-widget-container\" style=\"border: 0px; font-style: inherit; font-weight: inherit; margin: 0px 0px 0px -80px; outline: 0px; padding: 0px; vertical-align: baseline; transition: background 0.3s ease 0s, border 0.3s ease 0s, border-radius 0.3s ease 0s, box-shadow 0.3s ease 0s, -webkit-border-radius 0.3s ease 0s, -webkit-box-shadow 0.3s ease 0s;\"><h2 class=\"elementor-heading-title elementor-size-default\" style=\"border: 0px; font-size: 55px; font-style: inherit; font-weight: 600; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; outline: 0px; padding: 0px; vertical-align: baseline; clear: both; color: rgb(12, 12, 12); line-height: 1; font-family: Barlow, sans-serif; letter-spacing: -1.6px;\">Client Success Story</h2></div><div class=\"elementor-element elementor-element-15bb1478 elementor-widget-divider--view-line elementor-widget elementor-widget-divider\" data-id=\"15bb1478\" data-element_type=\"widget\" data-widget_type=\"divider.default\" style=\'border: 0px; font-size: 18px; margin: 0px 0px 20px; outline: 0px; padding: 0px; vertical-align: baseline; position: relative; --divider-border-style:solid; --divider-border-width:3px; --divider-color:#000000; --divider-icon-size:20px; --divider-element-spacing:10px; --divider-pattern-height:24px; --divider-pattern-size:20px; --divider-pattern-url:none; --divider-pattern-repeat:repeat-x; width: 224.562px; color: rgb(25, 25, 25); font-family: \"Roboto Condensed\", sans-serif;\'><div class=\"elementor-widget-container\" style=\"border: 0px; font-style: inherit; font-weight: inherit; margin: 0px 0px 0px -80px; outline: 0px; padding: 0px; vertical-align: baseline; transition: background 0.3s ease 0s, border 0.3s ease 0s, border-radius 0.3s ease 0s, box-shadow 0.3s ease 0s, -webkit-border-radius 0.3s ease 0s, -webkit-box-shadow 0.3s ease 0s;\"><div class=\"elementor-divider\" style=\"border: 0px; font-style: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 15px 0px; vertical-align: baseline; display: flex;\"><span class=\"elementor-divider-separator\" style=\"border-top: var(--divider-border-width) var(--divider-border-style) var(--divider-color); border-right: 0px; border-bottom: 0px; border-left: 0px; border-image: initial; font-style: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; display: flex; direction: ltr; width: 36.5469px;\"></span></div></div></div><div class=\"elementor-element elementor-element-780af7ac elementor-widget elementor-widget-text-editor\" data-id=\"780af7ac\" data-element_type=\"widget\" data-widget_type=\"text-editor.default\" style=\"border: 0px; font-size: 20px; margin: 0px 0px 20px; outline: 0px; padding: 0px; vertical-align: baseline; position: relative; color: rgb(0, 0, 0); width: 224.562px; font-family: Barlow, sans-serif;\"><div class=\"elementor-widget-container\" style=\"border: 0px; font-style: inherit; font-weight: inherit; margin: 0px 0px 0px -80px; outline: 0px; padding: 0px; vertical-align: baseline; transition: background 0.3s ease 0s, border 0.3s ease 0s, border-radius 0.3s ease 0s, box-shadow 0.3s ease 0s, -webkit-border-radius 0.3s ease 0s, -webkit-box-shadow 0.3s ease 0s;\"><div class=\"elementor-text-editor elementor-clearfix\" style=\"border: 0px; font-style: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline;\"><p style=\"border: 0px; font-style: inherit; font-weight: inherit; margin-right: 0px; margin-bottom: 1.75em; margin-left: 0px; outline: 0px; padding: 0px; vertical-align: baseline;\">We are proud to be a&nbsp;<span style=\"border: 0px; font-style: inherit; font-weight: 700; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline;\">customer-centric</span>&nbsp;company. For your success in the digital transformation, we ensure the&nbsp;<span style=\"border: 0px; font-style: inherit; font-weight: 700; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline;\">fastest delivery</span>&nbsp;with&nbsp;<span style=\"border: 0px; font-style: inherit; font-weight: 700; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline;\">360 solutions &amp; services</span>.&nbsp;</p></div></div></div></div>\n', '2021-03-21 04:39:41', '2021-03-21 04:39:41', 'upload/avatars/1616323181closeup-photo-amazing-short-hairdo-260nw-1617540484.jpg');
+
+--
+-- Dumping data for table `topics`
+--
 
 INSERT INTO `topics` (`id`, `name`, `subject_id`, `created_at`, `updated_at`) VALUES
-(1, 'Chapter 1', 1, '2021-02-24 20:45:08', '2021-02-24 20:45:08');
+(3, 'Chapter 1', 1, '2021-03-28 07:45:32', '2021-03-28 07:45:32');
 
+--
+-- Dumping data for table `users`
+--
 
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_completion`, `password`, `remember_token`, `role_id`, `created_at`, `updated_at`) VALUES
+(3, 's1', 's1@student.com', NULL, 0, '$2y$10$TkMtb2rNU0apiRbK4fylpO8AoMqZYHQGNw3eCaOk73YGjdsaomYt2', NULL, 1, '2021-02-09 02:35:11', '2021-02-09 02:35:11'),
+(4, 't1', 't1@teacher.com', NULL, 0, '$2y$10$oxE6NGWf..f0DK6F3YBj7usuSm4RxDERYN3gBgpYe2/0F6/Sk/FAK', NULL, 2, '2021-02-09 02:35:49', '2021-02-09 02:35:49'),
+(5, 's2', 's2@student.com', NULL, 0, '$2y$10$DKYjeyVgdDaR8d7wTXQ.OuxnprBOnILakHIjgjEzhGxWM4RaOWuru', NULL, 1, '2021-02-12 03:24:35', '2021-02-12 03:24:35'),
+(6, 's3', 's3@student.com', NULL, 0, '$2y$10$p5zM5LqUJKbPx4EDIP3Bnu5WBocoHOcHueClnBbwtin1N61YyDsQW', NULL, 1, '2021-02-12 03:28:07', '2021-02-12 03:28:07');
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `profession`, `address`, `birthdate`, `age`, `email_verified_at`, `password`, `remember_token`, `role_id`, `created_at`, `updated_at`) VALUES
-(3, 's1', 's1@student.com', '01234567891', 'Student', 'Dhaka', '2021-02-01', '9', NULL, '$2y$10$TkMtb2rNU0apiRbK4fylpO8AoMqZYHQGNw3eCaOk73YGjdsaomYt2', NULL, 1, '2021-02-09 02:35:11', '2021-02-09 02:35:11'),
-(4, 't1', 't1@teacher.com', '01234567890', 'Teacher', 'Dhaka', '2021-02-01', '9', NULL, '$2y$10$oxE6NGWf..f0DK6F3YBj7usuSm4RxDERYN3gBgpYe2/0F6/Sk/FAK', NULL, 2, '2021-02-09 02:35:49', '2021-02-09 02:35:49'),
-(5, 's2', 's2@student.com', '01234567895', 'Student', 'Dhaka', '2021-02-01', '12', NULL, '$2y$10$DKYjeyVgdDaR8d7wTXQ.OuxnprBOnILakHIjgjEzhGxWM4RaOWuru', NULL, 1, '2021-02-12 03:24:35', '2021-02-12 03:24:35'),
-(6, 's3', 's3@student.com', '01234567897', 'Student', 'Dhaka', '2021-02-01', '12', NULL, '$2y$10$p5zM5LqUJKbPx4EDIP3Bnu5WBocoHOcHueClnBbwtin1N61YyDsQW', NULL, 1, '2021-02-12 03:28:07', '2021-02-12 03:28:07');
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
