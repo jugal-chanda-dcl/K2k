@@ -99,5 +99,5 @@ Route::get('/file/{file}/delete','FileController@destroy')->name('file.delete')-
 Route::get('/show-pdf/{file}','FileController@show')->name('file.show');
 // Route::resource('bid', 'BidContentController')->middleware('roleauth');
 
-Route::get('rating/create/subject/{subject}','RatingController@create')->name('rating.create');
-Route::post('rating/create/subject/{subject}','RatingController@store')->name('rating.store');
+Route::get('rating/create/subject/{subject}','RatingController@create')->name('rating.create')->middleware('roleauth');
+Route::post('rating/create/subject/{subject}','RatingController@store')->name('rating.store')->middleware('roleauth');

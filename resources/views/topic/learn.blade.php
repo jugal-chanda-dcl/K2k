@@ -58,28 +58,17 @@
     {!! $learn->content !!}
   </div>
   <div class="">
-    <h1 class="text-center">Images</h1>
-    <div class="row">
-      @foreach($learn->files->where('type','image') as $file)
-      <div class="col-md-3 p-1">
-        <a href="{{ asset($file->path) }}"><img src="{{ asset($file->path) }}" alt="" style="width: 100%"></a>
-            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('file.delete')))
-              <a href="{{ route('file.delete',['file'=>$file]) }}" class="btn btn-danger btn-sm">Delete</a>
-            @endif
-      </div>
+    <h1 class="text-center">Images/Documents</h1>
+    <ol>
+      @foreach($learn->files as $file)
+      <li class="mb-1">
+        <a href="{{ asset($file->path) }}" class="btn btn-sm btn-info">View</a>
+        @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('file.delete')))
+          <a href="{{ route('file.delete',['file'=>$file]) }}" class="btn btn-sm btn-danger">Delete</a>
+        @endif
+      </li>
       @endforeach
-
-    </div>
-  </div>
-  <div class="">
-    <h2 class="text-center">Documents</h2>
-      @foreach($learn->files->where('type','pdf') as $file)
-        <ul>
-          <li><a href="{{ route('file.delete',['file'=>$file]) }}" class="btn btn-danger btn-sm">Delete</a>
-            <a href="{{ route('file.show',['file'=>$file]) }}">View</a>
-          </li>
-        </ul>
-      @endforeach
+    </ol>
   </div>
 </div>
 

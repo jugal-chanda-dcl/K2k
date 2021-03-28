@@ -42,7 +42,9 @@
           </td>
           @endif
           <td class="">
+            @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('rating.create')))
             <a href="{{ route('rating.create',['subject' => $subject ]) }}">Give Rating</a>
+            @endif
             @if(Auth::user()->hasPermission(Route::getRoutes()->getByName('subject.destroy')))
             <form class="d-inline" action="{{ route('subject.destroy',['subject'=>$subject->id])}}" method="post">
                   @csrf
