@@ -1,0 +1,13 @@
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=elearning
+DB_USERNAME=root
+DB_PASSWORD=
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=dicodela_elearning
+DB_USERNAME=dicodela_elearningroot
+DB_PASSWORD=+AWh%uy4@u-@

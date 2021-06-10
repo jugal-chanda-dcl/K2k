@@ -47,9 +47,11 @@
                         <tr>
                             <th scope="col">Topic Name</th>
                             <th scope="col"> Learn</th>
+                            @if(auth()->user()->role->id == 1)
                             <th scope="col">Attempt</th>
                             <th scope="col">Reviewed</th>
                             <th scope="col">Score</th>
+                            @endif
                             <th scope="col">Action</th>
                         </tr>
 
@@ -67,6 +69,7 @@
                                             class="btn btn-info btn-sm">Learn</a>
                                     @endif
                                 </td>
+                                @if(auth()->user()->role->id == 1)
                                 <td>
                                   {{ $topic->attempt() }}
                                 </td>
@@ -74,6 +77,7 @@
                                   {{ $topic->reviewed() }}
                                 </td>
                                 <td>{{  $topic->score()  }}</td>
+                                @endif
                                 <td>
                                     @if (Auth::user()->hasPermission(Route::getRoutes()->getByName('answer.submit_view')))
                                         @if ($topic->learn->question)
